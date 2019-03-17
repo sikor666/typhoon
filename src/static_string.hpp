@@ -41,9 +41,9 @@ constexpr static_string<N> literal(const char(&a)[N])
 template<size_t N1, size_t N2>
 class array_string
 {
+public:
     char data[N1 - 1 + N2 - 1 + 1];
 
-public:
     constexpr explicit array_string(const static_string<N1> & s1,
                                     const static_string<N2> & s2)
     {
@@ -61,10 +61,10 @@ public:
         return data;
     }
 
-    /*operator string()
+    operator string()
     {
         return data;
-    }*/
+    }
 
     /*constexpr operator static_string<N1 - 1 + N2 - 1 + 1>()
     {
@@ -91,11 +91,9 @@ constexpr array_string<N1, N2> operator+(const static_string<N1> & s1,
     return array_string<N1, N2>(s1, s2);
 }
 
-/*template<size_t N1, size_t N2, size_t N3>
-constexpr array_string<N1 + N2, N3> operator+(const array_string<N1, N2> & a,
-                                              const static_string<N3> & s)
+template<size_t N1, size_t N2, size_t N3>
+constexpr array_string<N1 + N2 - 1, N3> operator+(const array_string<N1, N2> & a,
+                                                  const static_string<N3> & s)
 {
-    constexpr static_string<N1 + N2> ss(a.c_str());
-    constexpr array_string<N1 + N2, N3> aa(ss, s);
-    return aa;
-}*/
+    return array_string<N1 + N2 - 1, N3>(static_string<N1 + N2 - 1>(a.data), s);
+}

@@ -13,6 +13,6 @@ int main()
     auto text = TEXT1 + TEXT2;
     std::cout << text << std::endl;
 
-    //string str = (TEXT0 + TEXT1 + TEXT2).c_str();
-    //std::cout << str << std::endl;
+    string str = TEXT0 + TEXT1 + TEXT2;
+    std::cout << str << std::endl;
 }
