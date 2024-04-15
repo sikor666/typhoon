@@ -3,9 +3,14 @@ cmake_minimum_required(VERSION 3.8)
 project(typhoon)
 
 # Setting the C++ standard directly
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
+
+# Set output directories
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Add include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
@@ -18,4 +23,3 @@ add_executable(typhoon main.cpp ${SRC})
 
 # Add source groups in project
 source_group("src" FILES ${SRC})
-
