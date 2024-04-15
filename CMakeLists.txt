@@ -23,3 +23,7 @@ add_executable(typhoon main.cpp ${SRC})
 
 # Add source groups in project
 source_group("src" FILES ${SRC})
+
+# Some useful commands
+# ctags -R --exclude='.git/' --exclude='build/' '/usr/include/c++/13/' './'
+# git diff -U0 HEAD^ | ./tools/clang-format-diff.py -p1 -i

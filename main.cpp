@@ -1,18 +1,35 @@
-#include "static_string.hpp"
+#include "observer/Observer.h"
+#include "observer/Subject.h"
 
 #include <iostream>
+#include <memory>
 
-constexpr auto TEXT0 = literal("static string");
-constexpr auto TEXT1 = literal("12345678");
-constexpr auto TEXT2 = literal("123456789");
+int Observer::static_number_ = 0;
+
+void ClientCode()
+{
+    auto subject = std::make_shared<Subject>();
+    auto observer1 = std::make_unique<Observer>(subject);
+    auto observer2 = std::make_unique<Observer>(subject);
+    auto observer3 = std::make_unique<Observer>(subject);
+
+    subject->CreateMessage("Hello World! :D");
+    observer3->RemoveMeFromTheList();
+
+    subject->CreateMessage("The weather is hot today! :p");
+    auto observer4 = std::make_unique<Observer>(subject);
+
+    observer2->RemoveMeFromTheList();
+    auto observer5 = std::make_unique<Observer>(subject);
+
+    subject->CreateMessage("My new car is great! ;)");
+    observer5->RemoveMeFromTheList();
+
+    observer4->RemoveMeFromTheList();
+    observer1->RemoveMeFromTheList();
+}
 
 int main()
 {
-    std::cout << TEXT0 << std::endl;
-
-    auto text = TEXT1 + TEXT2;
-    std::cout << text << std::endl;
-
-    string str = TEXT0 + TEXT1 + TEXT2;
-    std::cout << str << std::endl;
+    ClientCode();
 }
