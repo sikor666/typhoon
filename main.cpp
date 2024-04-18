@@ -1,10 +1,14 @@
+#include "concurrency/Hello.h"
 #include "observer/Observer.h"
 #include "observer/Subject.h"
 
 #include "fold_expressions.hpp"
+#include "square_root.hpp"
 
 #include <iostream>
 #include <memory>
+
+using namespace std::chrono_literals;
 
 int Observer::static_number_ = 0;
 
@@ -46,8 +50,37 @@ void FoldExpressions()
     static_assert(bswap<std::uint64_t>(0x0123456789abcdefull) == 0xefcdab8967452301ULL);
 }
 
-int main()
+void HelloConcurrency()
 {
-    ClientCode();
-    FoldExpressions();
+    std::thread t{hello}; // hello is second thread function
+    t.join();             // waiting for the thread to finish executing
+
+    try
+    {
+        auto f = std::async(square_root, -1);
+        std::cout << "Square root result: " << f.get() << "\n";
+    }
+    catch (std::exception & ex)
+    {
+        std::cerr << "Square root error: " << ex.what() << "\n";
+    }
+
+    std::promise<std::string> p;
+    auto sf = p.get_future().share();
+
+    for (int i = 0; i < 12; ++i)
+    {
+        std::thread{print_hello, i, sf}.detach();
+    }
+
+    p.set_value("hello");
+
+    std::this_thread::sleep_for(500ms);
+}
+
+int main() // main is first thread function
+{
+    // ClientCode();
+    // FoldExpressions();
+    HelloConcurrency();
 }
