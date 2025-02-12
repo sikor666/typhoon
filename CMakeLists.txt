@@ -19,10 +19,13 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 file(GLOB_RECURSE SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/*.*")
 
 # Add the executable
-add_executable(typhoon main.cpp ${SRC})
+add_executable(typhoon quest.cpp ${SRC})
+
+# Add link libraries
+target_link_libraries(typhoon PRIVATE ncurses)
 
 # Add source groups in project
-source_group("src" FILES ${SRC})
+# source_group("src" FILES ${SRC})
 
 # Some useful commands
 # ctags -R --exclude='.git/' --exclude='build/' '/usr/include/c++/13/' './'
