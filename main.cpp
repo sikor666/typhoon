@@ -1,55 +1,24 @@
-#include "Logger.h"
+#include "Game.hpp"
+#include "Ui.hpp"
 
-#include <ncurses.h>
-
-#include <iomanip>
+#include <iostream>
 
 int main()
 {
-    // init screen and sets up screen
-    initscr();
+    // Bastet::Ui ui;
+    // ui.Play();
 
-    const int height = 31;
-    const int width = 61;
-
-    std::stringstream ss;
-
-    ss << "  ";
-
-    for (int x = 0; x < width; x++)
+    try
     {
-        auto color = x % 2 ? vmo::magenta : vmo::cyan;
-
-        ss << color << std::setfill('0') << std::setw(2) << x << vmo::end;
+        Bastet::Game game;
+        game.Play();
+    }
+    catch (Bastet::GameOver & go)
+    {
     }
 
-    ss << '\n';
-
-    for (int y = 0; y < height; y++)
-    {
-        auto color = y % 2 ? vmo::magenta : vmo::cyan;
-
-        ss << color << std::setfill('0') << std::setw(2) << y << vmo::end;
-
-        for (int x = 0; x < width; x++)
-        {
-            ss << ' ' << '+';
-        }
-
-        ss << '\n';
-    }
-
-    // print to screen
-    printw(ss.str().c_str());
-
-    // refreshes the screen
-    refresh();
-
-    // pause the screen output
-    getch();
-
-    // deallocates memory and ends ncurses
-    endwin();
+    char c;
+    std::cin >> c;
 
     return 0;
 }

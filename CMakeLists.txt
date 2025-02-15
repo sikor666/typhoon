@@ -15,11 +15,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # Add include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-# Create files lists
-file(GLOB_RECURSE SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/*.*")
-
 # Add the executable
-add_executable(typhoon quest.cpp ${SRC})
+add_executable(typhoon main.cpp
+    src/Curses.cpp src/Game.cpp src/Ui.cpp src/Well.cpp src/Block.cpp src/BlockPosition.cpp src/BorderedWindow.cpp)
 
 # Add link libraries
 target_link_libraries(typhoon PRIVATE ncurses)
