@@ -1,3 +1,4 @@
+#include "Curses.hpp"
 #include "Game.hpp"
 #include "Ui.hpp"
 
@@ -10,6 +11,7 @@ int main()
 
     try
     {
+        Bastet::Curses curses;
         Bastet::Game game;
         game.Play();
     }

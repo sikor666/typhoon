@@ -5,21 +5,17 @@ namespace Bastet
 {
 
 Game::Game()
-    : _width{50}
-    , _height{50}
+    : _width{getmaxx(stdscr)}
+    , _height{getmaxy(stdscr)}
     , _well{_width, _height}
-    , _wellWin{_height, 2 * _width}
+    , _screen{_height, _width, 0, 0}
 {
     // Example usage of the logger
     // logger.log(INFO, "Program started.");
     // logger.log(DEBUG, "Debugging information.");
     // logger.log(ERROR, "An error occurred.");
 
-    // getmaxyx(stdscr, _height, _width);
-    // (getmaxx(stdscr) / 2) - 2
-    // getmaxy(stdscr) - 2
-
-    logF << "Program started: [" << _width << " " << _height << "][" << getmaxx(stdscr) << " " << getmaxy(stdscr) << "]";
+    // logF << "Program started: [" << _width << " " << _height << "][" << getmaxx(stdscr) << " " << getmaxy(stdscr) << "]";
 
     _colors.resize(_height, std::vector<Color>(_width, 0));
 
@@ -45,12 +41,12 @@ void Game::RedrawWell(const Well * w, BlockType b, const BlockPosition & p)
 {
     for (int i = 0; i < _width; ++i)
         for (int j = 0; j < _height; ++j)
-            _wellWin.DrawDot(Dot{i, j}, _colors[j][i]);
+            _screen.DrawDot(Dot{i, j}, _colors[j][i]);
 
     for (const Dot & d : p.GetDots(b))
-        _wellWin.DrawDot(d, GetColor(b));
+        _screen.DrawDot(d, GetColor(b));
 
-    wrefresh(_wellWin);
+    wrefresh(_screen);
 }
 
 void Game::Play()

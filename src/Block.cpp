@@ -6,17 +6,17 @@ namespace Bastet
 {
 
 BlockArray blocks = { // should be yellow, but I find no portable way to output a yellow solid block character in ncurses.
-    BlockImpl{COLOR_PAIR(7),
+    BlockImpl{COLOR_PAIR(6),
         OrientationMatrix{// O
             DotMatrix{    // orientation 0 (initial)
-                Dot{1, 1}, Dot{2, 1}, Dot{1, 0}, Dot{2, 0}},
+                Dot{0, 0}, Dot{0, 0}, Dot{0, 0}, Dot{0, 0}},
             DotMatrix{// orientation 1
-                Dot{1, 1}, Dot{2, 1}, Dot{1, 0}, Dot{2, 0}},
+                Dot{0, 0}, Dot{0, 0}, Dot{0, 0}, Dot{0, 0}},
             DotMatrix{// orientation 2
-                Dot{1, 1}, Dot{2, 1}, Dot{1, 0}, Dot{2, 0}},
+                Dot{0, 0}, Dot{0, 0}, Dot{0, 0}, Dot{0, 0}},
             DotMatrix{// orientation 3
-                Dot{1, 1}, Dot{2, 1}, Dot{1, 0}, Dot{2, 0}}}},
-    BlockImpl{COLOR_PAIR(4),
+                Dot{0, 0}, Dot{0, 0}, Dot{0, 0}, Dot{0, 0}}}},
+    BlockImpl{COLOR_PAIR(7),
         OrientationMatrix{// I
             DotMatrix{    // orientation 0 (initial)
                 Dot{0, 1}, Dot{1, 1}, Dot{2, 1}, Dot{3, 1}},
@@ -46,7 +46,7 @@ BlockArray blocks = { // should be yellow, but I find no portable way to output 
                 Dot{1, 2}, Dot{0, 1}, Dot{1, 1}, Dot{2, 1}},
             DotMatrix{// orientation 3
                 Dot{1, 2}, Dot{0, 1}, Dot{1, 1}, Dot{1, 0}}}},
-    BlockImpl{COLOR_PAIR(6),
+    BlockImpl{COLOR_PAIR(4),
         OrientationMatrix{// J
             DotMatrix{    // orientation 0 (initial)
                 Dot{0, 1}, Dot{1, 1}, Dot{2, 1}, Dot{0, 0}},

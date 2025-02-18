@@ -1,7 +1,6 @@
 #pragma once
 
-#include "BorderedWindow.hpp"
-#include "Curses.hpp"
+#include "Screen.hpp"
 #include "Well.hpp"
 
 namespace Bastet
@@ -19,9 +18,8 @@ private:
     int _width;
     int _height;
 
-    Curses _curses;
     Well _well;
-    BorderedWindow _wellWin;
+    Screen _screen;
 
     std::vector<std::vector<Color>> _colors;
 };
