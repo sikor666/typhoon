@@ -75,7 +75,7 @@ public:
     {
         logFile.open(filename, std::ios::app);
 
-        if (!logFile.is_open())
+        if (not logFile.is_open())
         {
             std::cerr << "Error opening log file." << std::endl;
         }
