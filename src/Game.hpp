@@ -11,7 +11,8 @@ class Game
 public:
     Game();
 
-    void RedrawWell(const Well * well, BlockType falling, const BlockPosition & pos);
+    void DropBlock(Well * well, BlockType blockType);
+    void RedrawWell(Well * well, BlockType falling, const BlockPosition & pos);
     void Play();
 
 private:

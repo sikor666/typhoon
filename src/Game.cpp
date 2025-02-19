@@ -37,7 +37,62 @@ Game::Game()
     }
 }
 
-void Game::RedrawWell(const Well * w, BlockType b, const BlockPosition & p)
+void Game::DropBlock(Well * well, BlockType blockType)
+{
+    // assumes nodelay(stdscr,TRUE) has already been called
+    BlockPosition blockPosition;
+
+    RedrawWell(well, blockType, blockPosition);
+
+    while (1)
+    {
+        // break = tetromino locked
+        // keypress
+        int ch = getch();
+        if (ch == 'a')
+            blockPosition.MoveIfPossible(Left, blockType, well);
+        else if (ch == 'd')
+            blockPosition.MoveIfPossible(Right, blockType, well);
+        else if (ch == 's')
+        {
+            bool val = blockPosition.MoveIfPossible(Down, blockType, well);
+            if (val)
+            {
+            }
+            else
+                break;
+        }
+        else if (ch == 'w')
+            blockPosition.MoveIfPossible(Up, blockType, well);
+        else if (ch == 'e')
+            blockPosition.MoveIfPossible(RotateCW, blockType, well);
+        else if (ch == 'q')
+            blockPosition.MoveIfPossible(RotateCCW, blockType, well);
+        else if (ch == 'l')
+            break;
+        else if (ch == ' ')
+        {
+            blockPosition.Drop(blockType, well);
+            break;
+        }
+        else
+        {
+        } // default...
+
+        // keypress switch
+        RedrawWell(well, blockType, blockPosition);
+    } // while(1)
+
+    LinesCompleted lc = well->Lock(blockType, blockPosition);
+    // locks also into _colors
+    for (const Dot & d : blockPosition.GetDots(blockType))
+        if (d.y >= 0)
+            _colors[d.y][d.x] = GetColor(blockType);
+
+    RedrawWell(well, blockType, blockPosition);
+}
+
+void Game::RedrawWell(Well * w, BlockType b, const BlockPosition & p)
 {
     for (int i = 0; i < _width; ++i)
         for (int j = 0; j < _height; ++j)
@@ -51,6 +106,14 @@ void Game::RedrawWell(const Well * w, BlockType b, const BlockPosition & p)
 
 void Game::Play()
 {
+    int i = 0;
+    while (true)
+    {
+        while (getch() != ERR)
+            ; // ignores the keys pressed during the next block calculation
+        BlockType current = BlockType(i++ % 7);
+        DropBlock(&_well, current);
+    }
 }
 
 } // namespace Bastet
