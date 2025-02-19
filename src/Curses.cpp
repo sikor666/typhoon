@@ -15,7 +15,8 @@ Curses::Curses()
         fprintf(stderr, "bastet: error while initializing graphics (ncurses library).\n");
         exit(1);
     }
-    if (!has_colors())
+
+    if (not has_colors())
     {
         endwin();
         fprintf(stderr, "bastet: no color support, sorry. Ask the author for a black and white version.");
