@@ -7,10 +7,10 @@ namespace Bastet
 {
 
 Game::Game()
-    : _width{getmaxx(stdscr)}
+    : _width{getmaxx(stdscr) / 2}
     , _height{getmaxy(stdscr)}
     , _well{_width, _height}
-    , _screen{_height, _width, 0, 0}
+    , _screen{_height, _width * 2, 0, 0}
 {
     // Example usage of the logger
     // logger.log(INFO, "Program started.");
@@ -115,7 +115,8 @@ void Game::Play()
     while (true)
     {
         // ignores the keys pressed during the next block calculation
-        while (getch() != ERR);
+        while (getch() != ERR)
+            ;
 
         auto current = static_cast<BlockType>(distrib(gen));
 

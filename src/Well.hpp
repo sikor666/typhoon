@@ -40,7 +40,7 @@ class Well
 private:
     int _width;
     int _height;
-    std::vector<std::vector<bool>> _well;
+    std::vector<std::vector<BlockType>> _well;
 
 public:
     Well(int width, int height);
