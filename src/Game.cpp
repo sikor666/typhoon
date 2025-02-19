@@ -1,6 +1,8 @@
 #include "Game.hpp"
 #include "Logger.hpp"
 
+#include <random>
+
 namespace Bastet
 {
 
@@ -15,7 +17,7 @@ Game::Game()
     // logger.log(DEBUG, "Debugging information.");
     // logger.log(ERROR, "An error occurred.");
 
-    // logF << "Program started: [" << _width << " " << _height << "][" << getmaxx(stdscr) << " " << getmaxy(stdscr) << "]";
+    logF << "Program started: [" << _width << " " << _height << "]";
 
     _colors.resize(_height, std::vector<Color>(_width, 0));
 
@@ -106,12 +108,19 @@ void Game::RedrawWell(Well * w, BlockType b, const BlockPosition & p)
 
 void Game::Play()
 {
-    int i = 0;
+    std::random_device rd;  // a seed source for the random number engine
+    std::mt19937 gen(rd()); // mersenne_twister_engine seeded with rd()
+    std::uniform_int_distribution<> distrib(1, 6);
+
     while (true)
     {
-        while (getch() != ERR)
-            ; // ignores the keys pressed during the next block calculation
-        BlockType current = BlockType(i++ % 7);
+        // ignores the keys pressed during the next block calculation
+        while (getch() != ERR);
+
+        auto current = static_cast<BlockType>(distrib(gen));
+
+        logF << "Current block type: " << current;
+
         DropBlock(&_well, current);
     }
 }
