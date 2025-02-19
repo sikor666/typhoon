@@ -98,7 +98,7 @@ public:
         logEntry << "[" << timestamp << "] " << levelToString(level) << ": " << message << std::endl;
 
         // Output to console
-        std::cout << logEntry.str();
+        // std::cout << logEntry.str();
 
         // Output to log file
         if (logFile.is_open())
