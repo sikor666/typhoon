@@ -21,7 +21,7 @@ add_executable(typhoon main.cpp
     src/Block.cpp src/BlockPosition.cpp src/BorderedWindow.cpp src/Screen.cpp)
 
 # Add link libraries
-target_link_libraries(typhoon PRIVATE ncurses)
+target_link_libraries(typhoon PRIVATE ncursesw)
 
 # Add source groups in project
 # source_group("src" FILES ${SRC})

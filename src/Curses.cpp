@@ -2,6 +2,7 @@
 
 #include <curses.h>
 
+#include <clocale>
 #include <cstdlib>
 #include <ctime>
 
@@ -10,6 +11,10 @@ namespace Bastet
 
 Curses::Curses()
 {
+    /* Set the locale to support Unicode */
+    setlocale(LC_ALL, "");
+
+    /* Initialize ncurses */
     if (initscr() == nullptr)
     {
         fprintf(stderr, "bastet: error while initializing graphics (ncurses library).\n");
