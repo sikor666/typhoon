@@ -57,8 +57,10 @@ int Screen::GetMaxY()
 void Screen::DrawDot(const Dot & d, Color c)
 {
     wattrset((WINDOW *)(*this), c);
-    mvwaddch(*this, d.y, 2 * d.x, ' ');
-    mvwaddch(*this, d.y, 2 * d.x + 1, ' ');
+    // mvwaddch(*this, d.y, 2 * d.x, ' ');
+    // mvwaddch(*this, d.y, 2 * d.x + 1, ' ');
+
+    wmove(*this, d.y, 2 * d.x) == ERR ? ERR : wprintw(*this, "  ");
 }
 
 } // namespace Bastet
