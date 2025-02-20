@@ -4,6 +4,8 @@
 
 #include <curses.h>
 
+#include <string>
+
 namespace Bastet
 {
 
@@ -21,7 +23,7 @@ public:
     int GetMinY();
     int GetMaxX();
     int GetMaxY();
-    void DrawDot(const Dot & d, Color c);
+    void DrawDot(const Dot & d, Color c, const std::string & s);
 };
 
 } // namespace Bastet

@@ -34,7 +34,7 @@ Game::Game()
                 if (d.y >= 0)
                     _colors[d.y][d.x] = GetColor(BlockType::O);
 
-            RedrawWell(&_well, BlockType::O, blockPosition);
+            RedrawWell(&_well, BlockType::O, blockPosition, "  ");
         }
     }
 }
@@ -44,7 +44,10 @@ void Game::DropBlock(Well * well, BlockType blockType)
     // assumes nodelay(stdscr,TRUE) has already been called
     BlockPosition blockPosition;
 
-    RedrawWell(well, blockType, blockPosition);
+    // 🡠 🡡 🡢 🡣 🡤 🡥 🡦 🡧
+    std::string str = "🡣 ";
+
+    RedrawWell(well, blockType, blockPosition, str);
 
     while (1)
     {
@@ -52,11 +55,18 @@ void Game::DropBlock(Well * well, BlockType blockType)
         // keypress
         int ch = getch();
         if (ch == 'a')
+        {
+            str = "🡠 ";
             blockPosition.MoveIfPossible(Left, blockType, well);
+        }
         else if (ch == 'd')
+        {
+            str = "🡢 ";
             blockPosition.MoveIfPossible(Right, blockType, well);
+        }
         else if (ch == 's')
         {
+            str = "🡣 ";
             bool val = blockPosition.MoveIfPossible(Down, blockType, well);
             if (val)
             {
@@ -65,11 +75,20 @@ void Game::DropBlock(Well * well, BlockType blockType)
                 break;
         }
         else if (ch == 'w')
+        {
+            str = "🡡 ";
             blockPosition.MoveIfPossible(Up, blockType, well);
+        }
         else if (ch == 'e')
+        {
+            str = "🡥 ";
             blockPosition.MoveIfPossible(RotateCW, blockType, well);
+        }
         else if (ch == 'q')
+        {
+            str = "🡤 ";
             blockPosition.MoveIfPossible(RotateCCW, blockType, well);
+        }
         else if (ch == 'l')
             break;
         else if (ch == ' ')
@@ -82,7 +101,7 @@ void Game::DropBlock(Well * well, BlockType blockType)
         } // default...
 
         // keypress switch
-        RedrawWell(well, blockType, blockPosition);
+        RedrawWell(well, blockType, blockPosition, str);
     } // while(1)
 
     LinesCompleted lc = well->Lock(blockType, blockPosition);
@@ -91,17 +110,17 @@ void Game::DropBlock(Well * well, BlockType blockType)
         if (d.y >= 0)
             _colors[d.y][d.x] = GetColor(blockType);
 
-    RedrawWell(well, blockType, blockPosition);
+    RedrawWell(well, blockType, blockPosition, str);
 }
 
-void Game::RedrawWell(Well * w, BlockType b, const BlockPosition & p)
+void Game::RedrawWell(Well * w, BlockType b, const BlockPosition & p, const std::string & str)
 {
     for (int i = 0; i < _width; ++i)
         for (int j = 0; j < _height; ++j)
-            _screen.DrawDot(Dot{i, j}, _colors[j][i]);
+            _screen.DrawDot(Dot{i, j}, _colors[j][i], "  ");
 
     for (const Dot & d : p.GetDots(b))
-        _screen.DrawDot(d, GetColor(b));
+        _screen.DrawDot(d, GetColor(b), str);
 
     wrefresh(_screen);
 }

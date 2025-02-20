@@ -12,7 +12,7 @@ public:
     Game();
 
     void DropBlock(Well * well, BlockType blockType);
-    void RedrawWell(Well * well, BlockType falling, const BlockPosition & pos);
+    void RedrawWell(Well * well, BlockType falling, const BlockPosition & pos, const std::string & str);
     void Play();
 
 private:
