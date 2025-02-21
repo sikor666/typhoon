@@ -54,13 +54,13 @@ int Screen::GetMaxY()
     return GetMinY() + y;
 }
 
-void Screen::DrawDot(const Dot & d, Color c, const std::string & s)
+void Screen::DrawDot(const Dot & dot, Color color, const std::string & str)
 {
-    wattrset((WINDOW *)(*this), c);
-    // mvwaddch(*this, d.y, 2 * d.x, ' ');
-    // mvwaddch(*this, d.y, 2 * d.x + 1, ' ');
+    wattrset((WINDOW *)(*this), color);
+    // mvwaddch(*this, dot.y, 2 * dot.x, ' ');
+    // mvwaddch(*this, dot.y, 2 * dot.x + 1, ' ');
 
-    wmove(*this, d.y, 2 * d.x) == ERR ? ERR : wprintw(*this, s.c_str());
+    wmove(*this, dot.y, 2 * dot.x) == ERR ? ERR : wprintw(*this, str.c_str());
 }
 
 } // namespace Bastet

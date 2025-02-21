@@ -23,7 +23,7 @@ public:
     int GetMinY();
     int GetMaxX();
     int GetMaxY();
-    void DrawDot(const Dot & d, Color c, const std::string & s);
+    void DrawDot(const Dot & dot, Color color, const std::string & str);
 };
 
 } // namespace Bastet
