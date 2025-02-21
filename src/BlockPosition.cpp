@@ -23,7 +23,7 @@ void BlockPosition::Move(Movement m)
     }
 }
 
-bool BlockPosition::MoveIfPossible(Movement m, BlockType b, const Well * w)
+bool BlockPosition::MoveIfPossible(Movement m, BlockType b, const Well & w)
 {
     BlockPosition p(*this);
     p.Move(m);
@@ -36,12 +36,12 @@ bool BlockPosition::MoveIfPossible(Movement m, BlockType b, const Well * w)
         return false;
 }
 
-bool BlockPosition::IsValid(BlockType bt, const Well * w) const
+bool BlockPosition::IsValid(BlockType bt, const Well & w) const
 {
-    return w->Accomodates(GetDots(bt)); // XX: must change, unoptimized
+    return w.Accomodates(GetDots(bt)); // XX: must change, unoptimized
 }
 
-void BlockPosition::Drop(BlockType bt, const Well * w)
+void BlockPosition::Drop(BlockType bt, const Well & w)
 {
     while (MoveIfPossible(Down, bt, w))
         ;

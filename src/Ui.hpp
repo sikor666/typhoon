@@ -13,7 +13,7 @@ public:
     Ui();
 
     void RedrawStatic(); // redraws the "static" parts of the screen
-    void RedrawWell(const Well * well, BlockType falling, const BlockPosition & pos);
+    void RedrawWell(const Well & well, BlockType falling, const BlockPosition & pos);
     void RedrawScore();
     void CompletedLinesAnimation(const LinesCompleted & completed);
     void DropBlock(BlockType blockType, Well * well); // returns <score,lines>

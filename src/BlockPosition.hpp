@@ -37,12 +37,12 @@ public:
     /// returns an y such that the block lies completely in [y,y+3]
     int GetBaseY() const { return _pos.y; }
     void Move(Movement m);
-    bool MoveIfPossible(Movement m, BlockType b, const Well * w);
+    bool MoveIfPossible(Movement m, BlockType b, const Well & w);
 
-    void Drop(BlockType bt, const Well * w);
+    void Drop(BlockType bt, const Well & w);
 
     const DotMatrix GetDots(BlockType b) const;
-    bool IsValid(BlockType bt, const Well * w) const;
+    bool IsValid(BlockType bt, const Well & w) const;
     bool IsOutOfScreen(BlockType bt) const;
 };
 } // namespace Bastet

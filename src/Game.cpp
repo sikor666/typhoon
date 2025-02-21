@@ -41,7 +41,7 @@ Game::Game()
     */
 }
 
-void Game::DropBlock(Well * well, BlockType blockType)
+void Game::DropBlock(BlockType blockType)
 {
     // assumes nodelay(stdscr,TRUE) has already been called
     BlockPosition blockPosition;
@@ -58,36 +58,36 @@ void Game::DropBlock(Well * well, BlockType blockType)
         if (ch == 'a')
         {
             str = "🡠🕱";
-            RedrawWell(well, BlockType::O, blockPosition, "  ");
-            blockPosition.MoveIfPossible(Left, blockType, well);
+            RedrawWell(BlockType::O, blockPosition, "  ");
+            blockPosition.MoveIfPossible(Left, blockType, _well);
         }
         else if (ch == 'd')
         {
             str = "🡢🕱";
-            RedrawWell(well, BlockType::O, blockPosition, "  ");
-            blockPosition.MoveIfPossible(Right, blockType, well);
+            RedrawWell(BlockType::O, blockPosition, "  ");
+            blockPosition.MoveIfPossible(Right, blockType, _well);
         }
         else if (ch == 's')
         {
             str = "🡣🕱";
-            RedrawWell(well, BlockType::O, blockPosition, "  ");
-            blockPosition.MoveIfPossible(Down, blockType, well);
+            RedrawWell(BlockType::O, blockPosition, "  ");
+            blockPosition.MoveIfPossible(Down, blockType, _well);
         }
         else if (ch == 'w')
         {
             str = "🡡🕱";
-            RedrawWell(well, BlockType::O, blockPosition, "  ");
-            blockPosition.MoveIfPossible(Up, blockType, well);
+            RedrawWell(BlockType::O, blockPosition, "  ");
+            blockPosition.MoveIfPossible(Up, blockType, _well);
         }
         else if (ch == 'e')
         {
             str = "🡥🕱";
-            blockPosition.MoveIfPossible(RotateCW, blockType, well);
+            blockPosition.MoveIfPossible(RotateCW, blockType, _well);
         }
         else if (ch == 'q')
         {
             str = "🡤🕱";
-            blockPosition.MoveIfPossible(RotateCCW, blockType, well);
+            blockPosition.MoveIfPossible(RotateCCW, blockType, _well);
         }
         else if (ch == 'l')
         {
@@ -95,16 +95,16 @@ void Game::DropBlock(Well * well, BlockType blockType)
         }
         else if (ch == ' ')
         {
-            RedrawWell(well, BlockType::O, blockPosition, "  ");
-            blockPosition.Drop(blockType, well);
+            RedrawWell(BlockType::O, blockPosition, "  ");
+            blockPosition.Drop(blockType, _well);
             break;
         }
 
         // keypress switch
-        RedrawWell(well, blockType, blockPosition, str);
+        RedrawWell(blockType, blockPosition, str);
     }
 
-    LinesCompleted lc = well->Lock(blockType, blockPosition);
+    LinesCompleted lc = _well.Lock(blockType, blockPosition);
     // locks also into _colors
     /*
     for (const Dot & d : blockPosition.GetDots(blockType))
@@ -112,10 +112,10 @@ void Game::DropBlock(Well * well, BlockType blockType)
             _colors[d.y][d.x] = GetColor(blockType);
     */
 
-    RedrawWell(well, blockType, blockPosition, str);
+    RedrawWell(blockType, blockPosition, str);
 }
 
-void Game::RedrawWell(Well * w, BlockType b, const BlockPosition & p, const std::string & str)
+void Game::RedrawWell(BlockType b, const BlockPosition & p, const std::string & str)
 {
     /*
     for (int i = 0; i < _width; ++i)
@@ -146,7 +146,7 @@ void Game::Play()
 
         logF << "Current block type: " << current;
 
-        DropBlock(&_well, current);
+        DropBlock(current);
     }
 }
 

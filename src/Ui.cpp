@@ -47,7 +47,7 @@ void Ui::DropBlock(BlockType blockType, Well * well)
     // assumes nodelay(stdscr,TRUE) has already been called
     BlockPosition blockPosition;
 
-    RedrawWell(well, blockType, blockPosition);
+    RedrawWell(*well, blockType, blockPosition);
     RedrawScore();
 
     while (1)
@@ -56,12 +56,12 @@ void Ui::DropBlock(BlockType blockType, Well * well)
         // keypress
         int ch = getch();
         if (ch == 'a')
-            blockPosition.MoveIfPossible(Left, blockType, well);
+            blockPosition.MoveIfPossible(Left, blockType, *well);
         else if (ch == 'd')
-            blockPosition.MoveIfPossible(Right, blockType, well);
+            blockPosition.MoveIfPossible(Right, blockType, *well);
         else if (ch == 's')
         {
-            bool val = blockPosition.MoveIfPossible(Down, blockType, well);
+            bool val = blockPosition.MoveIfPossible(Down, blockType, *well);
             if (val)
             {
             }
@@ -69,16 +69,16 @@ void Ui::DropBlock(BlockType blockType, Well * well)
                 break;
         }
         else if (ch == 'w')
-            blockPosition.MoveIfPossible(Up, blockType, well);
+            blockPosition.MoveIfPossible(Up, blockType, *well);
         else if (ch == 'e')
-            blockPosition.MoveIfPossible(RotateCW, blockType, well);
+            blockPosition.MoveIfPossible(RotateCW, blockType, *well);
         else if (ch == 'q')
-            blockPosition.MoveIfPossible(RotateCCW, blockType, well);
+            blockPosition.MoveIfPossible(RotateCCW, blockType, *well);
         else if (ch == 'l')
             break;
         else if (ch == ' ')
         {
-            blockPosition.Drop(blockType, well);
+            blockPosition.Drop(blockType, *well);
             break;
         }
         else
@@ -86,7 +86,7 @@ void Ui::DropBlock(BlockType blockType, Well * well)
         } // default...
 
         // keypress switch
-        RedrawWell(well, blockType, blockPosition);
+        RedrawWell(*well, blockType, blockPosition);
     } // while(1)
 
     LinesCompleted lc = well->Lock(blockType, blockPosition);
@@ -95,11 +95,11 @@ void Ui::DropBlock(BlockType blockType, Well * well)
         if (d.y >= 0)
             _colors[d.y][d.x] = GetColor(blockType);
 
-    RedrawWell(well, blockType, blockPosition);
+    RedrawWell(*well, blockType, blockPosition);
     RedrawScore();
 }
 
-void Ui::RedrawWell(const Well * w, BlockType b, const BlockPosition & p)
+void Ui::RedrawWell(const Well & w, BlockType b, const BlockPosition & p)
 {
     for (int i = 0; i < _width; ++i)
         for (int j = 0; j < _height; ++j)
