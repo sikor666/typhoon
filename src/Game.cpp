@@ -58,21 +58,25 @@ void Game::DropBlock(Well * well, BlockType blockType)
         if (ch == 'a')
         {
             str = "🡠🕱";
+            RedrawWell(well, BlockType::O, blockPosition, "  ");
             blockPosition.MoveIfPossible(Left, blockType, well);
         }
         else if (ch == 'd')
         {
             str = "🡢🕱";
+            RedrawWell(well, BlockType::O, blockPosition, "  ");
             blockPosition.MoveIfPossible(Right, blockType, well);
         }
         else if (ch == 's')
         {
             str = "🡣🕱";
+            RedrawWell(well, BlockType::O, blockPosition, "  ");
             blockPosition.MoveIfPossible(Down, blockType, well);
         }
         else if (ch == 'w')
         {
             str = "🡡🕱";
+            RedrawWell(well, BlockType::O, blockPosition, "  ");
             blockPosition.MoveIfPossible(Up, blockType, well);
         }
         else if (ch == 'e')
@@ -91,6 +95,7 @@ void Game::DropBlock(Well * well, BlockType blockType)
         }
         else if (ch == ' ')
         {
+            RedrawWell(well, BlockType::O, blockPosition, "  ");
             blockPosition.Drop(blockType, well);
             break;
         }
