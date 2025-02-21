@@ -21,6 +21,7 @@ Game::Game()
 
     _colors.resize(_height, std::vector<Color>(_width, 0));
 
+    /*
     for (int y = 0; y < _height; y++)
     {
         for (int x = 0; x < _width; x++)
@@ -37,6 +38,7 @@ Game::Game()
             RedrawWell(&_well, BlockType::O, blockPosition, "  ");
         }
     }
+    */
 }
 
 void Game::DropBlock(Well * well, BlockType blockType)
@@ -108,13 +110,16 @@ void Game::DropBlock(Well * well, BlockType blockType)
 
 void Game::RedrawWell(Well * w, BlockType b, const BlockPosition & p, const std::string & str)
 {
+    /*
     for (int i = 0; i < _width; ++i)
         for (int j = 0; j < _height; ++j)
             _screen.DrawDot(Dot{i, j}, _colors[j][i], "  ");
+    */
 
     for (const Dot & d : p.GetDots(b))
         _screen.DrawDot(d, GetColor(b), str);
 
+    wbkgd(_screen, COLOR_PAIR(6));
     wrefresh(_screen);
 }
 
