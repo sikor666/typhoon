@@ -61,6 +61,8 @@
         "format": "cpp",
         "numbers": "cpp",
         "text_encoding": "cpp",
-        "__nullptr": "cpp"
+        "__nullptr": "cpp",
+        "deque": "cpp",
+        "list": "cpp"
     }
 }
