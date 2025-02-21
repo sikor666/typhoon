@@ -45,64 +45,57 @@ void Game::DropBlock(Well * well, BlockType blockType)
     BlockPosition blockPosition;
 
     // 🡠 🡡 🡢 🡣 🡤 🡥 🡦 🡧
-    std::string str = "🡣 ";
+    std::string str = "  ";
 
-    RedrawWell(well, blockType, blockPosition, str);
-
-    while (1)
+    while (true)
     {
         // break = tetromino locked
         // keypress
         int ch = getch();
+
         if (ch == 'a')
         {
-            str = "🡠 ";
+            str = "🡠🕱";
             blockPosition.MoveIfPossible(Left, blockType, well);
         }
         else if (ch == 'd')
         {
-            str = "🡢 ";
+            str = "🡢🕱";
             blockPosition.MoveIfPossible(Right, blockType, well);
         }
         else if (ch == 's')
         {
-            str = "🡣 ";
-            bool val = blockPosition.MoveIfPossible(Down, blockType, well);
-            if (val)
-            {
-            }
-            else
-                break;
+            str = "🡣🕱";
+            blockPosition.MoveIfPossible(Down, blockType, well);
         }
         else if (ch == 'w')
         {
-            str = "🡡 ";
+            str = "🡡🕱";
             blockPosition.MoveIfPossible(Up, blockType, well);
         }
         else if (ch == 'e')
         {
-            str = "🡥 ";
+            str = "🡥🕱";
             blockPosition.MoveIfPossible(RotateCW, blockType, well);
         }
         else if (ch == 'q')
         {
-            str = "🡤 ";
+            str = "🡤🕱";
             blockPosition.MoveIfPossible(RotateCCW, blockType, well);
         }
         else if (ch == 'l')
+        {
             break;
+        }
         else if (ch == ' ')
         {
             blockPosition.Drop(blockType, well);
             break;
         }
-        else
-        {
-        } // default...
 
         // keypress switch
         RedrawWell(well, blockType, blockPosition, str);
-    } // while(1)
+    }
 
     LinesCompleted lc = well->Lock(blockType, blockPosition);
     // locks also into _colors
