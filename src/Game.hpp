@@ -22,7 +22,7 @@ private:
     Well _well;
     Screen _screen;
 
-    std::vector<std::vector<Color>> _colors;
+    // std::vector<std::vector<Color>> _colors;
 };
 
 } // namespace Bastet

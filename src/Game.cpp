@@ -19,7 +19,7 @@ Game::Game()
 
     logF << "Program started: [" << _width << " " << _height << "]";
 
-    _colors.resize(_height, std::vector<Color>(_width, 0));
+    // _colors.resize(_height, std::vector<Color>(_width, 0));
 
     /*
     for (int y = 0; y < _height; y++)
@@ -106,9 +106,11 @@ void Game::DropBlock(Well * well, BlockType blockType)
 
     LinesCompleted lc = well->Lock(blockType, blockPosition);
     // locks also into _colors
+    /*
     for (const Dot & d : blockPosition.GetDots(blockType))
         if (d.y >= 0)
             _colors[d.y][d.x] = GetColor(blockType);
+    */
 
     RedrawWell(well, blockType, blockPosition, str);
 }
