@@ -20,7 +20,7 @@ add_executable(typhoon main.cpp
     src/Bastet/Curses.cpp src/Bastet/Game.cpp src/Bastet/Screen.cpp
     src/Bastet/Well.cpp src/Bastet/Block.cpp src/Bastet/BlockPosition.cpp
     
-    src/Silver/Ship.cpp)
+    src/Silver/Water.cpp src/Silver/Ship.cpp)
 
 # Add link libraries
 target_link_libraries(typhoon PRIVATE ncursesw)
