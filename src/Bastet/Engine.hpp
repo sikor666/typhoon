@@ -3,10 +3,10 @@
 namespace Bastet
 {
 
-class Curses
+class Engine
 {
 public:
-    Curses();
+    Engine();
 };
 
 } // namespace Bastet

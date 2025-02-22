@@ -1,4 +1,4 @@
-#include "Curses.hpp"
+#include "Engine.hpp"
 
 #include <curses.h>
 
@@ -9,7 +9,7 @@
 namespace Bastet
 {
 
-Curses::Curses()
+Engine::Engine()
 {
     /* Set the locale to support Unicode */
     setlocale(LC_ALL, "");

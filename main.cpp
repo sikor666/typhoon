@@ -1,11 +1,11 @@
-#include "Bastet/Curses.hpp"
+#include "Bastet/Engine.hpp"
 #include "Bastet/Game.hpp"
 
 int main()
 {
     try
     {
-        Bastet::Curses curses;
+        Bastet::Engine curses;
         Bastet::Game game;
         game.Play();
     }
