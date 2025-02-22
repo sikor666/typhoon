@@ -13,20 +13,17 @@ Screen::~Screen()
     delwin(_window);
 }
 
-Screen::operator WINDOW *()
-{
-    return _window;
-}
-
 int Screen::draw(const Dot & dot, Color color, const std::string & str)
 {
-    return wattrset(*this, color) == ERR ? ERR : wmove(*this, dot.y, 2 * dot.x) == ERR ? ERR : wprintw(*this, str.c_str());
+    return wattrset(_window, color) == ERR        ? ERR
+        : wmove(_window, dot.y, 2 * dot.x) == ERR ? ERR
+                                                  : wprintw(_window, str.c_str());
 }
 
 void Screen::refresh()
 {
-    wbkgd(*this, COLOR_PAIR(6));
-    wrefresh(*this);
+    wbkgd(_window, COLOR_PAIR(6));
+    wrefresh(_window);
 }
 
 } // namespace Bastet
