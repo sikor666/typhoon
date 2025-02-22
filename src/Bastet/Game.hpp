@@ -14,11 +14,8 @@ public:
     void Play();
 
 private:
-    int _width;
-    int _height;
-
-    Well _well;
     Screen _screen;
+    Well _well;
 
     void RedrawWell(BlockType falling, const BlockPosition & pos, const std::string & str);
 };

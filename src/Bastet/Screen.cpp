@@ -6,6 +6,8 @@ namespace Bastet
 {
 
 Screen::Screen(int height, int width, int y, int x)
+    : _width{width}
+    , _height{height}
 {
     _window = newwin(height, width, y, x);
 }
@@ -13,6 +15,16 @@ Screen::Screen(int height, int width, int y, int x)
 Screen::~Screen()
 {
     delwin(reinterpret_cast<WINDOW *>(_window));
+}
+
+int Screen::getWidth() const
+{
+    return _width;
+}
+
+int Screen::getHeight() const
+{
+    return _height;
 }
 
 int Screen::draw(const Dot & dot, Color color, const std::string & str)
