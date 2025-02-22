@@ -14,6 +14,12 @@ Ship::~Ship()
 {
 }
 
+void Ship::setPosition(int posx, int posy)
+{
+    x = posx;
+    y = posy;
+}
+
 int Ship::getDirection() const
 {
     return direction;

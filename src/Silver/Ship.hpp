@@ -9,6 +9,8 @@ public:
     Ship();
     ~Ship();
 
+    void setPosition(int posx, int posy);
+
     int getDirection() const;
     int getX() const;
     int getY() const;
