@@ -14,7 +14,7 @@ Well::Well(int width, int height)
     _well.resize(_height, std::vector<BlockType>(_width, BlockType::O));
 }
 
-bool Well::Accomodates(const DotMatrix & m) const
+bool Well::Accommodates(const DotMatrix & m) const
 {
     for (const Dot & d : m)
     {

@@ -26,8 +26,9 @@ void BlockPosition::Move(Movement m)
 
 bool BlockPosition::MoveIfPossible(Movement m, BlockType b, const Well & w)
 {
-    BlockPosition p(*this);
+    BlockPosition p{*this};
     p.Move(m);
+
     if (p.IsValid(b, w))
     {
         *this = p;
@@ -39,7 +40,7 @@ bool BlockPosition::MoveIfPossible(Movement m, BlockType b, const Well & w)
 
 bool BlockPosition::IsValid(BlockType bt, const Well & w) const
 {
-    return w.Accomodates(GetDots(bt)); // XX: must change, unoptimized
+    return w.Accommodates(GetDots(bt)); // XX: must change, unoptimized
 }
 
 void BlockPosition::Drop(BlockType bt, const Well & w)
