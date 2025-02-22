@@ -127,6 +127,6 @@ private:
     }
 };
 
-static Logger logger("logfile.txt"); // Create logger instance
+static Logger logger("typhoon.log"); // Create logger instance
 
 #define logF Loggex{[](std::stringstream & stream) { logger.log(INFO, stream.str()); }}
