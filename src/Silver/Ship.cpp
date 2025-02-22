@@ -4,9 +4,9 @@ namespace Silver
 {
 
 Ship::Ship()
-    : direction{0}
-    , x{0}
-    , y{0}
+    : _direction{0}
+    , _x{0}
+    , _y{0}
 {
 }
 
@@ -14,25 +14,25 @@ Ship::~Ship()
 {
 }
 
-void Ship::setPosition(int posx, int posy)
+void Ship::setPosition(int x, int y)
 {
-    x = posx;
-    y = posy;
+    _x = x;
+    _y = y;
 }
 
 int Ship::getDirection() const
 {
-    return direction;
+    return _direction;
 }
 
 int Ship::getX() const
 {
-    return x;
+    return _x;
 }
 
 int Ship::getY() const
 {
-    return y;
+    return _y;
 }
 
 } // namespace Silver
