@@ -20,8 +20,6 @@ private:
     Well _well;
     Screen _screen;
 
-    // std::vector<std::vector<Color>> _colors;
-
     void RedrawWell(BlockType falling, const BlockPosition & pos, const std::string & str);
 };
 

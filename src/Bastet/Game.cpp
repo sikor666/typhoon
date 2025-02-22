@@ -14,14 +14,7 @@ Game::Game()
     , _well{_width, _height}
     , _screen{_height, _width * 2, 0, 0}
 {
-    // Example usage of the logger
-    // logger.log(INFO, "Program started.");
-    // logger.log(DEBUG, "Debugging information.");
-    // logger.log(ERROR, "An error occurred.");
-
     logF << "Program started: [" << _width << " " << _height << "]";
-
-    // _colors.resize(_height, std::vector<Color>(_width, 0));
 }
 
 void Game::Play()
@@ -96,12 +89,6 @@ void Game::Play()
         }
 
         _well.Lock(blockType, blockPosition);
-        // locks also into _colors
-        /*
-        for (const Dot & d : blockPosition.GetDots(blockType))
-            if (d.y >= 0)
-                _colors[d.y][d.x] = GetColor(blockType);
-        */
 
         RedrawWell(blockType, blockPosition, str);
     }
@@ -109,12 +96,6 @@ void Game::Play()
 
 void Game::RedrawWell(BlockType b, const BlockPosition & p, const std::string & str)
 {
-    /*
-    for (int i = 0; i < _width; ++i)
-        for (int j = 0; j < _height; ++j)
-            _screen.draw(Dot{i, j}, _colors[j][i], "  ");
-    */
-
     for (const auto & d : p.GetDots(b))
         _screen.draw(d, GetColor(b), str);
 
