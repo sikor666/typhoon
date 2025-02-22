@@ -18,9 +18,15 @@ Screen::operator WINDOW *()
     return _window;
 }
 
-int Screen::DrawDot(const Dot & dot, Color color, const std::string & str)
+int Screen::draw(const Dot & dot, Color color, const std::string & str)
 {
     return wattrset(*this, color) == ERR ? ERR : wmove(*this, dot.y, 2 * dot.x) == ERR ? ERR : wprintw(*this, str.c_str());
+}
+
+void Screen::refresh()
+{
+    wbkgd(*this, COLOR_PAIR(6));
+    wrefresh(*this);
 }
 
 } // namespace Bastet

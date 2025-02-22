@@ -110,14 +110,13 @@ void Game::RedrawWell(BlockType b, const BlockPosition & p, const std::string & 
     /*
     for (int i = 0; i < _width; ++i)
         for (int j = 0; j < _height; ++j)
-            _screen.DrawDot(Dot{i, j}, _colors[j][i], "  ");
+            _screen.draw(Dot{i, j}, _colors[j][i], "  ");
     */
 
-    for (const Dot & d : p.GetDots(b))
-        _screen.DrawDot(d, GetColor(b), str);
+    for (const auto & d : p.GetDots(b))
+        _screen.draw(d, GetColor(b), str);
 
-    wbkgd(_screen, COLOR_PAIR(6));
-    wrefresh(_screen);
+    _screen.refresh();
 }
 
 } // namespace Bastet

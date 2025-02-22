@@ -20,7 +20,8 @@ public:
 
     operator WINDOW *(); // returns the inner window
 
-    int DrawDot(const Dot & dot, Color color, const std::string & str);
+    int draw(const Dot & dot, Color color, const std::string & str);
+    void refresh();
 };
 
 } // namespace Bastet
