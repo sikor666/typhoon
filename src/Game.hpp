@@ -11,8 +11,6 @@ class Game
 public:
     Game();
 
-    void DropBlock(BlockType blockType);
-    void RedrawWell(BlockType falling, const BlockPosition & pos, const std::string & str);
     void Play();
 
 private:
@@ -23,6 +21,8 @@ private:
     Screen _screen;
 
     // std::vector<std::vector<Color>> _colors;
+
+    void RedrawWell(BlockType falling, const BlockPosition & pos, const std::string & str);
 };
 
 } // namespace Bastet
