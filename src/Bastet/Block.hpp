@@ -50,9 +50,8 @@ struct Dot
 {
     int x;
     int y;
-    bool IsValid(int width, int height) const { return (y >= 0) and y < height and (x >= 0) and (x < width); }
 
-    Dot operator+(const Dot & d) const { return (Dot){x + d.x, y + d.y}; }
+    Dot operator+(const Dot & d) const { return Dot{x + d.x, y + d.y}; }
     Dot & operator+=(const Dot & d)
     {
         x += d.x;
@@ -63,14 +62,8 @@ struct Dot
     {
         return (DotMatrix){{*this + b[0], *this + b[1], *this + b[2], *this + b[3]}};
     }
-    bool operator==(const Dot & other) const { return (x == other.x) and (y == other.y); }
-    bool operator<(const Dot & other) const
-    {
-        if (x == other.x)
-            return y < other.y;
-        else
-            return x < other.x;
-    }
+    bool operator==(const Dot & other) const { return x == other.x and y == other.y; }
+    bool operator<(const Dot & other) const { return x == other.x ? y < other.y : x < other.x; }
 };
 
 class BlockImpl

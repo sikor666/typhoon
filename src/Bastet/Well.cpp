@@ -18,7 +18,9 @@ bool Well::Accomodates(const DotMatrix & m) const
 {
     for (const Dot & d : m)
     {
-        if (!d.IsValid(_width, _height) or _well[d.y][d.x] != BlockType::O)
+        bool isValid = d.y >= 0 and d.y < _height and d.x >= 0 and d.x < _width;
+
+        if (not isValid or _well[d.y][d.x] != BlockType::O)
             return false;
     }
 
