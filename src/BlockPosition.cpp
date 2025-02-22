@@ -7,7 +7,8 @@ namespace Bastet
 {
 const DotMatrix BlockPosition::GetDots(BlockType b) const
 {
-    return _pos + ((blocks[b].GetOrientationMatrix())[_orientation]);
+    return DotMatrix{_pos, _pos, _pos, _pos};
+    // return _pos + ((blocks[b].GetOrientationMatrix())[_orientation]);
 }
 
 void BlockPosition::Move(Movement m)
