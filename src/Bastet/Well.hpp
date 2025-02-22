@@ -1,5 +1,4 @@
-#ifndef WELL_HPP
-#define WELL_HPP
+#pragma once
 
 #include "Block.hpp" //for Color
 #include "BlockPosition.hpp"
@@ -36,5 +35,3 @@ private:
 };
 
 } // namespace Bastet
-
-#endif // WELL_HPP

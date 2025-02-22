@@ -1,5 +1,4 @@
-#ifndef BLOCK_POSITION_HPP
-#define BLOCK_POSITION_HPP
+#pragma once
 
 #include "Block.hpp"
 
@@ -55,5 +54,3 @@ template <> struct std::hash<Bastet::BlockPosition>
         return std::hash<Bastet::Dot>{}(p._pos) * 4 + int(p._orientation);
     }
 };
-
-#endif // BLOCK_POSITION_HPP

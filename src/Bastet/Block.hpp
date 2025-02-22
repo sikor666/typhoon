@@ -1,5 +1,4 @@
-#ifndef BLOCK_HPP
-#define BLOCK_HPP
+#pragma once
 
 #include <array>
 #include <functional>
@@ -106,5 +105,3 @@ template <> struct std::hash<Bastet::Dot>
         return (d.x + 5) * 32 + d.y; // or use boost::hash_combine
     }
 };
-
-#endif // BLOCK_HPP
