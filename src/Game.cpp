@@ -93,7 +93,7 @@ void Game::Play()
             RedrawWell(blockType, blockPosition, str);
         }
 
-        LinesCompleted lc = _well.Lock(blockType, blockPosition);
+        _well.Lock(blockType, blockPosition);
         // locks also into _colors
         /*
         for (const Dot & d : blockPosition.GetDots(blockType))
