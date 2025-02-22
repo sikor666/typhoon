@@ -1,5 +1,5 @@
-#include "Curses.hpp"
-#include "Game.hpp"
+#include "Bastet/Curses.hpp"
+#include "Bastet/Game.hpp"
 
 int main()
 {
