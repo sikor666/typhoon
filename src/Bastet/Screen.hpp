@@ -2,8 +2,6 @@
 
 #include "Block.hpp"
 
-#include <curses.h>
-
 #include <string>
 
 namespace Bastet
@@ -19,7 +17,7 @@ public:
     void refresh();
 
 private:
-    WINDOW * _window;
+    void * _window;
 };
 
 } // namespace Bastet

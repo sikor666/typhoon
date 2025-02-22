@@ -1,6 +1,8 @@
 #include "Game.hpp"
 #include "Logger.hpp"
 
+#include <curses.h>
+
 #include <random>
 
 namespace Bastet
