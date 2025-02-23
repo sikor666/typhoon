@@ -1,6 +1,4 @@
 #include "Map.hpp"
-#include "Ship.hpp"
-
 #include "Bastet/Screen.hpp"
 
 namespace Silver
@@ -11,26 +9,22 @@ Map::Map(const std::shared_ptr<Bastet::Screen> & screen)
     , _width{_screen->getWidth() / 2}
     , _height{_screen->getHeight()}
 {
+    _water.resize(_height, std::vector<bool>(_width, false));
 }
 
 Map::~Map()
 {
 }
 
-bool Map::push(const std::shared_ptr<Ship> & ship)
+void Map::push(int x, int y)
 {
-    int x = ship->getX();
-    int y = ship->getY();
-
     if (x < 0 or y < 0 or x >= _width or y >= _height)
-        return false;
+        throw std::runtime_error{"Position is out of range"};
 
     if (_water[y][x])
-        return false;
+        throw std::runtime_error{"Position is locked"};
 
-    _water[y][x] = ship;
-
-    return true;
+    _water[y][x] = true;
 }
 
 } // namespace Silver

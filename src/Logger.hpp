@@ -129,4 +129,8 @@ private:
 
 static Logger logger("typhoon.log"); // Create logger instance
 
-#define logF Loggex{[](std::stringstream & stream) { logger.log(INFO, stream.str()); }}
+#define dbgD Loggex{[](std::stringstream & stream) { logger.log(DEBUG, stream.str()); }}
+#define dbgI Loggex{[](std::stringstream & stream) { logger.log(INFO, stream.str()); }}
+#define dbgW Loggex{[](std::stringstream & stream) { logger.log(WARNING, stream.str()); }}
+#define dbgE Loggex{[](std::stringstream & stream) { logger.log(ERROR, stream.str()); }}
+#define dbgC Loggex{[](std::stringstream & stream) { logger.log(CRITICAL, stream.str()); }}
