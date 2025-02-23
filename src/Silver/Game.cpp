@@ -5,7 +5,7 @@ namespace Silver
 
 Game::Game()
     : _screen{std::make_shared<Bastet::Screen>()}
-    , _map{_screen}
+    , _map{std::make_unique<Map>(_screen)}
 {
 }
 

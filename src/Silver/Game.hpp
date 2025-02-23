@@ -16,8 +16,7 @@ public:
 
 private:
     std::shared_ptr<Bastet::Screen> _screen;
-
-    Map _map;
+    std::unique_ptr<Map> _map;
 };
 
 } // namespace Silver
