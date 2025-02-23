@@ -16,24 +16,6 @@ class BlockImpl;
 typedef std::array<BlockImpl, 7> BlockArray;
 extern BlockArray blocks;
 
-class Orientation
-{
-public:
-    Orientation(unsigned char o = 0)
-        : _o(o)
-    {
-    }
-    operator unsigned char() const { return _o; }
-    Orientation operator++() { return (++_o & 3); }
-    Orientation Next() const { return ((_o + 1) & 3); }
-    Orientation operator--() { return (--_o & 3); }
-    Orientation Prior() const { return ((_o - 1) & 3); }
-    const static size_t Number = 4;
-
-private:
-    unsigned char _o;
-};
-
 enum BlockType
 {
     O = 0,

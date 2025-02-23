@@ -8,15 +8,12 @@ namespace Bastet
 const DotMatrix BlockPosition::GetDots(BlockType b) const
 {
     return DotMatrix{_pos, _pos, _pos, _pos};
-    // return _pos + ((blocks[b].GetOrientationMatrix())[_orientation]);
 }
 
 void BlockPosition::Move(Movement m)
 {
     switch (m)
     {
-        case RotateCW: _orientation = _orientation.Next(); break;
-        case RotateCCW: _orientation = _orientation.Prior(); break;
         case Left: _pos.x -= 1; break;
         case Right: _pos.x += 1; break;
         case Down: _pos.y += 1; break;

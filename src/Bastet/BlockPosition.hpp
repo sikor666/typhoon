@@ -14,8 +14,6 @@ class Well;
 
 enum Movement
 {
-    RotateCW,
-    RotateCCW,
     Left,
     Right,
     Down,
@@ -26,13 +24,13 @@ class BlockPosition
 {
 public:
     Dot _pos;
-    Orientation _orientation;
 
 public:
-    BlockPosition(Dot d = (Dot){3, 0}, Orientation o = Orientation())
+    BlockPosition(Dot d = (Dot){3, 0})
         : _pos(d)
-        , _orientation(o) {};
-    bool operator==(const BlockPosition & p) const { return _pos == p._pos && _orientation == p._orientation; }
+    {
+    }
+    bool operator==(const BlockPosition & p) const { return _pos == p._pos; }
     /// returns an y such that the block lies completely in [y,y+3]
     int GetBaseY() const { return _pos.y; }
     void Move(Movement m);
@@ -49,8 +47,5 @@ public:
 // Custom specialization of std::hash can be injected in namespace std.
 template <> struct std::hash<Bastet::BlockPosition>
 {
-    std::size_t operator()(const Bastet::BlockPosition & p) const noexcept
-    {
-        return std::hash<Bastet::Dot>{}(p._pos) * 4 + int(p._orientation);
-    }
+    std::size_t operator()(const Bastet::BlockPosition & p) const noexcept { return std::hash<Bastet::Dot>{}(p._pos) * 4; }
 };

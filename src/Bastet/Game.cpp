@@ -64,12 +64,10 @@ void Game::Play()
             else if (ch == 'e')
             {
                 str = "🡥🕱";
-                blockPosition.MoveIfPossible(RotateCW, blockType, _well);
             }
             else if (ch == 'q')
             {
                 str = "🡤🕱";
-                blockPosition.MoveIfPossible(RotateCCW, blockType, _well);
             }
             else if (ch == 'l')
             {
