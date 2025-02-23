@@ -28,6 +28,7 @@ void Game::run()
 
         if (std::ranges::contains(keys, 'a'))
         {
+            // FIXME: move ship with direction by passing ship and direction
             _map->move(x, y, x - 1, y);
             x--;
         }
