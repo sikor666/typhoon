@@ -28,15 +28,8 @@ void Map::push(int x, int y)
         throw std::runtime_error{"Position is locked"};
 
     _water[x][y] = true;
-}
-
-void Map::draw(int x, int y)
-{
-    if (not _water[x][y])
-        throw std::runtime_error{"Position is empty"};
 
     _screen->draw(x, y, COLOR_PAIR(5), "  ");
-    _screen->refresh();
 }
 
 void Map::move(int x, int y, int a, int b)
@@ -57,6 +50,7 @@ void Map::move(int x, int y, int a, int b)
     _water[a][b] = true;
 
     _screen->draw(x, y, COLOR_PAIR(6), "  ");
+    _screen->draw(a, b, COLOR_PAIR(5), "  ");
 }
 
 bool Map::valid(int x, int y)

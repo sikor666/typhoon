@@ -48,7 +48,7 @@ void Game::run()
             y--;
         }
 
-        _map->draw(x, y);
+        _screen->refresh();
     }
 }
 
