@@ -1,20 +1,20 @@
-#include "Water.hpp"
+#include "Map.hpp"
 #include "Ship.hpp"
 
 namespace Silver
 {
 
-Water::Water(int width, int height)
+Map::Map(int width, int height)
     : _width{width}
     , _height{height}
 {
 }
 
-Water::~Water()
+Map::~Map()
 {
 }
 
-bool Water::push(const std::shared_ptr<Ship> & ship)
+bool Map::push(const std::shared_ptr<Ship> & ship)
 {
     int x = ship->getX();
     int y = ship->getY();

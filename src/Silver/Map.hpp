@@ -8,11 +8,11 @@ namespace Silver
 
 class Ship;
 
-class Water
+class Map
 {
 public:
-    Water(int width, int height);
-    ~Water();
+    Map(int width, int height);
+    ~Map();
 
     bool push(const std::shared_ptr<Ship> & ship);
 
