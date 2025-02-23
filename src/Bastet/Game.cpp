@@ -92,7 +92,7 @@ void Game::Play()
 void Game::RedrawWell(BlockType b, const BlockPosition & p, const std::string & str)
 {
     for (const auto & d : p.GetDots(b))
-        _screen.draw(d, GetColor(b), str);
+        _screen.draw(d.x, d.y, GetColor(b), str);
 
     _screen.refresh();
 }

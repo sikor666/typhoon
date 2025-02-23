@@ -39,10 +39,10 @@ std::vector<int> Screen::getKeys()
     return keys;
 }
 
-int Screen::draw(const Dot & dot, Color color, const std::string & str)
+int Screen::draw(int x, int y, int color, const std::string & str)
 {
     return wattrset(reinterpret_cast<WINDOW *>(_window), color) == ERR ? ERR
-        : wmove(reinterpret_cast<WINDOW *>(_window), dot.y, 2 * dot.x) == ERR
+        : wmove(reinterpret_cast<WINDOW *>(_window), y, 2 * x) == ERR
         ? ERR
         : wprintw(reinterpret_cast<WINDOW *>(_window), str.c_str());
 }

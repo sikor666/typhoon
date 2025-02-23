@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Block.hpp"
 #include "Engine.hpp"
 
 #include <string>
+#include <vector>
 
 namespace Bastet
 {
@@ -19,7 +19,7 @@ public:
 
     std::vector<int> getKeys();
 
-    int draw(const Dot & dot, Color color, const std::string & str);
+    int draw(int x, int y, int color, const std::string & str);
     void refresh();
 
 private:

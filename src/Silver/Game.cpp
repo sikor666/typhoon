@@ -11,4 +11,12 @@ Game::~Game()
 {
 }
 
+void Game::run()
+{
+    while (true)
+    {
+        _screen.refresh();
+    }
+}
+
 } // namespace Silver
