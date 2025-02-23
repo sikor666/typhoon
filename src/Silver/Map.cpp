@@ -9,7 +9,7 @@ namespace Silver
 
 Map::Map(const std::shared_ptr<Bastet::Screen> & screen)
     : _screen{screen}
-    , _width{_screen->getWidth() / 2}
+    , _width{_screen->getWidth()}
     , _height{_screen->getHeight()}
 {
     _water.resize(_width, std::vector<bool>(_height, false));
