@@ -1,8 +1,7 @@
 #include "Game.hpp"
 #include "Logger.hpp"
 
-#include <curses.h>
-
+#include <algorithm>
 #include <random>
 
 namespace Bastet
@@ -34,46 +33,46 @@ void Game::Play()
         while (true)
         {
             // break = tetromino locked
-            // keypress
-            int ch = getch();
 
-            if (ch == 'a')
+            auto keys = _screen.getKeys();
+
+            if (std::ranges::contains(keys, 'a'))
             {
                 str = "🡠🕱";
                 RedrawWell(BlockType::O, blockPosition, "  ");
                 blockPosition.MoveIfPossible(Left, blockType, _well);
             }
-            else if (ch == 'd')
+            else if (std::ranges::contains(keys, 'd'))
             {
                 str = "🡢🕱";
                 RedrawWell(BlockType::O, blockPosition, "  ");
                 blockPosition.MoveIfPossible(Right, blockType, _well);
             }
-            else if (ch == 's')
+            else if (std::ranges::contains(keys, 's'))
             {
                 str = "🡣🕱";
                 RedrawWell(BlockType::O, blockPosition, "  ");
                 blockPosition.MoveIfPossible(Down, blockType, _well);
             }
-            else if (ch == 'w')
+            else if (std::ranges::contains(keys, 'w'))
             {
                 str = "🡡🕱";
                 RedrawWell(BlockType::O, blockPosition, "  ");
                 blockPosition.MoveIfPossible(Up, blockType, _well);
             }
-            else if (ch == 'e')
+            else if (std::ranges::contains(keys, 'e'))
             {
                 str = "🡥🕱";
             }
-            else if (ch == 'q')
+            else if (std::ranges::contains(keys, 'q'))
             {
                 str = "🡤🕱";
             }
-            else if (ch == 'l')
+            else if (std::ranges::contains(keys, 'l'))
             {
                 break;
             }
-            else if (ch == ' ')
+            else if (std::ranges::contains(keys, ' '))
             {
                 RedrawWell(BlockType::O, blockPosition, "  ");
                 blockPosition.Drop(blockType, _well);

@@ -28,6 +28,17 @@ int Screen::getHeight() const
     return _height;
 }
 
+std::vector<int> Screen::getKeys()
+{
+    std::vector<int> keys;
+
+    int key;
+    while ((key = getch()) != ERR)
+        keys.push_back(key);
+
+    return keys;
+}
+
 int Screen::draw(const Dot & dot, Color color, const std::string & str)
 {
     return wattrset(reinterpret_cast<WINDOW *>(_window), color) == ERR ? ERR

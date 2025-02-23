@@ -17,6 +17,8 @@ public:
     int getWidth() const;
     int getHeight() const;
 
+    std::vector<int> getKeys();
+
     int draw(const Dot & dot, Color color, const std::string & str);
     void refresh();
 
