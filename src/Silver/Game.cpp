@@ -4,6 +4,8 @@ namespace Silver
 {
 
 Game::Game()
+    : _screen{}
+    , _map{_screen.getWidth() / 2, _screen.getHeight()}
 {
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Bastet/Screen.hpp"
+#include "Map.hpp"
 
 namespace Silver
 {
@@ -15,6 +16,7 @@ public:
 
 private:
     Bastet::Screen _screen;
+    Map _map;
 };
 
 } // namespace Silver
