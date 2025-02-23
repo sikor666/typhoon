@@ -4,8 +4,8 @@ namespace Silver
 {
 
 Game::Game()
-    : _screen{}
-    , _map{_screen.getWidth() / 2, _screen.getHeight()}
+    : _screen{std::make_shared<Bastet::Screen>()}
+    , _map{_screen}
 {
 }
 
@@ -17,7 +17,7 @@ void Game::run()
 {
     while (true)
     {
-        _screen.refresh();
+        _screen->refresh();
     }
 }
 

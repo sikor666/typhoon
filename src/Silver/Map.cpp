@@ -1,12 +1,15 @@
 #include "Map.hpp"
 #include "Ship.hpp"
 
+#include "Bastet/Screen.hpp"
+
 namespace Silver
 {
 
-Map::Map(int width, int height)
-    : _width{width}
-    , _height{height}
+Map::Map(const std::shared_ptr<Bastet::Screen> & screen)
+    : _screen{screen}
+    , _width{_screen->getWidth() / 2}
+    , _height{_screen->getHeight()}
 {
 }
 

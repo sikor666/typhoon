@@ -15,7 +15,8 @@ public:
     void run();
 
 private:
-    Bastet::Screen _screen;
+    std::shared_ptr<Bastet::Screen> _screen;
+
     Map _map;
 };
 
