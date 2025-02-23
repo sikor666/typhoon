@@ -10,7 +10,6 @@ typedef int Color; // to be given to wattrset
 
 struct Dot;
 typedef std::array<Dot, 4> DotMatrix;               // the four dots occupied by a tetromino
-typedef std::array<DotMatrix, 4> OrientationMatrix; // the four orientations of a tetromino
 
 class BlockImpl;
 typedef std::array<BlockImpl, 7> BlockArray;
@@ -51,18 +50,18 @@ struct Dot
 class BlockImpl
 {
 private:
-    const OrientationMatrix _matrix;
+    const DotMatrix _matrix;
     const Color _color;
 
 public:
-    BlockImpl(Color c, const OrientationMatrix & m)
+    BlockImpl(Color c, const DotMatrix & m)
         : _matrix(m)
         , _color(c) {};
     ~BlockImpl() {};
     /**
      * returns an array of 4 (x,y) pair for the occupied dots
      */
-    const OrientationMatrix & GetOrientationMatrix() { return _matrix; }
+    const DotMatrix & GetDotMatrix() { return _matrix; }
     Color GetColor() const { return _color; };
 };
 
