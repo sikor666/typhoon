@@ -23,6 +23,9 @@ public:
     void draw(int x, int y);
     void move(int x, int y, int a, int b);
 
+protected:
+    bool valid(int x, int y);
+
 private:
     std::shared_ptr<Bastet::Screen> _screen;
     std::vector<std::vector<bool>> _water;

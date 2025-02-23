@@ -20,7 +20,7 @@ Map::~Map()
 
 void Map::push(int x, int y)
 {
-    if (x < 0 or y < 0 or x >= _width or y >= _height)
+    if (not valid(x, y))
         throw std::runtime_error{"Position is out of range"};
 
     if (_water[y][x])
@@ -40,7 +40,10 @@ void Map::draw(int x, int y)
 
 void Map::move(int x, int y, int a, int b)
 {
-    if (x < 0 or y < 0 or x >= _width or y >= _height)
+    if (not valid(x, y))
+        throw std::runtime_error{"Position is out of range"};
+
+    if (not valid(a, b))
         throw std::runtime_error{"Position is out of range"};
 
     if (not _water[y][x])
@@ -51,6 +54,13 @@ void Map::move(int x, int y, int a, int b)
 
     _water[y][x] = false;
     _water[b][a] = true;
+
+    _screen->draw(x, y, COLOR_PAIR(6), "  ");
+}
+
+bool Map::valid(int x, int y)
+{
+    return x >= 0 and y >= 0 and x < _width and y < _height;
 }
 
 } // namespace Silver
