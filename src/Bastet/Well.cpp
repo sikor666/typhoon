@@ -1,8 +1,6 @@
 #include "Well.hpp"
 
-#include <cassert>
-#include <cstring>
-#include <sstream>
+#include <stdexcept>
 
 namespace Bastet
 {
@@ -16,7 +14,7 @@ Well::Well(int width, int height)
 
 bool Well::Accommodates(const DotMatrix & m) const
 {
-    for (const Dot & d : m)
+    for (const auto & d : m)
     {
         bool isValid = d.y >= 0 and d.y < _height and d.x >= 0 and d.x < _width;
 
@@ -30,9 +28,9 @@ bool Well::Accommodates(const DotMatrix & m) const
 void Well::Lock(BlockType t, const BlockPosition & p)
 {
     if (p.IsOutOfScreen(t))
-        throw(GameOver());
+        throw std::runtime_error{"Position is out of screen"};
 
-    for (const Dot & d : p.GetDots(t))
+    for (const auto & d : p.GetDots(t))
     {
         _well[d.y][d.x] = t;
     }
