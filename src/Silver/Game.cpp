@@ -15,9 +15,14 @@ Game::~Game()
 
 void Game::run()
 {
+    int x = 10;
+    int y = 10;
+
+    _map->push(x, y);
+
     while (true)
     {
-        _screen->refresh();
+        _map->draw(x, y);
     }
 }
 

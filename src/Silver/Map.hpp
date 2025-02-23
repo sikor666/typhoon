@@ -20,6 +20,8 @@ public:
     ~Map();
 
     void push(int x, int y);
+    void draw(int x, int y);
+    void move(int x, int y, int a, int b);
 
 private:
     std::shared_ptr<Bastet::Screen> _screen;
