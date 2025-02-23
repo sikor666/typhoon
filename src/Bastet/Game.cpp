@@ -9,7 +9,7 @@ namespace Bastet
 {
 
 Game::Game()
-    : _screen{getmaxy(stdscr), getmaxx(stdscr), 0, 0}
+    : _screen{}
     , _well{_screen.getWidth() / 2, _screen.getHeight()}
 {
     // logF << "Program started: [" << _width << " " << _height << "]";

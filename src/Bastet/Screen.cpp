@@ -5,11 +5,12 @@
 namespace Bastet
 {
 
-Screen::Screen(int height, int width, int y, int x)
-    : _width{width}
-    , _height{height}
+Screen::Screen()
+    : _engine{}
+    , _width{getmaxx(stdscr)}
+    , _height{getmaxy(stdscr)}
 {
-    _window = newwin(height, width, y, x);
+    _window = newwin(_height, _width, 0, 0);
 }
 
 Screen::~Screen()

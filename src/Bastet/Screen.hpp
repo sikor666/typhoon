@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Block.hpp"
+#include "Engine.hpp"
 
 #include <string>
 
@@ -10,7 +11,7 @@ namespace Bastet
 class Screen
 {
 public:
-    Screen(int height, int width, int y, int x);
+    Screen();
     ~Screen();
 
     int getWidth() const;
@@ -20,6 +21,8 @@ public:
     void refresh();
 
 private:
+    Engine _engine;
+
     int _width;
     int _height;
 
