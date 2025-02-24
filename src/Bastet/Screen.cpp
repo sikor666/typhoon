@@ -9,8 +9,9 @@ Screen::Screen()
     : _engine{}
     , _width{getmaxx(stdscr)}
     , _height{getmaxy(stdscr)}
+    , _window{newwin(_height, _width, 0, 0)}
 {
-    _window = newwin(_height, _width, 0, 0);
+    wbkgd(reinterpret_cast<WINDOW *>(_window), COLOR_PAIR(6));
 }
 
 Screen::~Screen()
@@ -49,7 +50,6 @@ int Screen::draw(int x, int y, int color, const std::string & str)
 
 void Screen::refresh()
 {
-    wbkgd(reinterpret_cast<WINDOW *>(_window), COLOR_PAIR(6));
     wrefresh(reinterpret_cast<WINDOW *>(_window));
 }
 
