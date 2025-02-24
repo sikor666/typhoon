@@ -12,7 +12,7 @@ Ship::Ship(const std::shared_ptr<Map> & map)
     , _x{10}
     , _y{10}
 {
-    _map->push(_x, _y);
+    _map->push(_x, _y, _arrows[_direction]);
 }
 
 Ship::~Ship()
@@ -36,6 +36,7 @@ void Ship::turnRight()
 
 void Ship::move()
 {
+    _map->move(_x, _y, _direction, _arrows[_direction]);
 }
 
 void Ship::setPosition(int x, int y)
