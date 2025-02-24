@@ -1,4 +1,5 @@
 #include "Screen.hpp"
+#include "Logger.hpp"
 
 #include <curses.h>
 
@@ -12,6 +13,8 @@ Screen::Screen()
     , _window{newwin(_height, _width - 20, 0, 0)}
     , _panel{newwin(_height, 20, 0, _width - 20)}
 {
+    dbgI << "Screen size [" << _width << ", " << _height << "]";
+
     wbkgd(reinterpret_cast<WINDOW *>(_window), COLOR_PAIR(Color::WhiteBlue));
     wbkgd(reinterpret_cast<WINDOW *>(_panel), COLOR_PAIR(Color::BlackWhite));
 
