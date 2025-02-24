@@ -11,7 +11,7 @@ Screen::Screen()
     , _height{getmaxy(stdscr)}
     , _window{newwin(_height, _width, 0, 0)}
 {
-    wbkgd(reinterpret_cast<WINDOW *>(_window), COLOR_PAIR(6));
+    wbkgd(reinterpret_cast<WINDOW *>(_window), COLOR_PAIR(Color::WhiteCyan));
 }
 
 Screen::~Screen()
@@ -40,9 +40,9 @@ std::vector<int> Screen::getKeys()
     return keys;
 }
 
-int Screen::draw(int x, int y, int color, const std::string & str)
+int Screen::draw(int x, int y, Color color, const std::string & str)
 {
-    return wattrset(reinterpret_cast<WINDOW *>(_window), color) == ERR ? ERR
+    return wattrset(reinterpret_cast<WINDOW *>(_window), COLOR_PAIR(color)) == ERR ? ERR
         : wmove(reinterpret_cast<WINDOW *>(_window), y, 2 * x) == ERR
         ? ERR
         : wprintw(reinterpret_cast<WINDOW *>(_window), str.c_str());

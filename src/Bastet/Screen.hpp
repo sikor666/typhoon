@@ -19,7 +19,7 @@ public:
 
     std::vector<int> getKeys();
 
-    int draw(int x, int y, int color, const std::string & str);
+    int draw(int x, int y, Color color, const std::string & str);
     void refresh();
 
 private:

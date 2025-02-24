@@ -1,12 +1,12 @@
 #pragma once
 
+#include "Engine.hpp"
+
 #include <array>
 #include <functional>
 
 namespace Bastet
 {
-
-typedef int Color; // to be given to wattrset
 
 struct Dot;
 typedef std::array<Dot, 4> DotMatrix;               // the four dots occupied by a tetromino
