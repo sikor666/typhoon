@@ -29,6 +29,7 @@ private:
     int _height;
 
     void * _window;
+    void * _panel;
 };
 
 } // namespace Bastet

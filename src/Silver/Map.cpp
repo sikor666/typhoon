@@ -73,7 +73,7 @@ Vector2 Map::move(const Vector2 & pos, int direction, const std::string & str)
     _water[pos.x][pos.y] = false;
     _water[res.x][res.y] = true;
 
-    _screen->draw(pos.x, pos.y, Bastet::Color::WhiteCyan, "  ");
+    _screen->draw(pos.x, pos.y, Bastet::Color::WhiteBlue, "  ");
     _screen->draw(res.x, res.y, Bastet::Color::WhiteMagenta, str);
 
     return res;
