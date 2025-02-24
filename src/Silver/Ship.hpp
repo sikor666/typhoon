@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Math.hpp"
+
 #include <memory>
 
 namespace Silver
@@ -19,20 +21,15 @@ public:
     void turnRight();
     void move();
 
-    void setPosition(int x, int y);
-
     int getDirection() const;
-    int getX() const;
-    int getY() const;
+    Vector2 getPosition() const;
 
 private:
     std::shared_ptr<Map> _map;
     std::array<std::string, NUM_DIRECTIONS> _arrows;
 
     int _direction;
-
-    int _x;
-    int _y;
+    Vector2 _position;
 };
 
 } // namespace Silver

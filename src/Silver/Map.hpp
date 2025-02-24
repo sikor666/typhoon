@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Math.hpp"
+
 #include <memory>
 #include <vector>
 
@@ -19,9 +21,9 @@ public:
     Map(const std::shared_ptr<Bastet::Screen> & screen);
     ~Map();
 
-    void push(int x, int y, const std::string & s);
-    void draw(int x, int y, const std::string & s);
-    void move(int & x, int & y, int direction, const std::string & s);
+    void push(const Vector2 & pos, const std::string & str);
+    void draw(const Vector2 & pos, const std::string & str);
+    Vector2 move(const Vector2 & pos, int direction, const std::string & str);
 
 protected:
     bool valid(int x, int y);

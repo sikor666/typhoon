@@ -19,69 +19,67 @@ Map::~Map()
 {
 }
 
-void Map::push(int x, int y, const std::string & s)
+void Map::push(const Vector2 & pos, const std::string & str)
 {
-    if (not valid(x, y))
+    if (not valid(pos.x, pos.y))
         throw std::runtime_error{"Position is out of range"};
 
-    if (_water[x][y])
+    if (_water[pos.x][pos.y])
         throw std::runtime_error{"Position is locked"};
 
-    _water[x][y] = true;
+    _water[pos.x][pos.y] = true;
 
-    _screen->draw(x, y, COLOR_PAIR(5), s);
+    _screen->draw(pos.x, pos.y, COLOR_PAIR(5), str);
 }
 
-void Map::draw(int x, int y, const std::string & s)
+void Map::draw(const Vector2 & pos, const std::string & str)
 {
-    if (not valid(x, y))
+    if (not valid(pos.x, pos.y))
         throw std::runtime_error{"Position is out of range"};
 
-    if (not _water[x][y])
+    if (not _water[pos.x][pos.y])
         throw std::runtime_error{"Position is empty"};
 
-    _screen->draw(x, y, COLOR_PAIR(5), s);
+    _screen->draw(pos.x, pos.y, COLOR_PAIR(5), str);
 }
 
-void Map::move(int & x, int & y, int direction, const std::string & s)
+Vector2 Map::move(const Vector2 & pos, int direction, const std::string & str)
 {
-    if (not valid(x, y))
+    if (not valid(pos.x, pos.y))
         throw std::runtime_error{"Position is out of range"};
 
-    if (not _water[x][y])
+    if (not _water[pos.x][pos.y])
         throw std::runtime_error{"Position is empty"};
 
-    int a;
-    int b;
+    Vector2 res;
 
     switch (direction)
     {
-        case 0: a = x + 0; b = y - 1; break;
-        case 1: a = x + 1; b = y - 1; break;
-        case 2: a = x + 1; b = y - 0; break;
-        case 3: a = x + 1; b = y + 1; break;
-        case 4: a = x + 0; b = y + 1; break;
-        case 5: a = x - 1; b = y + 1; break;
-        case 6: a = x - 1; b = y + 0; break;
-        case 7: a = x - 1; b = y - 1; break;
+        case 0: res = pos + Vector2{+0, -1}; break;
+        case 1: res = pos + Vector2{+1, -1}; break;
+        case 2: res = pos + Vector2{+1, -0}; break;
+        case 3: res = pos + Vector2{+1, +1}; break;
+        case 4: res = pos + Vector2{+0, +1}; break;
+        case 5: res = pos + Vector2{-1, +1}; break;
+        case 6: res = pos + Vector2{-1, +0}; break;
+        case 7: res = pos + Vector2{-1, -1}; break;
 
         default: throw std::runtime_error{"Direction is wrong"};
     }
 
-    if (not valid(a, b))
+    if (not valid(res.x, res.y))
         throw std::runtime_error{"Position is out of range"};
 
-    if (_water[a][b])
+    if (_water[res.x][res.y])
         throw std::runtime_error{"Position is locked"};
 
-    _water[x][y] = false;
-    _water[a][b] = true;
+    _water[pos.x][pos.y] = false;
+    _water[res.x][res.y] = true;
 
-    _screen->draw(x, y, COLOR_PAIR(6), "  ");
-    _screen->draw(a, b, COLOR_PAIR(5), s);
+    _screen->draw(pos.x, pos.y, COLOR_PAIR(6), "  ");
+    _screen->draw(res.x, res.y, COLOR_PAIR(5), str);
 
-    x = a;
-    y = b;
+    return res;
 }
 
 bool Map::valid(int x, int y)
