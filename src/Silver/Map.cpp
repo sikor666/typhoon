@@ -53,6 +53,17 @@ void Map::move(int x, int y, int a, int b)
     _screen->draw(a, b, COLOR_PAIR(5), "  ");
 }
 
+void Map::draw(int x, int y, const std::string & s)
+{
+    if (not valid(x, y))
+        throw std::runtime_error{"Position is out of range"};
+
+    if (not _water[x][y])
+        throw std::runtime_error{"Position is empty"};
+
+    _screen->draw(x, y, COLOR_PAIR(5), s);
+}
+
 bool Map::valid(int x, int y)
 {
     return x >= 0 and y >= 0 and x < _width and y < _height;

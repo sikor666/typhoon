@@ -1,13 +1,23 @@
 #pragma once
 
+#include <memory>
+
 namespace Silver
 {
+
+constexpr auto NUM_DIRECTIONS = 8;
+
+class Map;
 
 class Ship
 {
 public:
-    Ship();
+    Ship(const std::shared_ptr<Map> & map);
     ~Ship();
+
+    void turnLeft();
+    void turnRight();
+    void move();
 
     void setPosition(int x, int y);
 
@@ -16,6 +26,9 @@ public:
     int getY() const;
 
 private:
+    std::shared_ptr<Map> _map;
+    std::array<std::string, NUM_DIRECTIONS> _arrows;
+
     int _direction;
 
     int _x;

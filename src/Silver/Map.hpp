@@ -21,6 +21,7 @@ public:
 
     void push(int x, int y);
     void move(int x, int y, int a, int b);
+    void draw(int x, int y, const std::string & s);
 
 protected:
     bool valid(int x, int y);

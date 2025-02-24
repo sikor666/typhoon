@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "Ship.hpp"
 
 #include <algorithm>
 
@@ -7,7 +8,7 @@ namespace Silver
 
 Game::Game()
     : _screen{std::make_shared<Bastet::Screen>()}
-    , _map{std::make_unique<Map>(_screen)}
+    , _map{std::make_shared<Map>(_screen)}
 {
 }
 
@@ -17,10 +18,7 @@ Game::~Game()
 
 void Game::run()
 {
-    int x = 10;
-    int y = 10;
-
-    _map->push(x, y);
+    auto ship = std::make_unique<Ship>(_map);
 
     while (true)
     {
@@ -28,24 +26,15 @@ void Game::run()
 
         if (std::ranges::contains(keys, 'a'))
         {
-            // FIXME: move ship with direction by passing ship and direction
-            _map->move(x, y, x - 1, y);
-            x--;
+            ship->turnLeft();
         }
         else if (std::ranges::contains(keys, 'd'))
         {
-            _map->move(x, y, x + 1, y);
-            x++;
-        }
-        else if (std::ranges::contains(keys, 's'))
-        {
-            _map->move(x, y, x, y + 1);
-            y++;
+            ship->turnRight();
         }
         else if (std::ranges::contains(keys, 'w'))
         {
-            _map->move(x, y, x, y - 1);
-            y--;
+            ship->move();
         }
 
         _screen->refresh();
