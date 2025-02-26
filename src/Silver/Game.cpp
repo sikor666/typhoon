@@ -15,9 +15,9 @@ Game::Game()
     , _map{std::make_shared<Map>(_screen)}
     , _dice{std::make_shared<Dice>()}
 {
-    _players.push(std::make_unique<Player>("computer"));
-    _players.push(std::make_unique<Player>("pirate"));
-    _players.push(std::make_unique<Player>("soldier"));
+    _players.push(std::make_unique<Player>("computer", _dice));
+    _players.push(std::make_unique<Player>("pirate", _dice));
+    _players.push(std::make_unique<Player>("soldier", _dice));
 }
 
 Game::~Game()
