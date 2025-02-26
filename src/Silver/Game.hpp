@@ -1,13 +1,17 @@
 #pragma once
-
-#include "Bastet/Screen.hpp"
-#include "Map.hpp"
-
+#include <memory>
 #include <queue>
+
+namespace Bastet
+{
+class Screen;
+} // namespace Bastet
 
 namespace Silver
 {
 
+class Map;
+class Dice;
 class Player;
 
 class Game
@@ -21,6 +25,7 @@ public:
 private:
     std::shared_ptr<Bastet::Screen> _screen;
     std::shared_ptr<Map> _map;
+    std::shared_ptr<Dice> _dice;
 
     std::queue<std::unique_ptr<Player>> _players;
 };

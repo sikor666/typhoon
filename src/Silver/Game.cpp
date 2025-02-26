@@ -1,4 +1,7 @@
 #include "Game.hpp"
+#include "Bastet/Screen.hpp"
+#include "Dice.hpp"
+#include "Map.hpp"
 #include "Player.hpp"
 #include "Ship.hpp"
 
@@ -10,6 +13,7 @@ namespace Silver
 Game::Game()
     : _screen{std::make_shared<Bastet::Screen>()}
     , _map{std::make_shared<Map>(_screen)}
+    , _dice{std::make_shared<Dice>()}
 {
     _players.push(std::make_unique<Player>("computer"));
     _players.push(std::make_unique<Player>("pirate"));
@@ -52,6 +56,10 @@ void Game::run()
         {
             if (not ship)
                 ship = std::make_unique<Ship>(_map);
+        }
+        else if (std::ranges::contains(keys, 'n'))
+        {
+            _players.front()->pop();
         }
 
         _screen->refresh();

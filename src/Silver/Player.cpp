@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "Logger.hpp"
 
 namespace Silver
 {
@@ -18,6 +19,7 @@ void Player::push()
 
 void Player::pop()
 {
+    dbgW << "Player: " << _name;
 }
 
 } // namespace Silver
