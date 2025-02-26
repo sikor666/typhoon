@@ -22,6 +22,7 @@ public:
     ~Map();
 
     void push(const Vector2 & pos, const std::string & str);
+    void pop(const Vector2 & pos);
     void draw(const Vector2 & pos, const std::string & str);
     Vector2 move(const Vector2 & pos, int direction, const std::string & str);
 

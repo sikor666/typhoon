@@ -29,6 +29,19 @@ void Map::push(const Vector2 & pos, const std::string & str)
     _screen->draw(pos.x, pos.y, str, Bastet::Color::WhiteMagenta);
 }
 
+void Map::pop(const Vector2 & pos)
+{
+    if (not valid(pos.x, pos.y))
+        throw std::runtime_error{"Position is out of range"};
+
+    if (not _water[pos.x][pos.y])
+        throw std::runtime_error{"Position is empty"};
+
+    _water[pos.x][pos.y] = false;
+
+    _screen->draw(pos.x, pos.y, "  ", Bastet::Color::WhiteBlue);
+}
+
 void Map::draw(const Vector2 & pos, const std::string & str)
 {
     if (not valid(pos.x, pos.y))

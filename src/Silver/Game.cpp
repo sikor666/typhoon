@@ -26,15 +26,28 @@ void Game::run()
 
         if (std::ranges::contains(keys, 'a'))
         {
-            ship->turnLeft();
+            if (ship)
+                ship->turnLeft();
         }
         else if (std::ranges::contains(keys, 'd'))
         {
-            ship->turnRight();
+            if (ship)
+                ship->turnRight();
         }
         else if (std::ranges::contains(keys, 'w'))
         {
-            ship->move();
+            if (ship)
+                ship->move();
+        }
+        else if (std::ranges::contains(keys, 'x'))
+        {
+            if (ship)
+                ship.reset();
+        }
+        else if (std::ranges::contains(keys, 'v'))
+        {
+            if (not ship)
+                ship = std::make_unique<Ship>(_map);
         }
 
         _screen->refresh();

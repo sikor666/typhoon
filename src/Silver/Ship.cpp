@@ -12,11 +12,15 @@ Ship::Ship(const std::shared_ptr<Map> & map)
     , _position{10.0f, 10.0f}
 {
     _map->push(_position, _arrows[_direction]);
+
+    dbgI << "Insert [" << _position.x << ", " << _position.y << "]";
 }
 
 Ship::~Ship()
 {
-    // _map->remove or pop(_position);
+    _map->pop(_position);
+
+    dbgI << "Remove [" << _position.x << ", " << _position.y << "]";
 }
 
 void Ship::turnLeft()
@@ -36,6 +40,8 @@ void Ship::turnRight()
 void Ship::move()
 {
     _position = _map->move(_position, _direction, _arrows[_direction]);
+
+    dbgI << "Move [" << _position.x << ", " << _position.y << "]";
 }
 
 int Ship::getDirection() const
