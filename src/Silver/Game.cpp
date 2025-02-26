@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "Player.hpp"
 #include "Ship.hpp"
 
 #include <algorithm>
@@ -10,6 +11,9 @@ Game::Game()
     : _screen{std::make_shared<Bastet::Screen>()}
     , _map{std::make_shared<Map>(_screen)}
 {
+    _players.push(std::make_unique<Player>("computer"));
+    _players.push(std::make_unique<Player>("pirate"));
+    _players.push(std::make_unique<Player>("soldier"));
 }
 
 Game::~Game()

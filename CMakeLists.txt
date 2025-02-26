@@ -18,7 +18,8 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 # Add the executable
 add_executable(typhoon main.cpp
     src/Bastet/Engine.cpp src/Bastet/Screen.cpp
-    src/Silver/Game.cpp src/Silver/Map.cpp src/Silver/Ship.cpp)
+    src/Silver/Game.cpp src/Silver/Map.cpp
+    src/Silver/Player.cpp src/Silver/Ship.cpp)
 
 # Add link libraries
 target_link_libraries(typhoon PRIVATE ncursesw)
