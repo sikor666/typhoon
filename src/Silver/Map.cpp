@@ -26,7 +26,7 @@ void Map::push(const Vector2 & pos, const std::string & str)
 
     _water[pos.x][pos.y] = true;
 
-    _screen->draw(pos.x, pos.y, Bastet::Color::WhiteMagenta, str);
+    _screen->draw(pos.x, pos.y, str, Bastet::Color::WhiteMagenta);
 }
 
 void Map::draw(const Vector2 & pos, const std::string & str)
@@ -37,7 +37,7 @@ void Map::draw(const Vector2 & pos, const std::string & str)
     if (not _water[pos.x][pos.y])
         throw std::runtime_error{"Position is empty"};
 
-    _screen->draw(pos.x, pos.y, Bastet::Color::WhiteMagenta, str);
+    _screen->draw(pos.x, pos.y, str, Bastet::Color::WhiteMagenta);
 }
 
 Vector2 Map::move(const Vector2 & pos, int direction, const std::string & str)
@@ -73,8 +73,8 @@ Vector2 Map::move(const Vector2 & pos, int direction, const std::string & str)
     _water[pos.x][pos.y] = false;
     _water[res.x][res.y] = true;
 
-    _screen->draw(pos.x, pos.y, Bastet::Color::WhiteBlue, "  ");
-    _screen->draw(res.x, res.y, Bastet::Color::WhiteMagenta, str);
+    _screen->draw(pos.x, pos.y, "  ", Bastet::Color::WhiteBlue);
+    _screen->draw(res.x, res.y, str, Bastet::Color::WhiteMagenta);
 
     return res;
 }

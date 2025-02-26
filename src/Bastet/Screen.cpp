@@ -18,21 +18,15 @@ Screen::Screen()
     wbkgd(reinterpret_cast<WINDOW *>(_window), COLOR_PAIR(Color::WhiteBlue));
     wbkgd(reinterpret_cast<WINDOW *>(_panel), COLOR_PAIR(Color::BlackWhite));
 
-    auto print = [this](int x, int y, const std::string & str) {
-        return wmove(reinterpret_cast<WINDOW *>(_panel), y, 2 * x) == ERR
-            ? ERR
-            : wprintw(reinterpret_cast<WINDOW *>(_panel), str.c_str());
-    };
-
-    print(4, 1, "🡤 ");
-    print(5, 1, "🡡 ");
-    print(6, 1, "🡥 ");
-    print(4, 2, "🡠 ");
-    print(5, 2, "❅ ");
-    print(6, 2, "🡢 ");
-    print(4, 3, "🡧 ");
-    print(5, 3, "🡣 ");
-    print(6, 3, "🡦 ");
+    draw(4, 1, "🡤 ", _panel);
+    draw(5, 1, "🡡 ", _panel);
+    draw(6, 1, "🡥 ", _panel);
+    draw(4, 2, "🡠 ", _panel);
+    draw(5, 2, "❅ ", _panel);
+    draw(6, 2, "🡢 ", _panel);
+    draw(4, 3, "🡧 ", _panel);
+    draw(5, 3, "🡣 ", _panel);
+    draw(6, 3, "🡦 ", _panel);
 }
 
 Screen::~Screen()
@@ -62,18 +56,22 @@ std::vector<int> Screen::getKeys()
     return keys;
 }
 
-int Screen::draw(int x, int y, Color color, const std::string & str)
+int Screen::draw(int x, int y, const std::string & str, Color color)
 {
-    return wattrset(reinterpret_cast<WINDOW *>(_window), COLOR_PAIR(color)) == ERR ? ERR
-        : wmove(reinterpret_cast<WINDOW *>(_window), y, 2 * x) == ERR
-        ? ERR
-        : wprintw(reinterpret_cast<WINDOW *>(_window), str.c_str());
+    return wattrset(reinterpret_cast<WINDOW *>(_window), COLOR_PAIR(color)) == ERR ? ERR : draw(x, y, str, _window);
 }
 
 void Screen::refresh()
 {
     wrefresh(reinterpret_cast<WINDOW *>(_window));
     wrefresh(reinterpret_cast<WINDOW *>(_panel));
+}
+
+int Screen::draw(int x, int y, const std::string & str, void * screen)
+{
+    return wmove(reinterpret_cast<WINDOW *>(screen), y, 2 * x) == ERR
+        ? ERR
+        : wprintw(reinterpret_cast<WINDOW *>(screen), str.c_str());
 }
 
 } // namespace Bastet

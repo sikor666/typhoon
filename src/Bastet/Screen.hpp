@@ -19,8 +19,11 @@ public:
 
     std::vector<int> getKeys();
 
-    int draw(int x, int y, Color color, const std::string & str);
+    int draw(int x, int y, const std::string & str, Color color);
     void refresh();
+
+protected:
+    int draw(int x, int y, const std::string & str, void * screen);
 
 private:
     Engine _engine;
