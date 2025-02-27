@@ -13,7 +13,7 @@ namespace Silver
 Game::Game()
     : _screen{std::make_shared<Bastet::Screen>()}
     , _map{std::make_shared<Map>(_screen)}
-    , _dice{std::make_shared<Dice>()}
+    , _dice{std::make_shared<Dice>(6)}
 {
     _players.push(std::make_unique<Player>("computer", _dice));
     _players.push(std::make_unique<Player>("pirate", _dice));

@@ -3,10 +3,10 @@
 namespace Silver
 {
 
-Dice::Dice()
+Dice::Dice(int sides)
     : _rd{}
     , _gen{_rd()}
-    , _distrib{1, 6}
+    , _distrib{1, sides}
 {
 }
 

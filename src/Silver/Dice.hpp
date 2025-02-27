@@ -8,7 +8,7 @@ namespace Silver
 class Dice
 {
 public:
-    Dice();
+    Dice(int sides);
     ~Dice();
 
     int roll();
