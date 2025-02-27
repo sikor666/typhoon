@@ -29,6 +29,8 @@ private:
     std::array<std::string, NUM_DIRECTIONS> _arrows;
 
     int _speed;
+    int _maneuver;
+
     int _direction;
     Vector2 _position;
 };

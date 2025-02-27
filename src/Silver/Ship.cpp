@@ -9,7 +9,8 @@ Ship::Ship(const std::shared_ptr<Map> & map)
     : _map{map}
     , _arrows{"🡡 ", "🡥 ", "🡢 ", "🡦 ", "🡣 ", "🡧 ", "🡠 ", "🡤 "}
     , _speed{9}
-    , _direction{0}
+    , _maneuver{2}
+    , _direction{1}
     , _position{10.0f, 10.0f}
 {
     _map->push(_position, _arrows[_direction]);
