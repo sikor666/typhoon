@@ -28,6 +28,7 @@ private:
     std::shared_ptr<Map> _map;
     std::array<std::string, NUM_DIRECTIONS> _arrows;
 
+    int _speed;
     int _direction;
     Vector2 _position;
 };

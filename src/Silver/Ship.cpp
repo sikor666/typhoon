@@ -8,6 +8,7 @@ namespace Silver
 Ship::Ship(const std::shared_ptr<Map> & map)
     : _map{map}
     , _arrows{"🡡 ", "🡥 ", "🡢 ", "🡦 ", "🡣 ", "🡧 ", "🡠 ", "🡤 "}
+    , _speed{9}
     , _direction{0}
     , _position{10.0f, 10.0f}
 {
