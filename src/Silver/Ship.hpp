@@ -39,6 +39,7 @@ private:
     std::shared_ptr<Map> _map;
     std::array<std::string, NUM_DIRECTIONS> _arrows;
 
+    int _resilience;
     int _speed;
     int _maneuver;
 
