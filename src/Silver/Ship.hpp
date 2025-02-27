@@ -11,6 +11,17 @@ constexpr auto NUM_DIRECTIONS = 8;
 
 class Map;
 
+enum ShipType
+{
+    Carrack,
+    Galleon,
+    Frigate,
+    Brigantine,
+    Caravel,
+    Sloop,
+    Pinnace,
+};
+
 class Ship
 {
 public:
