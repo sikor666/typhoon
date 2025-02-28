@@ -11,8 +11,8 @@ Screen::Screen()
     , _width{getmaxx(stdscr)}
     , _height{getmaxy(stdscr)}
 {
-    _windows.emplace_back(std::make_unique<Window>(0, 0, _width - 20, _height, Color::WhiteBlue));
-    _windows.emplace_back(std::make_unique<Window>(_width - 20, 0, 20, _height, Color::BlackWhite));
+    _windows.emplace_back(std::make_unique<Display>(0, 0, _width - 20, _height, Color::WhiteBlue));
+    _windows.emplace_back(std::make_unique<Display>(_width - 20, 0, 20, _height, Color::BlackWhite));
 
     _windows[1]->print(4, 1, Color::BlackWhite, "🡤 ");
     _windows[1]->print(5, 1, Color::BlackWhite, "🡡 ");

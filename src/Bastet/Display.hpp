@@ -7,11 +7,11 @@
 namespace Bastet
 {
 
-class Window
+class Display
 {
 public:
-    Window(int x, int y, int w, int h, Color color);
-    ~Window();
+    Display(int x, int y, int w, int h, Color color);
+    ~Display();
 
     int width() const;
     int height() const;

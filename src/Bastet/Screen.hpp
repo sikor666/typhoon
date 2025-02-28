@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Window.hpp"
+#include "Display.hpp"
 
 #include <memory>
 #include <vector>
@@ -28,7 +28,7 @@ private:
     int _width;
     int _height;
 
-    std::vector<std::unique_ptr<Window>> _windows;
+    std::vector<std::unique_ptr<Display>> _windows;
 };
 
 } // namespace Bastet
