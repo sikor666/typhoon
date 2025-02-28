@@ -93,6 +93,11 @@ void Game::run()
         {
             _players.front()->pop();
         }
+        else if (std::ranges::contains(keys, 'e'))
+        {
+            _screen->setWindSpeed(6);
+            _screen->setWindDirection(1);
+        }
 
         _screen->refresh();
     }

@@ -14,6 +14,7 @@ enum Color
     WhiteCyan,
 
     BlackWhite = 8,
+    RedWhite,
 
     RedBlack = 17,
     GreenBlack,

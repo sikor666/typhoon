@@ -8,6 +8,8 @@
 namespace Bastet
 {
 
+constexpr auto NUM_DIRECTIONS = 8;
+
 class Screen
 {
 public:
@@ -20,6 +22,7 @@ public:
     std::vector<int> getKeys();
 
     void setWindSpeed(int speed);
+    void setWindDirection(int direction);
 
     int draw(int x, int y, const std::string & str, Color color);
     void refresh();
@@ -30,7 +33,8 @@ private:
     int _width;
     int _height;
 
-    std::vector<std::unique_ptr<Display>> _windows;
+    std::vector<std::unique_ptr<Display>> _displays;
+    std::array<std::string, NUM_DIRECTIONS> _arrows;
 };
 
 } // namespace Bastet
