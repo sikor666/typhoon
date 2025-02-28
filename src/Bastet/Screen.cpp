@@ -37,7 +37,7 @@ Screen::~Screen()
 
 int Screen::getWidth() const
 {
-    return _width / 2 - 10;
+    return (_width - 20) / 2;
 }
 
 int Screen::getHeight() const
