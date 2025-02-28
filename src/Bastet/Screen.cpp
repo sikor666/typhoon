@@ -52,6 +52,11 @@ std::vector<int> Screen::getKeys()
     return keys;
 }
 
+void Screen::setWindSpeed(int speed)
+{
+    _windows[1]->print(5, 2, Color::BlackWhite, std::to_string(speed));
+}
+
 int Screen::draw(int x, int y, const std::string & str, Color color)
 {
     return _windows[0]->print(x, y, color, str);

@@ -60,7 +60,11 @@ void Game::run()
     {
         auto keys = _screen->getKeys();
 
-        if (std::ranges::contains(keys, 'a'))
+        if (std::ranges::contains(keys, 'q'))
+        {
+            break;
+        }
+        else if (std::ranges::contains(keys, 'a'))
         {
             if (ship)
                 ship->turnLeft();

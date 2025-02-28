@@ -19,6 +19,8 @@ public:
 
     std::vector<int> getKeys();
 
+    void setWindSpeed(int speed);
+
     int draw(int x, int y, const std::string & str, Color color);
     void refresh();
 
