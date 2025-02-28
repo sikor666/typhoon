@@ -27,21 +27,11 @@ Screen::Screen()
     _displays[1]->print(_windSpeedPos.x + 0, _windSpeedPos.y + 1, Color::BlackWhite, "🡣 ");
     _displays[1]->print(_windSpeedPos.x + 1, _windSpeedPos.y + 1, Color::BlackWhite, "🡦 ");
 
-    dbgI << "Screen size [" << width() << ", " << height() << "]";
+    dbgI << "Screen size [" << _width / 2 << ", " << _height << "]";
 }
 
 Screen::~Screen()
 {
-}
-
-int Screen::width() const
-{
-    return _displays[0]->width();
-}
-
-int Screen::height() const
-{
-    return _displays[0]->height();
 }
 
 std::vector<int> Screen::getKeys()
@@ -53,6 +43,14 @@ std::vector<int> Screen::getKeys()
         keys.push_back(key);
 
     return keys;
+}
+
+const std::unique_ptr<Display> & Screen::getDisplay(size_t number) const
+{
+    if (number >= _displays.size())
+        throw std::runtime_error{"Display number is out of range"};
+
+    return _displays[number];
 }
 
 void Screen::setWindSpeed(int speed)
@@ -75,11 +73,6 @@ void Screen::setWindDirection(int direction)
 
         default: break;
     }
-}
-
-int Screen::draw(int x, int y, const std::string & str, Color color)
-{
-    return _displays[0]->print(x, y, color, str);
 }
 
 void Screen::refresh()

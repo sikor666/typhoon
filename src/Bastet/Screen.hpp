@@ -17,15 +17,12 @@ public:
     Screen();
     ~Screen();
 
-    int width() const;
-    int height() const;
-
     std::vector<int> getKeys();
+    const std::unique_ptr<Display> & getDisplay(size_t number) const;
 
     void setWindSpeed(int speed);
     void setWindDirection(int direction);
 
-    int draw(int x, int y, const std::string & str, Color color);
     void refresh();
 
 private:

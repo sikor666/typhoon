@@ -6,8 +6,8 @@ namespace Silver
 
 Map::Map(const std::shared_ptr<Bastet::Screen> & screen)
     : _screen{screen}
-    , _width{_screen->width()}
-    , _height{_screen->height()}
+    , _width{_screen->getDisplay(0)->width()}
+    , _height{_screen->getDisplay(0)->height()}
 {
     _water.resize(_width, std::vector<bool>(_height, false));
 }
@@ -26,7 +26,7 @@ void Map::push(const Vector2 & pos, const std::string & str)
 
     _water[pos.x][pos.y] = true;
 
-    _screen->draw(pos.x, pos.y, str, Bastet::Color::WhiteMagenta);
+    _screen->getDisplay(0)->print(pos.x, pos.y, Bastet::Color::WhiteMagenta, str);
 }
 
 void Map::pop(const Vector2 & pos)
@@ -39,7 +39,7 @@ void Map::pop(const Vector2 & pos)
 
     _water[pos.x][pos.y] = false;
 
-    _screen->draw(pos.x, pos.y, "  ", Bastet::Color::WhiteBlue);
+    _screen->getDisplay(0)->print(pos.x, pos.y, Bastet::Color::WhiteBlue, "  ");
 }
 
 void Map::draw(const Vector2 & pos, const std::string & str)
@@ -50,7 +50,7 @@ void Map::draw(const Vector2 & pos, const std::string & str)
     if (not _water[pos.x][pos.y])
         throw std::runtime_error{"Position is empty"};
 
-    _screen->draw(pos.x, pos.y, str, Bastet::Color::WhiteMagenta);
+    _screen->getDisplay(0)->print(pos.x, pos.y, Bastet::Color::WhiteMagenta, str);
 }
 
 Vector2 Map::move(const Vector2 & pos, int direction, const std::string & str)
@@ -86,8 +86,8 @@ Vector2 Map::move(const Vector2 & pos, int direction, const std::string & str)
     _water[pos.x][pos.y] = false;
     _water[res.x][res.y] = true;
 
-    _screen->draw(pos.x, pos.y, "  ", Bastet::Color::WhiteBlue);
-    _screen->draw(res.x, res.y, str, Bastet::Color::WhiteMagenta);
+    _screen->getDisplay(0)->print(pos.x, pos.y, Bastet::Color::WhiteBlue, "  ");
+    _screen->getDisplay(0)->print(res.x, res.y, Bastet::Color::WhiteMagenta, str);
 
     return res;
 }
