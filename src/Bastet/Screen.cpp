@@ -12,19 +12,20 @@ Screen::Screen()
     , _height{getmaxy(stdscr)}
     , _displays{}
     , _arrows{"🡩 ", "🡭 ", "🡪 ", "🡮 ", "🡫 ", "🡯 ", "🡨 ", "🡬 "}
+    , _windSpeedPos{5, 2}
 {
     _displays.emplace_back(std::make_unique<Display>(0, 0, _width - 20, _height, Color::WhiteBlue));
     _displays.emplace_back(std::make_unique<Display>(_width - 20, 0, 20, _height, Color::BlackWhite));
 
-    _displays[1]->print(4, 1, Color::BlackWhite, "🡤 ");
-    _displays[1]->print(5, 1, Color::BlackWhite, "🡡 ");
-    _displays[1]->print(6, 1, Color::BlackWhite, "🡥 ");
-    _displays[1]->print(4, 2, Color::BlackWhite, "🡠 ");
-    _displays[1]->print(5, 2, Color::BlackWhite, "❅ ");
-    _displays[1]->print(6, 2, Color::BlackWhite, "🡢 ");
-    _displays[1]->print(4, 3, Color::BlackWhite, "🡧 ");
-    _displays[1]->print(5, 3, Color::BlackWhite, "🡣 ");
-    _displays[1]->print(6, 3, Color::BlackWhite, "🡦 ");
+    _displays[1]->print(_windSpeedPos.x - 1, _windSpeedPos.y - 1, Color::BlackWhite, "🡤 ");
+    _displays[1]->print(_windSpeedPos.x + 0, _windSpeedPos.y - 1, Color::BlackWhite, "🡡 ");
+    _displays[1]->print(_windSpeedPos.x + 1, _windSpeedPos.y - 1, Color::BlackWhite, "🡥 ");
+    _displays[1]->print(_windSpeedPos.x - 1, _windSpeedPos.y + 0, Color::BlackWhite, "🡠 ");
+    _displays[1]->print(_windSpeedPos.x + 0, _windSpeedPos.y + 0, Color::BlackWhite, "❅ ");
+    _displays[1]->print(_windSpeedPos.x + 1, _windSpeedPos.y + 0, Color::BlackWhite, "🡢 ");
+    _displays[1]->print(_windSpeedPos.x - 1, _windSpeedPos.y + 1, Color::BlackWhite, "🡧 ");
+    _displays[1]->print(_windSpeedPos.x + 0, _windSpeedPos.y + 1, Color::BlackWhite, "🡣 ");
+    _displays[1]->print(_windSpeedPos.x + 1, _windSpeedPos.y + 1, Color::BlackWhite, "🡦 ");
 
     dbgI << "Screen size [" << width() << ", " << height() << "]";
 }
@@ -63,14 +64,14 @@ void Screen::setWindDirection(int direction)
 {
     switch (direction)
     {
-        case 0: _displays[1]->print(5, 1, Color::RedWhite, _arrows[0]); break;
-        case 1: _displays[1]->print(6, 1, Color::RedWhite, _arrows[1]); break;
-        case 2: _displays[1]->print(6, 2, Color::RedWhite, _arrows[2]); break;
-        case 3: _displays[1]->print(6, 3, Color::RedWhite, _arrows[3]); break;
-        case 4: _displays[1]->print(5, 3, Color::RedWhite, _arrows[4]); break;
-        case 5: _displays[1]->print(4, 3, Color::RedWhite, _arrows[5]); break;
-        case 6: _displays[1]->print(4, 2, Color::RedWhite, _arrows[6]); break;
-        case 7: _displays[1]->print(4, 1, Color::RedWhite, _arrows[7]); break;
+        case 0: _displays[1]->print(_windSpeedPos.x + 0, _windSpeedPos.y - 1, Color::RedWhite, _arrows[0]); break;
+        case 1: _displays[1]->print(_windSpeedPos.x + 1, _windSpeedPos.y - 1, Color::RedWhite, _arrows[1]); break;
+        case 2: _displays[1]->print(_windSpeedPos.x + 1, _windSpeedPos.y + 0, Color::RedWhite, _arrows[2]); break;
+        case 3: _displays[1]->print(_windSpeedPos.x + 1, _windSpeedPos.y + 1, Color::RedWhite, _arrows[3]); break;
+        case 4: _displays[1]->print(_windSpeedPos.x + 0, _windSpeedPos.y + 1, Color::RedWhite, _arrows[4]); break;
+        case 5: _displays[1]->print(_windSpeedPos.x - 1, _windSpeedPos.y + 1, Color::RedWhite, _arrows[5]); break;
+        case 6: _displays[1]->print(_windSpeedPos.x - 1, _windSpeedPos.y + 0, Color::RedWhite, _arrows[6]); break;
+        case 7: _displays[1]->print(_windSpeedPos.x - 1, _windSpeedPos.y - 1, Color::RedWhite, _arrows[7]); break;
 
         default: break;
     }

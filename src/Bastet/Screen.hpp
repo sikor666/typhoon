@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Display.hpp"
+#include "Math.hpp"
 
 #include <memory>
 #include <vector>
@@ -35,6 +36,8 @@ private:
 
     std::vector<std::unique_ptr<Display>> _displays;
     std::array<std::string, NUM_DIRECTIONS> _arrows;
+
+    Vector2 _windSpeedPos;
 };
 
 } // namespace Bastet
