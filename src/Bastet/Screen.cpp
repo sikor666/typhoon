@@ -21,7 +21,7 @@ Screen::Screen()
     _displays[1]->print(_windSpeedPos.x + 0, _windSpeedPos.y - 1, Color::BlackWhite, "🡡 ");
     _displays[1]->print(_windSpeedPos.x + 1, _windSpeedPos.y - 1, Color::BlackWhite, "🡥 ");
     _displays[1]->print(_windSpeedPos.x - 1, _windSpeedPos.y + 0, Color::BlackWhite, "🡠 ");
-    _displays[1]->print(_windSpeedPos.x + 0, _windSpeedPos.y + 0, Color::BlackWhite, "❅ ");
+    _displays[1]->print(_windSpeedPos.x + 0, _windSpeedPos.y + 0, Color::BlackWhite, "⎈ ");
     _displays[1]->print(_windSpeedPos.x + 1, _windSpeedPos.y + 0, Color::BlackWhite, "🡢 ");
     _displays[1]->print(_windSpeedPos.x - 1, _windSpeedPos.y + 1, Color::BlackWhite, "🡧 ");
     _displays[1]->print(_windSpeedPos.x + 0, _windSpeedPos.y + 1, Color::BlackWhite, "🡣 ");
