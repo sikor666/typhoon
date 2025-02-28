@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Engine.hpp"
+#include "Window.hpp"
 
-#include <string>
+#include <memory>
 #include <vector>
 
 namespace Bastet
@@ -14,16 +14,13 @@ public:
     Screen();
     ~Screen();
 
-    int getWidth() const;
-    int getHeight() const;
+    int width() const;
+    int height() const;
 
     std::vector<int> getKeys();
 
     int draw(int x, int y, const std::string & str, Color color);
     void refresh();
-
-protected:
-    int draw(int x, int y, const std::string & str, void * screen);
 
 private:
     Engine _engine;
@@ -31,8 +28,7 @@ private:
     int _width;
     int _height;
 
-    void * _window;
-    void * _panel;
+    std::vector<std::unique_ptr<Window>> _windows;
 };
 
 } // namespace Bastet
