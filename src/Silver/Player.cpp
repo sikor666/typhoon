@@ -23,6 +23,12 @@ void Player::push(std::function<void()> action)
 void Player::pop()
 {
     dbgW << "Roll [" << _name << "][" << _dice->roll() << "]";
+
+    while (not _actions.empty())
+    {
+        _actions.front()();
+        _actions.pop();
+    }
 }
 
 } // namespace Silver
