@@ -61,7 +61,8 @@ Game::~Game()
 void Game::run()
 {
     auto wind = std::make_unique<Wind>(_screen);
-    auto ship = std::make_unique<Ship>(Caravel, _map);
+    auto caravel = std::make_unique<Ship>(Caravel, _map, Vector2{3, 3});
+    auto brigantine = std::make_unique<Ship>(Brigantine, _map, Vector2{30, 8});
 
     while (true)
     {
@@ -73,28 +74,28 @@ void Game::run()
         }
         else if (std::ranges::contains(keys, 'a'))
         {
-            if (ship)
-                ship->turnLeft();
+            if (caravel)
+                caravel->turnLeft();
         }
         else if (std::ranges::contains(keys, 'd'))
         {
-            if (ship)
-                ship->turnRight();
+            if (caravel)
+                caravel->turnRight();
         }
         else if (std::ranges::contains(keys, 'w'))
         {
-            if (ship)
-                ship->move();
+            if (caravel)
+                caravel->move();
         }
         else if (std::ranges::contains(keys, 'x'))
         {
-            if (ship)
-                ship.reset();
+            if (caravel)
+                caravel.reset();
         }
         else if (std::ranges::contains(keys, 'v'))
         {
-            if (not ship)
-                ship = std::make_unique<Ship>(Caravel, _map);
+            if (not caravel)
+                caravel = std::make_unique<Ship>(Caravel, _map, Vector2{3, 3});
         }
         else if (std::ranges::contains(keys, 'n'))
         {
