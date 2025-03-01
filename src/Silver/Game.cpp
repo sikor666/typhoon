@@ -61,7 +61,7 @@ Game::~Game()
 void Game::run()
 {
     auto wind = std::make_unique<Wind>(_screen);
-    auto ship = std::make_unique<Ship>(_map);
+    auto ship = std::make_unique<Ship>(Caravel, _map);
 
     while (true)
     {
@@ -94,7 +94,7 @@ void Game::run()
         else if (std::ranges::contains(keys, 'v'))
         {
             if (not ship)
-                ship = std::make_unique<Ship>(_map);
+                ship = std::make_unique<Ship>(Caravel, _map);
         }
         else if (std::ranges::contains(keys, 'n'))
         {

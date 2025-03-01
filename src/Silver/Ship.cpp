@@ -5,8 +5,9 @@
 namespace Silver
 {
 
-Ship::Ship(const std::shared_ptr<Map> & map)
-    : _map{map}
+Ship::Ship(ShipType type, const std::shared_ptr<Map> & map)
+    : _type{type}
+    , _map{map}
     , _arrows{"🡡 ", "🡥 ", "🡢 ", "🡦 ", "🡣 ", "🡧 ", "🡠 ", "🡤 "}
     , _resilience{100}
     , _speed{9}

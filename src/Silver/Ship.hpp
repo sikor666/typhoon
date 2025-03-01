@@ -23,7 +23,7 @@ enum ShipType
 class Ship
 {
 public:
-    Ship(const std::shared_ptr<Map> & map);
+    Ship(ShipType type, const std::shared_ptr<Map> & map);
     ~Ship();
 
     void turnLeft();
@@ -34,6 +34,8 @@ public:
     Vector2 getPosition() const;
 
 private:
+    const ShipType _type;
+
     std::shared_ptr<Map> _map;
     std::array<std::string, NUM_DIRECTIONS> _arrows;
 
