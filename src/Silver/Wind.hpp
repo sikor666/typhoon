@@ -15,6 +15,7 @@ namespace Silver
 {
 
 constexpr auto NUM_DIRECTIONS = 8;
+constexpr auto NUM_ARROW_STYLES = 2;
 
 class Wind
 {
@@ -32,7 +33,7 @@ private:
     int _direction;
 
     Vector2 _windRosePos;
-    std::array<std::string, NUM_DIRECTIONS> _arrows;
+    std::array<std::array<std::string, NUM_ARROW_STYLES>, NUM_DIRECTIONS> _arrows;
 };
 
 } // namespace Silver
