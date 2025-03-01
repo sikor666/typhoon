@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include <queue>
+#include <vector>
 
 namespace Bastet
 {
@@ -28,7 +28,7 @@ private:
     std::shared_ptr<Map> _map;
     std::shared_ptr<Dice> _dice;
 
-    std::queue<std::unique_ptr<Player>> _players;
+    std::vector<std::unique_ptr<Player>> _players;
 };
 
 } // namespace Silver
