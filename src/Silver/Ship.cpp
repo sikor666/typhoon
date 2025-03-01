@@ -5,15 +5,15 @@
 namespace Silver
 {
 
-Ship::Ship(ShipType type, const std::shared_ptr<Map> & map, const Vector2 & position)
+Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> & map)
     : _type{type}
+    , _position{position}
     , _map{map}
     , _arrows{"🡡 ", "🡥 ", "🡢 ", "🡦 ", "🡣 ", "🡧 ", "🡠 ", "🡤 "}
     , _resilience{100}
     , _speed{9}
     , _maneuver{2}
     , _direction{1}
-    , _position{position}
 {
     _map->push(_position, _arrows[_direction]);
 

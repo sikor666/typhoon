@@ -57,12 +57,19 @@ Game::~Game()
 
 // 🢀 🢁 🢂 🢃 🢄 🢅 🢆 🢇
 
+// Players' turns:
+// - ship movements,
+// - artillery salvos,
+// - ramming,
+// - movement of sailors on and off ships,
+// - possible declaration of boarding,
+// - reloading of silver and cannons
 
 void Game::run()
 {
     auto wind = std::make_unique<Wind>(_screen);
-    auto caravel = std::make_unique<Ship>(Caravel, _map, Vector2{3, 3});
-    auto brigantine = std::make_unique<Ship>(Brigantine, _map, Vector2{30, 8});
+    auto caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _map);
+    auto brigantine = std::make_unique<Ship>(Brigantine, Vector2{30, 8}, _map);
 
     while (true)
     {
@@ -95,7 +102,7 @@ void Game::run()
         else if (std::ranges::contains(keys, 'v'))
         {
             if (not caravel)
-                caravel = std::make_unique<Ship>(Caravel, _map, Vector2{3, 3});
+                caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _map);
         }
         else if (std::ranges::contains(keys, 'n'))
         {

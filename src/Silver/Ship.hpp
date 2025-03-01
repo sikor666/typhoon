@@ -23,7 +23,7 @@ enum ShipType
 class Ship
 {
 public:
-    Ship(ShipType type, const std::shared_ptr<Map> & map, const Vector2 & position);
+    Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> & map);
     ~Ship();
 
     void turnLeft();
@@ -35,6 +35,7 @@ public:
 
 private:
     const ShipType _type;
+    Vector2 _position;
 
     std::shared_ptr<Map> _map;
     std::array<std::string, NUM_DIRECTIONS> _arrows;
@@ -42,9 +43,7 @@ private:
     int _resilience;
     int _speed;
     int _maneuver;
-
     int _direction;
-    Vector2 _position;
 };
 
 } // namespace Silver
