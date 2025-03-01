@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include "Bastet/Screen.hpp"
 #include "Dice.hpp"
+#include "Logger.hpp"
 #include "Map.hpp"
 #include "Player.hpp"
 #include "Ship.hpp"
@@ -19,6 +20,10 @@ Game::Game()
     _players.push_back(std::make_unique<Player>("computer", _dice));
     _players.push_back(std::make_unique<Player>("pirate", _dice));
     _players.push_back(std::make_unique<Player>("soldier", _dice));
+
+    _players[0]->push([]() { dbgE << "Player computer"; });
+    _players[1]->push([]() { dbgE << "Player pirate"; });
+    _players[2]->push([]() { dbgE << "Player soldier"; });
 }
 
 Game::~Game()
