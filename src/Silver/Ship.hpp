@@ -1,13 +1,11 @@
 #pragma once
 
-#include "Math.hpp"
+#include "Wind.hpp"
 
 #include <memory>
 
 namespace Silver
 {
-
-constexpr auto NUM_DIRECTIONS = 8;
 
 class Map;
 

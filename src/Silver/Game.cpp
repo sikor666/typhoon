@@ -4,6 +4,7 @@
 #include "Map.hpp"
 #include "Player.hpp"
 #include "Ship.hpp"
+#include "Wind.hpp"
 
 #include <algorithm>
 
@@ -54,6 +55,7 @@ Game::~Game()
 
 void Game::run()
 {
+    auto wind = std::make_unique<Wind>(_screen);
     auto ship = std::make_unique<Ship>(_map);
 
     while (true)
@@ -95,8 +97,8 @@ void Game::run()
         }
         else if (std::ranges::contains(keys, 'e'))
         {
-            _screen->setWindSpeed(6);
-            _screen->setWindDirection(1);
+            wind->setSpeed(6);
+            wind->setDirection(1);
         }
 
         _screen->refresh();
