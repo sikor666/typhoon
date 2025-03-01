@@ -15,8 +15,9 @@ Player::~Player()
 {
 }
 
-void Player::push()
+void Player::push(std::function<void()> action)
 {
+    _actions.push(action);
 }
 
 void Player::pop()
