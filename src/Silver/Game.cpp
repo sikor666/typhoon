@@ -68,6 +68,9 @@ Game::~Game()
 
 void Game::run()
 {
+    _wind->setSpeed(_dice->roll());
+    _wind->setDirection(Dice{8}.roll() - 1);
+
     auto caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _map, _wind);
     auto brigantine = std::make_unique<Ship>(Brigantine, Vector2{30, 8}, _map, _wind);
 

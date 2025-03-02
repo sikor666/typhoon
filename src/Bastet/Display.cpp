@@ -28,10 +28,10 @@ int Display::height() const
     return _height;
 }
 
-int Display::print(int x, int y, Color color, const std::string & str)
+int Display::print(Vector2 position, Color color, const std::string & str)
 {
     return wattrset(reinterpret_cast<WINDOW *>(_window), COLOR_PAIR(color)) == ERR ? ERR
-        : wmove(reinterpret_cast<WINDOW *>(_window), y, 2 * x) == ERR
+        : wmove(reinterpret_cast<WINDOW *>(_window), position.y, 2 * position.x) == ERR
         ? ERR
         : wprintw(reinterpret_cast<WINDOW *>(_window), str.c_str());
 }

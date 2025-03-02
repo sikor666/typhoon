@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine.hpp"
+#include "Math.hpp"
 
 #include <string>
 
@@ -16,7 +17,7 @@ public:
     int width() const;
     int height() const;
 
-    int print(int x, int y, Color color, const std::string & str);
+    int print(Vector2 position, Color color, const std::string & str);
     int refresh();
 
 private:

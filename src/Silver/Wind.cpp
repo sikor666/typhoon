@@ -6,20 +6,19 @@ namespace Silver
 
 Wind::Wind(const std::shared_ptr<Bastet::Screen> & screen)
     : _screen{screen}
+    , _speed{0}
+    , _direction{0}
     , _windRosePos{5, 2}
     , _arrows{"🡡 ", "🡩 ", "🡥 ", "🡭 ", "🡢 ", "🡪 ", "🡦 ", "🡮 ", "🡣 ", "🡫 ", "🡧 ", "🡯 ", "🡠 ", "🡨 ", "🡤 ", "🡬 "}
+    , _displacements{Vector2{+0, -1}, Vector2{+1, -1}, Vector2{+1, -0}, Vector2{+1, +1}, Vector2{+0, +1}, Vector2{-1, +1},
+          Vector2{-1, +0}, Vector2{-1, -1}}
 {
     const auto & display = _screen->getDisplay(1);
 
-    display->print(_windRosePos.x + 0, _windRosePos.y + 0, Bastet::Color::BlackWhite, "⎈ ");
-    display->print(_windRosePos.x + 0, _windRosePos.y - 1, Bastet::Color::BlackWhite, _arrows[0][0]);
-    display->print(_windRosePos.x + 1, _windRosePos.y - 1, Bastet::Color::BlackWhite, _arrows[1][0]);
-    display->print(_windRosePos.x + 1, _windRosePos.y + 0, Bastet::Color::BlackWhite, _arrows[2][0]);
-    display->print(_windRosePos.x + 1, _windRosePos.y + 1, Bastet::Color::BlackWhite, _arrows[3][0]);
-    display->print(_windRosePos.x + 0, _windRosePos.y + 1, Bastet::Color::BlackWhite, _arrows[4][0]);
-    display->print(_windRosePos.x - 1, _windRosePos.y + 1, Bastet::Color::BlackWhite, _arrows[5][0]);
-    display->print(_windRosePos.x - 1, _windRosePos.y + 0, Bastet::Color::BlackWhite, _arrows[6][0]);
-    display->print(_windRosePos.x - 1, _windRosePos.y - 1, Bastet::Color::BlackWhite, _arrows[7][0]);
+    display->print(_windRosePos, Bastet::Color::BlackWhite, "⎈ ");
+
+    for (size_t i = 0; i < NUM_DIRECTIONS; i++)
+        display->print(_windRosePos + _displacements[i], Bastet::Color::BlackWhite, _arrows[i][0]);
 }
 
 Wind::~Wind()
@@ -28,26 +27,20 @@ Wind::~Wind()
 
 void Wind::setSpeed(int speed)
 {
-    _screen->getDisplay(1)->print(5, 2, Bastet::Color::RedWhite, std::to_string(speed));
+    _screen->getDisplay(1)->print(_windRosePos, Bastet::Color::RedWhite, std::to_string(speed));
 }
 
 void Wind::setDirection(int direction)
 {
     const auto & display = _screen->getDisplay(1);
 
-    switch (direction)
-    {
-        case 0: display->print(_windRosePos.x + 0, _windRosePos.y - 1, Bastet::Color::RedWhite, _arrows[0][1]); break;
-        case 1: display->print(_windRosePos.x + 1, _windRosePos.y - 1, Bastet::Color::RedWhite, _arrows[1][1]); break;
-        case 2: display->print(_windRosePos.x + 1, _windRosePos.y + 0, Bastet::Color::RedWhite, _arrows[2][1]); break;
-        case 3: display->print(_windRosePos.x + 1, _windRosePos.y + 1, Bastet::Color::RedWhite, _arrows[3][1]); break;
-        case 4: display->print(_windRosePos.x + 0, _windRosePos.y + 1, Bastet::Color::RedWhite, _arrows[4][1]); break;
-        case 5: display->print(_windRosePos.x - 1, _windRosePos.y + 1, Bastet::Color::RedWhite, _arrows[5][1]); break;
-        case 6: display->print(_windRosePos.x - 1, _windRosePos.y + 0, Bastet::Color::RedWhite, _arrows[6][1]); break;
-        case 7: display->print(_windRosePos.x - 1, _windRosePos.y - 1, Bastet::Color::RedWhite, _arrows[7][1]); break;
+    if (direction < 0 or direction >= NUM_DIRECTIONS)
+        throw std::runtime_error{"Direction is out of range"};
 
-        default: break;
-    }
+    display->print(_windRosePos + _displacements[_direction], Bastet::Color::BlackWhite, _arrows[_direction][0]);
+    display->print(_windRosePos + _displacements[direction], Bastet::Color::RedWhite, _arrows[direction][1]);
+
+    _direction = direction;
 }
 
 } // namespace Silver

@@ -34,6 +34,7 @@ private:
 
     Vector2 _windRosePos;
     std::array<std::array<std::string, NUM_ARROW_STYLES>, NUM_DIRECTIONS> _arrows;
+    std::array<Vector2, NUM_DIRECTIONS> _displacements;
 };
 
 } // namespace Silver
