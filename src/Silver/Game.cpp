@@ -94,6 +94,11 @@ void Game::run()
             if (caravel)
                 caravel->move();
         }
+        else if (std::ranges::contains(keys, 'r'))
+        {
+            if (caravel)
+                caravel->drawWindRose();
+        }
         else if (std::ranges::contains(keys, 'x'))
         {
             if (caravel)

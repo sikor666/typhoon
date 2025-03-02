@@ -26,12 +26,14 @@ public:
     Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> & map, const std::shared_ptr<Wind> & wind);
     ~Ship();
 
+    int getDirection() const;
+    Vector2 getPosition() const;
+
     void turnLeft();
     void turnRight();
     void move();
 
-    int getDirection() const;
-    Vector2 getPosition() const;
+    void drawWindRose();
 
 private:
     const ShipType _type;
@@ -40,6 +42,7 @@ private:
     std::shared_ptr<Map> _map;
     std::shared_ptr<Wind> _wind;
     std::array<std::string, NUM_DIRECTIONS> _arrows;
+    std::array<Vector2, NUM_DIRECTIONS> _displacements;
 
     int _resilience;
     int _speed;

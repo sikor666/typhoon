@@ -1,5 +1,6 @@
 #include "Map.hpp"
 #include "Bastet/Screen.hpp"
+#include "Logger.hpp"
 
 namespace Silver
 {
@@ -90,6 +91,30 @@ Vector2 Map::move(const Vector2 & pos, int direction, const std::string & str)
     _screen->getDisplay(0)->print(res.x, res.y, Bastet::Color::WhiteMagenta, str);
 
     return res;
+}
+
+void Map::show(const std::vector<Vector2> & pos, const std::string & str)
+{
+    for (const auto & p : pos)
+    {
+        if (not valid(p.x, p.y))
+        {
+            dbgE << "Position [" << p.x << ", " << p.y << "] is not valid";
+            continue;
+        }
+
+        if (_water[p.x][p.y])
+        {
+            dbgE << "Position [" << p.x << ", " << p.y << "] is locked";
+            continue;
+        }
+
+        _screen->getDisplay(0)->print(p.x, p.y, Bastet::Color::WhiteBlue, str);
+    }
+}
+
+void Map::hide(const std::vector<Vector2> & pos)
+{
 }
 
 bool Map::valid(int x, int y)

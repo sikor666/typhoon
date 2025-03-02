@@ -11,6 +11,8 @@ Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> &
     , _map{map}
     , _wind{wind}
     , _arrows{"🡡 ", "🡥 ", "🡢 ", "🡦 ", "🡣 ", "🡧 ", "🡠 ", "🡤 "}
+    , _displacements{Vector2{+0, -1}, Vector2{+1, -1}, Vector2{+1, -0}, Vector2{+1, +1}, Vector2{+0, +1}, Vector2{-1, +1},
+          Vector2{-1, +0}, Vector2{-1, -1}}
     , _resilience{100}
     , _speed{9}
     , _maneuver{2}
@@ -26,6 +28,16 @@ Ship::~Ship()
     _map->pop(_position);
 
     dbgI << "Remove [" << _position.x << ", " << _position.y << "]";
+}
+
+int Ship::getDirection() const
+{
+    return _direction;
+}
+
+Vector2 Ship::getPosition() const
+{
+    return _position;
 }
 
 void Ship::turnLeft()
@@ -49,14 +61,29 @@ void Ship::move()
     dbgI << "Move [" << _position.x << ", " << _position.y << "]";
 }
 
-int Ship::getDirection() const
+void Ship::drawWindRose()
 {
-    return _direction;
-}
+    // std::array<std::vector<Vector2>, NUM_DIRECTIONS> windRose;
 
-Vector2 Ship::getPosition() const
-{
-    return _position;
+    const auto m = 4.3; // 5/4
+    // const auto m = 3.0; // 4/3
+    // const auto m = 2.5; // 3/2
+    // const auto m = 2.1;
+    const auto a = 1.0;
+    const auto d = std::sqrt(std::pow(a, 2.0) * 2.0);
+
+    for (size_t i = 0; i < NUM_DIRECTIONS; i++)
+    {
+        std::vector<Vector2> path;
+        auto p = _position;
+
+        for (auto n = 0.0; n <= m; n += i % 2 ? d : a)
+        {
+            path.emplace_back(p += _displacements[i]);
+        }
+
+        _map->show(path, " 🞄");
+    }
 }
 
 } // namespace Silver
