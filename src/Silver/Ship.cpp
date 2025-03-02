@@ -31,14 +31,14 @@ void Ship::turnLeft()
 {
     _direction = _direction == 0 ? NUM_DIRECTIONS - 1 : _direction - 1;
 
-    _map->draw(_position, _arrows[_direction]);
+    _map->update(_position, _arrows[_direction]);
 }
 
 void Ship::turnRight()
 {
     _direction = _direction == NUM_DIRECTIONS - 1 ? 0 : _direction + 1;
 
-    _map->draw(_position, _arrows[_direction]);
+    _map->update(_position, _arrows[_direction]);
 }
 
 void Ship::move()

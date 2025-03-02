@@ -42,7 +42,7 @@ void Map::pop(const Vector2 & pos)
     _screen->getDisplay(0)->print(pos.x, pos.y, Bastet::Color::WhiteBlue, "  ");
 }
 
-void Map::draw(const Vector2 & pos, const std::string & str)
+void Map::update(const Vector2 & pos, const std::string & str)
 {
     if (not valid(pos.x, pos.y))
         throw std::runtime_error{"Position is out of range"};
