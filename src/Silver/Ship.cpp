@@ -5,10 +5,11 @@
 namespace Silver
 {
 
-Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> & map)
+Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> & map, const std::shared_ptr<Wind> & wind)
     : _type{type}
     , _position{position}
     , _map{map}
+    , _wind{wind}
     , _arrows{"🡡 ", "🡥 ", "🡢 ", "🡦 ", "🡣 ", "🡧 ", "🡠 ", "🡤 "}
     , _resilience{100}
     , _speed{9}

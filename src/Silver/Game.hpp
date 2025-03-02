@@ -12,6 +12,7 @@ namespace Silver
 {
 
 class Map;
+class Wind;
 class Dice;
 class Player;
 
@@ -26,6 +27,7 @@ public:
 private:
     std::shared_ptr<Bastet::Screen> _screen;
     std::shared_ptr<Map> _map;
+    std::shared_ptr<Wind> _wind;
     std::shared_ptr<Dice> _dice;
 
     std::vector<std::unique_ptr<Player>> _players;

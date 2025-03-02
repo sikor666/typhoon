@@ -15,6 +15,7 @@ namespace Silver
 Game::Game()
     : _screen{std::make_shared<Bastet::Screen>()}
     , _map{std::make_shared<Map>(_screen)}
+    , _wind{std::make_shared<Wind>(_screen)}
     , _dice{std::make_shared<Dice>(6)}
 {
     _players.push_back(std::make_unique<Player>("computer", _dice));
@@ -67,9 +68,8 @@ Game::~Game()
 
 void Game::run()
 {
-    auto wind = std::make_unique<Wind>(_screen);
-    auto caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _map);
-    auto brigantine = std::make_unique<Ship>(Brigantine, Vector2{30, 8}, _map);
+    auto caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _map, _wind);
+    auto brigantine = std::make_unique<Ship>(Brigantine, Vector2{30, 8}, _map, _wind);
 
     while (true)
     {
@@ -102,7 +102,7 @@ void Game::run()
         else if (std::ranges::contains(keys, 'v'))
         {
             if (not caravel)
-                caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _map);
+                caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _map, _wind);
         }
         else if (std::ranges::contains(keys, 'n'))
         {
@@ -113,8 +113,8 @@ void Game::run()
         }
         else if (std::ranges::contains(keys, 'e'))
         {
-            wind->setSpeed(6);
-            wind->setDirection(1);
+            _wind->setSpeed(6);
+            _wind->setDirection(1);
         }
 
         _screen->refresh();
