@@ -2,8 +2,7 @@
 #include "Logger.hpp"
 #include "Map.hpp"
 
-namespace Silver
-{
+namespace Silver {
 
 Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> & map, const std::shared_ptr<Wind> & wind)
     : _type{type}

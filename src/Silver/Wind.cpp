@@ -1,8 +1,11 @@
 #include "Wind.hpp"
 #include "Bastet/Screen.hpp"
 
-namespace Silver
-{
+namespace Silver {
+
+namespace {
+constexpr int MAX_WIND_SPEED = 12;
+} // namespace
 
 Wind::Wind(const std::shared_ptr<Bastet::Screen> & screen)
     : _screen{screen}

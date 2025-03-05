@@ -2,8 +2,7 @@
 
 #include <random>
 
-namespace Silver
-{
+namespace Silver {
 
 class Dice
 {

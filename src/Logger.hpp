@@ -8,9 +8,7 @@
 #include <iostream>
 #include <sstream>
 
-namespace vmo
-{
-
+namespace vmo {
 constexpr auto yellow  {"\033[33m"};
 constexpr auto red     {"\033[91m"};
 constexpr auto green   {"\033[92m"};
@@ -20,7 +18,6 @@ constexpr auto magenta {"\033[95m"};
 constexpr auto cyan    {"\033[96m"};
 constexpr auto white   {"\033[97m"};
 constexpr auto end     {"\033[0m"};
-
 } // namespace vmo
 
 class Loggex

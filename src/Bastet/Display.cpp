@@ -2,8 +2,7 @@
 
 #include <curses.h>
 
-namespace Bastet
-{
+namespace Bastet {
 
 Display::Display(int x, int y, int w, int h, Color color)
     : _width{w}

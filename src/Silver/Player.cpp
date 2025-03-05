@@ -2,8 +2,7 @@
 #include "Dice.hpp"
 #include "Logger.hpp"
 
-namespace Silver
-{
+namespace Silver {
 
 Player::Player(const std::string & name, const std::shared_ptr<Dice> & dice)
     : _name{name}

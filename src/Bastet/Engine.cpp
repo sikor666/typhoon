@@ -6,8 +6,7 @@
 #include <cstdlib>
 #include <ctime>
 
-namespace Bastet
-{
+namespace Bastet {
 
 Engine::Engine()
 {

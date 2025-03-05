@@ -5,15 +5,11 @@
 #include <memory>
 #include <vector>
 
-namespace Bastet
-{
-
+namespace Bastet {
 class Screen;
-
 } // namespace Bastet
 
-namespace Silver
-{
+namespace Silver {
 
 class Map
 {

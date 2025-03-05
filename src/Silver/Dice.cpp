@@ -1,7 +1,6 @@
 #include "Dice.hpp"
 
-namespace Silver
-{
+namespace Silver {
 
 Dice::Dice(int sides)
     : _rd{}

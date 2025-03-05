@@ -5,8 +5,7 @@
 #include <memory>
 #include <vector>
 
-namespace Bastet
-{
+namespace Bastet {
 
 class Screen
 {

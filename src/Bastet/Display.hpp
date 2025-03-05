@@ -5,8 +5,7 @@
 
 #include <string>
 
-namespace Bastet
-{
+namespace Bastet {
 
 class Display
 {

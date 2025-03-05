@@ -4,8 +4,7 @@
 
 #include <memory>
 
-namespace Silver
-{
+namespace Silver {
 
 class Map;
 

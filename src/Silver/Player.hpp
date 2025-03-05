@@ -5,8 +5,7 @@
 #include <queue>
 #include <string>
 
-namespace Silver
-{
+namespace Silver {
 
 class Dice;
 

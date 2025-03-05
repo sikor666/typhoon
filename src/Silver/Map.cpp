@@ -2,8 +2,7 @@
 #include "Bastet/Screen.hpp"
 #include "Logger.hpp"
 
-namespace Silver
-{
+namespace Silver {
 
 Map::Map(const std::shared_ptr<Bastet::Screen> & screen)
     : _screen{screen}

@@ -1,7 +1,6 @@
 #pragma once
 
-namespace Bastet
-{
+namespace Bastet {
 
 enum Color
 {

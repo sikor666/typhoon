@@ -3,8 +3,7 @@
 
 #include <curses.h>
 
-namespace Bastet
-{
+namespace Bastet {
 
 Screen::Screen()
     : _engine{}

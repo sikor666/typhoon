@@ -9,8 +9,7 @@
 
 #include <algorithm>
 
-namespace Silver
-{
+namespace Silver {
 
 Game::Game()
     : _screen{std::make_shared<Bastet::Screen>()}
