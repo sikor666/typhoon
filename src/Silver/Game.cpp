@@ -118,10 +118,13 @@ void Game::run()
                 player->pop();
             }
         }
-        else if (std::ranges::contains(keys, 'e'))
+        else if (std::ranges::contains(keys, 'z'))
         {
-            _wind->setSpeed(6);
-            _wind->setDirection(1);
+            _wind->setDirection((_wind->getDirection() + 1) % 8);
+        }
+        else if (std::ranges::contains(keys, 'c'))
+        {
+            _wind->setSpeed((_wind->getSpeed() + 1) % 13);
         }
 
         _screen->refresh();

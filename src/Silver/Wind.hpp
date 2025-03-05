@@ -19,6 +19,9 @@ public:
     Wind(const std::shared_ptr<Bastet::Screen> & screen);
     ~Wind();
 
+    int getSpeed() const;
+    int getDirection() const;
+
     void setSpeed(int speed);
     void setDirection(int direction);
 

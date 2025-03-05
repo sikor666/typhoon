@@ -13,8 +13,8 @@ Wind::Wind(const std::shared_ptr<Bastet::Screen> & screen)
     , _direction{0}
     , _windRosePos{5, 2}
     , _arrows{"🡡 ", "🡩 ", "🡥 ", "🡭 ", "🡢 ", "🡪 ", "🡦 ", "🡮 ", "🡣 ", "🡫 ", "🡧 ", "🡯 ", "🡠 ", "🡨 ", "🡤 ", "🡬 "}
-    , _displacements{Vector2{+0, -1}, Vector2{+1, -1}, Vector2{+1, -0}, Vector2{+1, +1}, Vector2{+0, +1}, Vector2{-1, +1},
-          Vector2{-1, +0}, Vector2{-1, -1}}
+    , _displacements{Vector2{+0, -1}, Vector2{+1, -1}, Vector2{+1, -0}, Vector2{+1, +1},
+                     Vector2{+0, +1}, Vector2{-1, +1}, Vector2{-1, +0}, Vector2{-1, -1}}
 {
     const auto & display = _screen->getDisplay(1);
 
@@ -28,18 +28,34 @@ Wind::~Wind()
 {
 }
 
+int Wind::getSpeed() const
+{
+    return _speed;
+}
+
+int Wind::getDirection() const
+{
+    return _direction;
+}
+
 void Wind::setSpeed(int speed)
 {
-    _screen->getDisplay(1)->print(_windRosePos, Bastet::Color::RedWhite, std::to_string(speed));
+    if (speed < 0 or speed > MAX_WIND_SPEED)
+        throw std::runtime_error{"Wind speed is out of range"};
+
+    const auto & display = _screen->getDisplay(1);
+    display->print(_windRosePos, Bastet::Color::RedWhite, "  ");
+    display->print(_windRosePos, Bastet::Color::RedWhite, std::to_string(speed));
+
+    _speed = speed;
 }
 
 void Wind::setDirection(int direction)
 {
-    const auto & display = _screen->getDisplay(1);
-
     if (direction < 0 or direction >= NUM_DIRECTIONS)
-        throw std::runtime_error{"Direction is out of range"};
+        throw std::runtime_error{"Wind direction is out of range"};
 
+    const auto & display = _screen->getDisplay(1);
     display->print(_windRosePos + _displacements[_direction], Bastet::Color::BlackWhite, _arrows[_direction][0]);
     display->print(_windRosePos + _displacements[direction], Bastet::Color::RedWhite, _arrows[direction][1]);
 
