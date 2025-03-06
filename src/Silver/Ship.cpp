@@ -60,6 +60,26 @@ void Ship::move()
     dbgI << "Move [" << _position.x << ", " << _position.y << "]";
 }
 
+void Ship::navigate()
+{
+    const int shipDirection = _direction;
+    const int windDirection = _wind->getDirection();
+
+    std::array<std::array<int, NUM_DIRECTIONS>, NUM_DIRECTIONS> windCourse{
+        0, 1, 2, 3, 4, 3, 2, 1, //
+        1, 0, 1, 2, 3, 4, 3, 2, //
+        2, 1, 0, 1, 2, 3, 4, 3, //
+        3, 2, 1, 0, 1, 2, 3, 4, //
+        4, 3, 2, 1, 0, 1, 2, 3, //
+        3, 4, 3, 2, 1, 0, 1, 2, //
+        2, 3, 4, 3, 2, 1, 0, 1, //
+        1, 2, 3, 4, 3, 2, 1, 0, //
+    };
+
+    dbgW << "Navigate " << "S[" << shipDirection << "] W[" << windDirection << "] C["
+         << windCourse[shipDirection][windDirection] << "]";
+}
+
 void Ship::drawWindRose()
 {
     // std::array<std::vector<Vector2>, NUM_DIRECTIONS> windRose;

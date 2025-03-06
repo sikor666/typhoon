@@ -96,6 +96,11 @@ void Game::run()
             if (caravel)
                 caravel->move();
         }
+        else if (std::ranges::contains(keys, 's'))
+        {
+            if (caravel)
+                caravel->navigate();
+        }
         else if (std::ranges::contains(keys, 'r'))
         {
             if (caravel)

@@ -31,6 +31,7 @@ public:
     void turnLeft();
     void turnRight();
     void move();
+    void navigate();
 
     void drawWindRose();
 
