@@ -10,8 +10,16 @@ Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> &
     , _map{map}
     , _wind{wind}
     , _arrows{"🡡 ", "🡥 ", "🡢 ", "🡦 ", "🡣 ", "🡧 ", "🡠 ", "🡤 "}
-    , _displacements{Vector2{+0, -1}, Vector2{+1, -1}, Vector2{+1, -0}, Vector2{+1, +1}, Vector2{+0, +1}, Vector2{-1, +1},
-          Vector2{-1, +0}, Vector2{-1, -1}}
+    , _displacements{Vector2{+0, -1}, Vector2{+1, -1}, Vector2{+1, -0}, Vector2{+1, +1},
+                     Vector2{+0, +1}, Vector2{-1, +1}, Vector2{-1, +0}, Vector2{-1, -1}}
+    , _course{0, 1, 2, 3, 4, 3, 2, 1, //
+              1, 0, 1, 2, 3, 4, 3, 2, //
+              2, 1, 0, 1, 2, 3, 4, 3, //
+              3, 2, 1, 0, 1, 2, 3, 4, //
+              4, 3, 2, 1, 0, 1, 2, 3, //
+              3, 4, 3, 2, 1, 0, 1, 2, //
+              2, 3, 4, 3, 2, 1, 0, 1, //
+              1, 2, 3, 4, 3, 2, 1, 0}
     , _resilience{100}
     , _speed{9}
     , _maneuver{2}
@@ -65,19 +73,8 @@ void Ship::navigate()
     const int shipDirection = _direction;
     const int windDirection = _wind->getDirection();
 
-    std::array<std::array<int, NUM_DIRECTIONS>, NUM_DIRECTIONS> windCourse{
-        0, 1, 2, 3, 4, 3, 2, 1, //
-        1, 0, 1, 2, 3, 4, 3, 2, //
-        2, 1, 0, 1, 2, 3, 4, 3, //
-        3, 2, 1, 0, 1, 2, 3, 4, //
-        4, 3, 2, 1, 0, 1, 2, 3, //
-        3, 4, 3, 2, 1, 0, 1, 2, //
-        2, 3, 4, 3, 2, 1, 0, 1, //
-        1, 2, 3, 4, 3, 2, 1, 0, //
-    };
-
     dbgW << "Navigate " << "S[" << shipDirection << "] W[" << windDirection << "] C["
-         << windCourse[shipDirection][windDirection] << "]";
+         << _course[shipDirection][windDirection] << "]";
 }
 
 void Ship::drawWindRose()
