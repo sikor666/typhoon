@@ -79,21 +79,35 @@ void Ship::navigate()
 
 void Ship::drawWindRose()
 {
-    // std::array<std::vector<Vector2>, NUM_DIRECTIONS> windRose;
+    const int windDirection = _wind->getDirection();
 
-    const auto m = 4.3; // 5/4
+    // const auto m = 4.3; // 5/4
     // const auto m = 3.0; // 4/3
     // const auto m = 2.5; // 3/2
     // const auto m = 2.1;
-    const auto a = 1.0;
-    const auto d = std::sqrt(std::pow(a, 2.0) * 2.0);
+
+    const double a = 1.0;
+    const double d = std::sqrt(std::pow(a, 2.0) * 2.0);
+    const double x = _speed + _wind->getSpeed();
 
     for (size_t i = 0; i < NUM_DIRECTIONS; i++)
     {
         std::vector<Vector2> path;
         auto p = _position;
+        auto m = 0.0;
 
-        for (auto n = 0.0; n <= m; n += i % 2 ? d : a)
+        switch (_course[i][windDirection])
+        {
+            case 0: m = x / 3.5; break;
+            case 1: m = x / 5.0; break;
+            case 2: m = x / 6.0; break;
+            case 3: m = x / 7.0; break;
+            case 4: m = 0.0; break;
+
+            default: throw std::runtime_error{"Course to wind is wrong"};
+        }
+
+        for (auto n = 0.0; n < m; n += i % 2 ? d : a)
         {
             path.emplace_back(p += _displacement[i]);
         }
