@@ -10,8 +10,8 @@ Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> &
     , _map{map}
     , _wind{wind}
     , _arrows{"🡡 ", "🡥 ", "🡢 ", "🡦 ", "🡣 ", "🡧 ", "🡠 ", "🡤 "}
-    , _displacements{Vector2{+0, -1}, Vector2{+1, -1}, Vector2{+1, -0}, Vector2{+1, +1},
-                     Vector2{+0, +1}, Vector2{-1, +1}, Vector2{-1, +0}, Vector2{-1, -1}}
+    , _displacement{Vector2{+0, -1}, Vector2{+1, -1}, Vector2{+1, -0}, Vector2{+1, +1},
+                    Vector2{+0, +1}, Vector2{-1, +1}, Vector2{-1, +0}, Vector2{-1, -1}}
     , _course{0, 1, 2, 3, 4, 3, 2, 1, //
               1, 0, 1, 2, 3, 4, 3, 2, //
               2, 1, 0, 1, 2, 3, 4, 3, //
@@ -95,7 +95,7 @@ void Ship::drawWindRose()
 
         for (auto n = 0.0; n <= m; n += i % 2 ? d : a)
         {
-            path.emplace_back(p += _displacements[i]);
+            path.emplace_back(p += _displacement[i]);
         }
 
         _map->show(path, " 🞄");
