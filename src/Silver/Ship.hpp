@@ -41,7 +41,7 @@ private:
 
     std::shared_ptr<Map> _map;
     std::shared_ptr<Wind> _wind;
-    std::array<std::string, NUM_DIRECTIONS> _arrows;
+    std::array<std::string, NUM_DIRECTIONS> _arrow;
     std::array<Vector2, NUM_DIRECTIONS> _displacement;
     std::array<std::array<int, NUM_DIRECTIONS>, NUM_DIRECTIONS> _course;
 

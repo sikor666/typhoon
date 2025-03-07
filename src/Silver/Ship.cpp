@@ -9,7 +9,7 @@ Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> &
     , _position{position}
     , _map{map}
     , _wind{wind}
-    , _arrows{"🡡 ", "🡥 ", "🡢 ", "🡦 ", "🡣 ", "🡧 ", "🡠 ", "🡤 "}
+    , _arrow{"🡡 ", "🡥 ", "🡢 ", "🡦 ", "🡣 ", "🡧 ", "🡠 ", "🡤 "}
     , _displacement{Vector2{+0, -1}, Vector2{+1, -1}, Vector2{+1, -0}, Vector2{+1, +1},
                     Vector2{+0, +1}, Vector2{-1, +1}, Vector2{-1, +0}, Vector2{-1, -1}}
     , _course{0, 1, 2, 3, 4, 3, 2, 1, //
@@ -25,7 +25,7 @@ Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> &
     , _maneuver{2}
     , _direction{1}
 {
-    _map->push(_position, _arrows[_direction]);
+    _map->push(_position, _arrow[_direction]);
 
     dbgI << "Insert [" << _position.x << ", " << _position.y << "]";
 }
@@ -51,19 +51,19 @@ void Ship::turnLeft()
 {
     _direction = _direction == 0 ? NUM_DIRECTIONS - 1 : _direction - 1;
 
-    _map->update(_position, _arrows[_direction]);
+    _map->update(_position, _arrow[_direction]);
 }
 
 void Ship::turnRight()
 {
     _direction = _direction == NUM_DIRECTIONS - 1 ? 0 : _direction + 1;
 
-    _map->update(_position, _arrows[_direction]);
+    _map->update(_position, _arrow[_direction]);
 }
 
 void Ship::move()
 {
-    _position = _map->move(_position, _direction, _arrows[_direction]);
+    _position = _map->move(_position, _direction, _arrow[_direction]);
 
     dbgI << "Move [" << _position.x << ", " << _position.y << "]";
 }
