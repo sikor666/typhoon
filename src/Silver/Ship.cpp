@@ -97,6 +97,9 @@ void Ship::showCourse()
 
     display->print(_shipRosePos, Bastet::Color::RedWhite, std::to_string(_speed));
 
+    _map->show(_path, "  ");
+    _path.clear();
+
     for (int i = 0; i < NUM_DIRECTIONS; i++)
     {
         auto p = _position;
@@ -120,18 +123,18 @@ void Ship::showCourse()
 
         std::stringstream stream;
         stream << i << ": (" << _speed << "+" << windSpeed << ")/" << std::fixed << std::setprecision(1) << m << "=" << r;
-        display->print(Vector2{1, 5 + static_cast<float>(i)}, Bastet::Color::BlackWhite, "                 ");
+        display->print(Vector2{1, 5 + static_cast<float>(i)}, Bastet::Color::BlackWhite, "                  ");
         display->print(Vector2{1, 5 + static_cast<float>(i)}, Bastet::Color::BlackWhite, stream.str());
 
         display->print(_shipRosePos + _displacement[i], Bastet::Color::BlackWhite, std::to_string(w));
 
-        // std::vector<Vector2> path;
-        // for (auto n = 0.0; n < m; n += i % 2 ? d : a)
-        // {
-        //     path.emplace_back(p += _displacement[i]);
-        // }
-        // _map->show(path, " 🞄");
+        for (auto n = 0.0; n < r; n += 1.0)
+        {
+            _path.emplace_back(p += _displacement[i]);
+        }
     }
+
+    _path = _map->show(_path, " 🞄");
 }
 
 } // namespace Silver

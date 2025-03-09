@@ -92,8 +92,10 @@ Vector2 Map::move(const Vector2 & pos, int direction, const std::string & str)
     return res;
 }
 
-void Map::show(const std::vector<Vector2> & pos, const std::string & str)
+std::vector<Vector2> Map::show(const std::vector<Vector2> & pos, const std::string & str)
 {
+    std::vector<Vector2> res;
+
     for (const auto & p : pos)
     {
         if (not valid(p.x, p.y))
@@ -109,11 +111,11 @@ void Map::show(const std::vector<Vector2> & pos, const std::string & str)
         }
 
         _screen->getDisplay(0)->print(p, Bastet::Color::WhiteBlue, str);
-    }
-}
 
-void Map::hide(const std::vector<Vector2> & pos)
-{
+        res.emplace_back(p);
+    }
+
+    return res;
 }
 
 bool Map::valid(int x, int y)

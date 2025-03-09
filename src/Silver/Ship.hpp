@@ -3,6 +3,7 @@
 #include "Wind.hpp"
 
 #include <memory>
+#include <vector>
 
 namespace Bastet {
 class Screen;
@@ -52,6 +53,7 @@ private:
     std::array<std::string, NUM_DIRECTIONS> _arrow;
     std::array<Vector2, NUM_DIRECTIONS> _displacement;
     std::array<std::array<int, NUM_DIRECTIONS>, NUM_DIRECTIONS> _course;
+    std::vector<Vector2> _path;
 
     int _resilience;
     int _speed;

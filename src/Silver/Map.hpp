@@ -21,9 +21,7 @@ public:
     void pop(const Vector2 & pos);
     void update(const Vector2 & pos, const std::string & str);
     Vector2 move(const Vector2 & pos, int direction, const std::string & str);
-
-    void show(const std::vector<Vector2> & pos, const std::string & str);
-    void hide(const std::vector<Vector2> & pos);
+    std::vector<Vector2> show(const std::vector<Vector2> & pos, const std::string & str);
 
 protected:
     bool valid(int x, int y);
