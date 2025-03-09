@@ -43,10 +43,12 @@ public:
 private:
     const ShipType _type;
     Vector2 _position;
+    Vector2 _shipRosePos;
 
     std::shared_ptr<Bastet::Screen> _screen;
     std::shared_ptr<Map> _map;
     std::shared_ptr<Wind> _wind;
+
     std::array<std::string, NUM_DIRECTIONS> _arrow;
     std::array<Vector2, NUM_DIRECTIONS> _displacement;
     std::array<std::array<int, NUM_DIRECTIONS>, NUM_DIRECTIONS> _course;

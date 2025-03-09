@@ -3,12 +3,15 @@
 #include "Logger.hpp"
 #include "Map.hpp"
 
+#include <iomanip>
+
 namespace Silver {
 
 Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Bastet::Screen> & screen,
            const std::shared_ptr<Map> & map, const std::shared_ptr<Wind> & wind)
     : _type{type}
     , _position{position}
+    , _shipRosePos{7, 2}
     , _screen{screen}
     , _map{map}
     , _wind{wind}
@@ -84,40 +87,50 @@ void Ship::navigate()
 
 void Ship::showCourse()
 {
-    const int windDirection = _wind->getDirection();
+    const auto windDirection = _wind->getDirection();
+    const auto windSpeed = _wind->getSpeed();
     const auto & display = _screen->getDisplay(1);
 
     const double a = 1.0;
     const double d = std::sqrt(std::pow(a, 2.0) * 2.0);
-    const double x = _speed + _wind->getSpeed();
+    const double x = _speed + windSpeed;
 
-    display->print(Vector2{5, 6}, Bastet::Color::RedWhite, std::to_string(_speed));
+    display->print(_shipRosePos, Bastet::Color::RedWhite, std::to_string(_speed));
 
-    for (size_t i = 0; i < NUM_DIRECTIONS; i++)
+    for (int i = 0; i < NUM_DIRECTIONS; i++)
     {
-        // std::vector<Vector2> path;
         auto p = _position;
-        auto m = 0.0;
         auto w = _course[i][windDirection];
-
-        display->print(Vector2{5, 6} + _displacement[i], Bastet::Color::BlackWhite, std::to_string(w));
+        auto m = 0.0;
 
         switch (w)
         {
-            case 0: m = x / 3.5; break;
-            case 1: m = x / 5.0; break;
-            case 2: m = x / 6.0; break;
-            case 3: m = x / 7.0; break;
-            case 4: m = 0.0; break;
+            case 0: m = 3.5; break;      // 0
+            case 1: m = 4.5; break;      // 45
+            //      m = 5.0; break;      // 60
+            case 2: m = 6.0; break;      // 90
+            //      m = 7.0; break;      // 120
+            case 3: m = 8.0; break;      // 135
+            case 4: m = INFINITY; break; // 180
 
             default: throw std::runtime_error{"Course to wind is wrong"};
         }
 
+        const auto r = (x / m) / (i % 2 ? d : a);
+
+        std::stringstream stream;
+        stream << i << ": (" << _speed << "+" << windSpeed << ")/" << std::fixed << std::setprecision(1) << m << "="
+               << r;
+        display->print(Vector2{1, 5 + static_cast<float>(i)}, Bastet::Color::BlackWhite, "                 ");
+        display->print(Vector2{1, 5 + static_cast<float>(i)}, Bastet::Color::BlackWhite, stream.str());
+
+        display->print(_shipRosePos + _displacement[i], Bastet::Color::BlackWhite, std::to_string(w));
+
+        // std::vector<Vector2> path;
         // for (auto n = 0.0; n < m; n += i % 2 ? d : a)
         // {
         //     path.emplace_back(p += _displacement[i]);
         // }
-
         // _map->show(path, " 🞄");
     }
 }
