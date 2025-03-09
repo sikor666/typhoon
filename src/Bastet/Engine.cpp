@@ -51,6 +51,7 @@ Engine::Engine()
 
     init_pair(Color::BlackWhite, COLOR_BLACK, COLOR_WHITE);
     init_pair(Color::RedWhite, COLOR_RED, COLOR_WHITE);
+    init_pair(Color::MagentaWhite, COLOR_MAGENTA, COLOR_WHITE);
 
     /* 17 - ? is for other things */
     init_pair(Color::RedBlack, COLOR_RED, COLOR_BLACK);       // points

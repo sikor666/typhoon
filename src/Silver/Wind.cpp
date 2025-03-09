@@ -11,7 +11,7 @@ Wind::Wind(const std::shared_ptr<Bastet::Screen> & screen)
     : _screen{screen}
     , _speed{0}
     , _direction{0}
-    , _windRosePos{2, 2}
+    , _windRosePos{3, 3}
     , _arrow{"🡡 ", "🡩 ", "🡥 ", "🡭 ", "🡢 ", "🡪 ", "🡦 ", "🡮 ", "🡣 ", "🡫 ", "🡧 ", "🡯 ", "🡠 ", "🡨 ", "🡤 ", "🡬 "}
     , _displacement{Vector2{+0, -1}, Vector2{+1, -1}, Vector2{+1, -0}, Vector2{+1, +1},
                     Vector2{+0, +1}, Vector2{-1, +1}, Vector2{-1, +0}, Vector2{-1, -1}}
@@ -21,7 +21,10 @@ Wind::Wind(const std::shared_ptr<Bastet::Screen> & screen)
     display->print(_windRosePos, Bastet::Color::BlackWhite, "⎈ ");
 
     for (size_t i = 0; i < NUM_DIRECTIONS; i++)
+    {
         display->print(_windRosePos + _displacement[i], Bastet::Color::BlackWhite, _arrow[i][0]);
+        display->print(_windRosePos + _displacement[i] + _displacement[i], Bastet::Color::MagentaWhite, std::to_string(i));
+    }
 }
 
 Wind::~Wind()
