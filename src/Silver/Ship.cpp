@@ -119,8 +119,7 @@ void Ship::showCourse()
         const auto r = (x / m) / (i % 2 ? d : a);
 
         std::stringstream stream;
-        stream << i << ": (" << _speed << "+" << windSpeed << ")/" << std::fixed << std::setprecision(1) << m << "="
-               << r;
+        stream << i << ": (" << _speed << "+" << windSpeed << ")/" << std::fixed << std::setprecision(1) << m << "=" << r;
         display->print(Vector2{1, 5 + static_cast<float>(i)}, Bastet::Color::BlackWhite, "                 ");
         display->print(Vector2{1, 5 + static_cast<float>(i)}, Bastet::Color::BlackWhite, stream.str());
 
