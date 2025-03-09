@@ -119,7 +119,7 @@ void Ship::showCourse()
             default: throw std::runtime_error{"Course to wind is wrong"};
         }
 
-        const auto r = (x / m) / (i % 2 ? d : a);
+        const auto r = x / m;
 
         std::stringstream stream;
         stream << i << ": (" << _speed << "+" << windSpeed << ")/" << std::fixed << std::setprecision(1) << m << "=" << r;
@@ -128,7 +128,7 @@ void Ship::showCourse()
 
         display->print(_shipRosePos + _displacement[i], Bastet::Color::BlackWhite, std::to_string(w));
 
-        for (auto n = 0.0; n < r; n += 1.0)
+        for (auto n = 0.0; n < r; n += static_cast<bool>(i % 2) ? d : a)
         {
             _path.emplace_back(p += _displacement[i]);
         }
