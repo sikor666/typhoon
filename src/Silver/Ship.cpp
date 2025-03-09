@@ -1,12 +1,15 @@
 #include "Ship.hpp"
+#include "Bastet/Screen.hpp"
 #include "Logger.hpp"
 #include "Map.hpp"
 
 namespace Silver {
 
-Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> & map, const std::shared_ptr<Wind> & wind)
+Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Bastet::Screen> & screen,
+           const std::shared_ptr<Map> & map, const std::shared_ptr<Wind> & wind)
     : _type{type}
     , _position{position}
+    , _screen{screen}
     , _map{map}
     , _wind{wind}
     , _arrow{"🡡 ", "🡥 ", "🡢 ", "🡦 ", "🡣 ", "🡧 ", "🡠 ", "🡤 "}
@@ -28,6 +31,8 @@ Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> &
     _map->push(_position, _arrow[_direction]);
 
     dbgI << "Insert [" << _position.x << ", " << _position.y << "]";
+
+    showCourse();
 }
 
 Ship::~Ship()
@@ -77,26 +82,27 @@ void Ship::navigate()
          << _course[shipDirection][windDirection] << "]";
 }
 
-void Ship::drawWindRose()
+void Ship::showCourse()
 {
     const int windDirection = _wind->getDirection();
-
-    // const auto m = 4.3; // 5/4
-    // const auto m = 3.0; // 4/3
-    // const auto m = 2.5; // 3/2
-    // const auto m = 2.1;
+    const auto & display = _screen->getDisplay(1);
 
     const double a = 1.0;
     const double d = std::sqrt(std::pow(a, 2.0) * 2.0);
     const double x = _speed + _wind->getSpeed();
 
+    display->print(Vector2{5, 6}, Bastet::Color::RedWhite, std::to_string(_speed));
+
     for (size_t i = 0; i < NUM_DIRECTIONS; i++)
     {
-        std::vector<Vector2> path;
+        // std::vector<Vector2> path;
         auto p = _position;
         auto m = 0.0;
+        auto w = _course[i][windDirection];
 
-        switch (_course[i][windDirection])
+        display->print(Vector2{5, 6} + _displacement[i], Bastet::Color::BlackWhite, std::to_string(w));
+
+        switch (w)
         {
             case 0: m = x / 3.5; break;
             case 1: m = x / 5.0; break;
@@ -107,12 +113,12 @@ void Ship::drawWindRose()
             default: throw std::runtime_error{"Course to wind is wrong"};
         }
 
-        for (auto n = 0.0; n < m; n += i % 2 ? d : a)
-        {
-            path.emplace_back(p += _displacement[i]);
-        }
+        // for (auto n = 0.0; n < m; n += i % 2 ? d : a)
+        // {
+        //     path.emplace_back(p += _displacement[i]);
+        // }
 
-        _map->show(path, " 🞄");
+        // _map->show(path, " 🞄");
     }
 }
 

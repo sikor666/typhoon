@@ -4,6 +4,10 @@
 
 #include <memory>
 
+namespace Bastet {
+class Screen;
+} // namespace Bastet
+
 namespace Silver {
 
 class Map;
@@ -22,7 +26,8 @@ enum ShipType
 class Ship
 {
 public:
-    Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Map> & map, const std::shared_ptr<Wind> & wind);
+    Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Bastet::Screen> & screen,
+         const std::shared_ptr<Map> & map, const std::shared_ptr<Wind> & wind);
     ~Ship();
 
     int getDirection() const;
@@ -33,12 +38,13 @@ public:
     void move();
     void navigate();
 
-    void drawWindRose();
+    void showCourse();
 
 private:
     const ShipType _type;
     Vector2 _position;
 
+    std::shared_ptr<Bastet::Screen> _screen;
     std::shared_ptr<Map> _map;
     std::shared_ptr<Wind> _wind;
     std::array<std::string, NUM_DIRECTIONS> _arrow;

@@ -70,8 +70,8 @@ void Game::run()
     _wind->setSpeed(_dice->roll());
     _wind->setDirection(Dice{8}.roll() - 1);
 
-    auto caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _map, _wind);
-    auto brigantine = std::make_unique<Ship>(Brigantine, Vector2{30, 8}, _map, _wind);
+    auto caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _screen, _map, _wind);
+    auto brigantine = std::make_unique<Ship>(Brigantine, Vector2{30, 8}, _screen, _map, _wind);
 
     while (true)
     {
@@ -104,7 +104,7 @@ void Game::run()
         else if (std::ranges::contains(keys, 'r'))
         {
             if (caravel)
-                caravel->drawWindRose();
+                caravel->showCourse();
         }
         else if (std::ranges::contains(keys, 'x'))
         {
@@ -114,7 +114,7 @@ void Game::run()
         else if (std::ranges::contains(keys, 'v'))
         {
             if (not caravel)
-                caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _map, _wind);
+                caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _screen, _map, _wind);
         }
         else if (std::ranges::contains(keys, 'n'))
         {
