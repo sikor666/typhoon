@@ -11,7 +11,7 @@ Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Bastet
            const std::shared_ptr<Map> & map, const std::shared_ptr<Wind> & wind)
     : _type{type}
     , _position{position}
-    , _shipRosePos{7, 3}
+    , _shipRosePos{5, 10}
     , _screen{screen}
     , _map{map}
     , _wind{wind}
@@ -34,8 +34,6 @@ Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Bastet
     _map->push(_position, _arrow[_direction]);
 
     dbgI << "Insert [" << _position.x << ", " << _position.y << "]";
-
-    showCourse();
 }
 
 Ship::~Ship()
@@ -123,8 +121,8 @@ void Ship::showCourse()
 
         std::stringstream stream;
         stream << i << ": (" << _speed << "+" << windSpeed << ")/" << std::fixed << std::setprecision(1) << m << "=" << r;
-        display->print(Vector2{1, 7 + static_cast<float>(i)}, Bastet::Color::BlackWhite, "                  ");
-        display->print(Vector2{1, 7 + static_cast<float>(i)}, Bastet::Color::BlackWhite, stream.str());
+        display->print(Vector2{1, 15 + static_cast<float>(i)}, Bastet::Color::BlackWhite, "                  ");
+        display->print(Vector2{1, 15 + static_cast<float>(i)}, Bastet::Color::BlackWhite, stream.str());
 
         display->print(_shipRosePos + _displacement[i], Bastet::Color::BlackWhite, std::to_string(w));
 

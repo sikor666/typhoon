@@ -11,7 +11,7 @@ Wind::Wind(const std::shared_ptr<Bastet::Screen> & screen)
     : _screen{screen}
     , _speed{0}
     , _direction{0}
-    , _windRosePos{3, 3}
+    , _windRosePos{5, 3}
     , _arrow{"🡡 ", "🡩 ", "🡥 ", "🡭 ", "🡢 ", "🡪 ", "🡦 ", "🡮 ", "🡣 ", "🡫 ", "🡧 ", "🡯 ", "🡠 ", "🡨 ", "🡤 ", "🡬 "}
     , _displacement{Vector2{+0, -1}, Vector2{+1, -1}, Vector2{+1, -0}, Vector2{+1, +1},
                     Vector2{+0, +1}, Vector2{-1, +1}, Vector2{-1, +0}, Vector2{-1, -1}}
