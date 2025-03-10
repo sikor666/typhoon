@@ -38,7 +38,6 @@ public:
     void turnRight();
     void move();
     void navigate();
-
     void showCourse();
 
 private:

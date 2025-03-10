@@ -128,7 +128,9 @@ void Ship::showCourse()
 
         display->print(_shipRosePos + _displacement[i], Bastet::Color::BlackWhite, std::to_string(w));
 
-        for (auto n = 0.0; n < r; n += static_cast<bool>(i % 2) ? d : a)
+        const size_t v = static_cast<bool>(i % 2) ? std::floor(r / d + 0.4) : std::floor(r / a);
+
+        for (size_t n = 0; n < v; n++)
         {
             _path.emplace_back(p += _displacement[i]);
         }
