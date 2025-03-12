@@ -30,6 +30,7 @@ Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Bastet
     , _speed{9}
     , _maneuver{2}
     , _direction{1}
+    , _distance{0}
 {
     _map->push(_position, _arrow[_direction]);
 
@@ -69,9 +70,14 @@ void Ship::turnRight()
 
 void Ship::move()
 {
+    const double a = 1.0;
+    const double d = std::sqrt(std::pow(a, 2.0) * 2.0);
+
+    _distance += _direction % 2 ? d : a;
+
     _position = _map->move(_position, _direction, _arrow[_direction]);
 
-    dbgI << "Move [" << _position.x << ", " << _position.y << "]";
+    dbgI << "Move [" << _position.x << ", " << _position.y << "] [" << _distance << "]";
 }
 
 void Ship::navigate()
@@ -92,6 +98,8 @@ void Ship::showCourse()
     const double a = 1.0;
     const double d = std::sqrt(std::pow(a, 2.0) * 2.0);
     const double x = _speed + windSpeed;
+
+    _distance = 0.0;
 
     display->print(_shipRosePos, Bastet::Color::RedWhite, std::to_string(_speed));
 

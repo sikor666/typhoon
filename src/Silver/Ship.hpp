@@ -58,6 +58,8 @@ private:
     int _speed;
     int _maneuver;
     int _direction;
+
+    double _distance;
 };
 
 } // namespace Silver
