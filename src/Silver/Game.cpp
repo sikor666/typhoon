@@ -70,8 +70,11 @@ void Game::run()
     _wind->setSpeed(_dice->roll());
     _wind->setDirection(Dice{8}.roll() - 1);
 
-    auto caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _screen, _map, _wind);
-    auto brigantine = std::make_unique<Ship>(Brigantine, Vector2{30, 8}, _screen, _map, _wind);
+    // auto caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _screen, _map, _wind);
+    // auto brigantine = std::make_unique<Ship>(Brigantine, Vector2{30, 8}, _screen, _map, _wind);
+
+    _ships.emplace(std::make_unique<Ship>(Caravel, Vector2{3, 3}, _screen, _map, _wind));
+    _ships.emplace(std::make_unique<Ship>(Brigantine, Vector2{30, 8}, _screen, _map, _wind));
 
     while (true)
     {
@@ -81,40 +84,48 @@ void Game::run()
         {
             break;
         }
+        else if (std::ranges::contains(keys, 'e'))
+        {
+            if (not _ships.empty())
+            {
+                _ships.emplace(std::move(_ships.front())); // activate
+                _ships.pop();
+            }
+        }
         else if (std::ranges::contains(keys, 'a'))
         {
-            if (caravel)
-                caravel->turnLeft();
+            if (not _ships.empty())
+                _ships.front()->turnLeft();
         }
         else if (std::ranges::contains(keys, 'd'))
         {
-            if (caravel)
-                caravel->turnRight();
+            if (not _ships.empty())
+                _ships.front()->turnRight();
         }
         else if (std::ranges::contains(keys, 'w'))
         {
-            if (caravel)
-                caravel->move();
+            if (not _ships.empty())
+                _ships.front()->move();
         }
         else if (std::ranges::contains(keys, 's'))
         {
-            if (caravel)
-                caravel->navigate();
+            if (not _ships.empty())
+                _ships.front()->navigate();
         }
         else if (std::ranges::contains(keys, 'r'))
         {
-            if (caravel)
-                caravel->showCourse();
+            if (not _ships.empty())
+                _ships.front()->showCourse();
         }
         else if (std::ranges::contains(keys, 'x'))
         {
-            if (caravel)
-                caravel.reset();
+            // if (caravel)
+            //     caravel.reset();
         }
         else if (std::ranges::contains(keys, 'v'))
         {
-            if (not caravel)
-                caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _screen, _map, _wind);
+            // if (not caravel)
+            //     caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _screen, _map, _wind);
         }
         else if (std::ranges::contains(keys, 'n'))
         {

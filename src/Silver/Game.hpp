@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <queue>
 #include <vector>
 
 namespace Bastet {
@@ -12,6 +13,7 @@ namespace Silver {
 class Map;
 class Wind;
 class Dice;
+class Ship;
 class Player;
 
 class Game
@@ -28,6 +30,7 @@ private:
     std::shared_ptr<Wind> _wind;
     std::shared_ptr<Dice> _dice;
 
+    std::queue<std::unique_ptr<Ship>> _ships;
     std::vector<std::unique_ptr<Player>> _players;
 };
 
