@@ -34,13 +34,9 @@ public:
     void activate();
     void deactivate();
 
-    /*
-    int getDirection() const;
-    Vector2 getPosition() const;
-    */
-
     void turnLeft();
     void turnRight();
+
     void move();
     void navigate();
     void showCourse();
@@ -64,7 +60,10 @@ private:
     int _maneuver;
     int _direction;
 
+    double _side;
+    double _diagonal;
     double _distance;
+
     bool _active;
 };
 

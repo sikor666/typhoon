@@ -30,7 +30,9 @@ Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Bastet
     , _speed{9}
     , _maneuver{2}
     , _direction{1}
-    , _distance{0}
+    , _side{1.0}
+    , _diagonal{std::sqrt(std::pow(_side, 2.0) * 2.0)}
+    , _distance{0.0}
     , _active{false}
 {
     _map->push(_position, _arrow[_direction]);
@@ -63,18 +65,6 @@ void Ship::deactivate()
     dbgI << "Deactivate [" << _active << "]";
 }
 
-/*
-int Ship::getDirection() const
-{
-    return _direction;
-}
-
-Vector2 Ship::getPosition() const
-{
-    return _position;
-}
-*/
-
 void Ship::turnLeft()
 {
     _direction = _direction == 0 ? NUM_DIRECTIONS - 1 : _direction - 1;
@@ -95,10 +85,7 @@ void Ship::turnRight()
 
 void Ship::move()
 {
-    const double a = 1.0;
-    const double d = std::sqrt(std::pow(a, 2.0) * 2.0);
-
-    _distance += _direction % 2 ? d : a;
+    _distance += _direction % 2 ? _diagonal : _side;
 
     _position = _map->move(_position, _direction, _arrow[_direction]);
 
@@ -120,8 +107,6 @@ void Ship::showCourse()
     const auto windSpeed = _wind->getSpeed();
     const auto & display = _screen->getDisplay(1);
 
-    const double a = 1.0;
-    const double d = std::sqrt(std::pow(a, 2.0) * 2.0);
     const double x = _speed + windSpeed;
 
     _distance = 0.0;
@@ -159,7 +144,7 @@ void Ship::showCourse()
 
         display->print(_shipRosePos + _displacement[i], Bastet::Color::BlackWhite, std::to_string(w));
 
-        const size_t v = static_cast<bool>(i % 2) ? std::floor(r / d + 0.4) : std::floor(r / a);
+        const size_t v = static_cast<bool>(i % 2) ? std::floor(r / _diagonal + 0.4) : std::floor(r / _side);
 
         for (size_t n = 0; n < v; n++)
         {
