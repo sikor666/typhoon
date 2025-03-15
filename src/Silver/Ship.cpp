@@ -52,7 +52,7 @@ void Ship::activate()
 
     _map->update(_position, _active, _arrow[_direction]);
 
-    dbgI << "Activate [" << _active << "]";
+    dbgI << "Activate [" << _active << "] [" << _type << "]";
 }
 
 void Ship::deactivate()
@@ -61,7 +61,7 @@ void Ship::deactivate()
 
     _map->update(_position, _active, _arrow[_direction]);
 
-    dbgI << "Deactivate [" << _active << "]";
+    dbgI << "Deactivate [" << _active << "] [" << _type << "]";
 }
 
 void Ship::turnLeft()

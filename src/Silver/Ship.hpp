@@ -26,6 +26,24 @@ enum ShipType
     Pinnace,
 };
 
+constexpr std::ostream & operator<<(std::ostream & out, const ShipType & type)
+{
+    switch (type)
+    {
+        case Carrack: out << "Carrack"; break;
+        case Galleon: out << "Galleon"; break;
+        case Frigate: out << "Frigate"; break;
+        case Brigantine: out << "Brigantine"; break;
+        case Caravel: out << "Caravel"; break;
+        case Sloop: out << "Sloop"; break;
+        case Pinnace: out << "Pinnace"; break;
+
+        default: break;
+    }
+
+    return out;
+}
+
 class Ship
 {
 public:
