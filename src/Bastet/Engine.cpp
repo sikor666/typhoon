@@ -40,7 +40,7 @@ Engine::Engine()
     cbreak();
 
     start_color();
-    /* 0 - 16 is for blocks */
+    /* 0 - 15 is for blocks */
     init_pair(Color::WhiteBlack, COLOR_WHITE, COLOR_BLACK);
     init_pair(Color::WhiteRed, COLOR_WHITE, COLOR_RED);
     init_pair(Color::WhiteGreen, COLOR_WHITE, COLOR_GREEN);
@@ -53,13 +53,13 @@ Engine::Engine()
     init_pair(Color::RedWhite, COLOR_RED, COLOR_WHITE);
     init_pair(Color::MagentaWhite, COLOR_MAGENTA, COLOR_WHITE);
 
-    /* 17 - ? is for other things */
+    /* 16 - ? is for other things */
     init_pair(Color::RedBlack, COLOR_RED, COLOR_BLACK);       // points
     init_pair(Color::GreenBlack, COLOR_GREEN, COLOR_BLACK);   // number of lines
-    init_pair(Color::YellowBlack, COLOR_YELLOW, COLOR_BLACK); // level
+    init_pair(Color::BlackYellow, COLOR_BLACK, COLOR_YELLOW); // active ship
 
     /* Set random seed. */
-    srandom(time(nullptr) + 37);
+    // srandom(time(nullptr) + 37);
 }
 
 } // namespace Bastet

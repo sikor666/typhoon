@@ -42,7 +42,7 @@ void Map::pop(const Vector2 & pos)
     _screen->getDisplay(0)->print(pos, Bastet::Color::WhiteBlue, "  ");
 }
 
-void Map::update(const Vector2 & pos, const std::string & str)
+void Map::update(const Vector2 & pos, bool active, const std::string & str)
 {
     if (not valid(pos.x, pos.y))
         throw std::runtime_error{"Position is out of range"};
@@ -50,7 +50,7 @@ void Map::update(const Vector2 & pos, const std::string & str)
     if (not _water[pos.x][pos.y])
         throw std::runtime_error{"Position is empty"};
 
-    _screen->getDisplay(0)->print(pos, Bastet::Color::WhiteMagenta, str);
+    _screen->getDisplay(0)->print(pos, active ? Bastet::Color::BlackYellow : Bastet::Color::WhiteMagenta, str);
 }
 
 Vector2 Map::move(const Vector2 & pos, int direction, const std::string & str)
@@ -87,7 +87,7 @@ Vector2 Map::move(const Vector2 & pos, int direction, const std::string & str)
     _water[res.x][res.y] = true;
 
     _screen->getDisplay(0)->print(pos, Bastet::Color::WhiteBlue, "  ");
-    _screen->getDisplay(0)->print(res, Bastet::Color::WhiteMagenta, str);
+    _screen->getDisplay(0)->print(res, Bastet::Color::BlackYellow, str);
 
     return res;
 }

@@ -31,6 +31,7 @@ Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Bastet
     , _maneuver{2}
     , _direction{1}
     , _distance{0}
+    , _active{false}
 {
     _map->push(_position, _arrow[_direction]);
 
@@ -44,6 +45,25 @@ Ship::~Ship()
     dbgI << "Remove [" << _position.x << ", " << _position.y << "]";
 }
 
+void Ship::activate()
+{
+    _active = true;
+
+    _map->update(_position, _active, _arrow[_direction]);
+
+    dbgI << "Activate [" << _active << "]";
+}
+
+void Ship::deactivate()
+{
+    _active = false;
+
+    _map->update(_position, _active, _arrow[_direction]);
+
+    dbgI << "Deactivate [" << _active << "]";
+}
+
+/*
 int Ship::getDirection() const
 {
     return _direction;
@@ -53,19 +73,24 @@ Vector2 Ship::getPosition() const
 {
     return _position;
 }
+*/
 
 void Ship::turnLeft()
 {
     _direction = _direction == 0 ? NUM_DIRECTIONS - 1 : _direction - 1;
 
-    _map->update(_position, _arrow[_direction]);
+    _map->update(_position, _active, _arrow[_direction]);
+
+    dbgI << "Left [" << _arrow[_direction] << "]";
 }
 
 void Ship::turnRight()
 {
     _direction = _direction == NUM_DIRECTIONS - 1 ? 0 : _direction + 1;
 
-    _map->update(_position, _arrow[_direction]);
+    _map->update(_position, _active, _arrow[_direction]);
+
+    dbgI << "Right [" << _arrow[_direction] << "]";
 }
 
 void Ship::move()

@@ -16,9 +16,9 @@ enum Color
     RedWhite,
     MagentaWhite,
 
-    RedBlack = 17,
+    RedBlack = 16,
     GreenBlack,
-    YellowBlack,
+    BlackYellow,
 };
 
 class Engine

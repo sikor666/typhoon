@@ -73,7 +73,7 @@ void Game::run()
     // auto caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _screen, _map, _wind);
     // auto brigantine = std::make_unique<Ship>(Brigantine, Vector2{30, 8}, _screen, _map, _wind);
 
-    _ships.emplace(std::make_unique<Ship>(Caravel, Vector2{3, 3}, _screen, _map, _wind));
+    _ships.emplace(std::make_unique<Ship>(Caravel, Vector2{3, 3}, _screen, _map, _wind))->activate();
     _ships.emplace(std::make_unique<Ship>(Brigantine, Vector2{30, 8}, _screen, _map, _wind));
 
     while (true)
@@ -88,8 +88,9 @@ void Game::run()
         {
             if (not _ships.empty())
             {
-                _ships.emplace(std::move(_ships.front())); // activate
+                _ships.emplace(std::move(_ships.front()))->deactivate();
                 _ships.pop();
+                _ships.front()->activate();
             }
         }
         else if (std::ranges::contains(keys, 'a'))

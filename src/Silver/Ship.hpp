@@ -31,8 +31,13 @@ public:
          const std::shared_ptr<Map> & map, const std::shared_ptr<Wind> & wind);
     ~Ship();
 
+    void activate();
+    void deactivate();
+
+    /*
     int getDirection() const;
     Vector2 getPosition() const;
+    */
 
     void turnLeft();
     void turnRight();
@@ -60,6 +65,7 @@ private:
     int _direction;
 
     double _distance;
+    bool _active;
 };
 
 } // namespace Silver

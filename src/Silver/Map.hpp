@@ -19,7 +19,7 @@ public:
 
     void push(const Vector2 & pos, const std::string & str);
     void pop(const Vector2 & pos);
-    void update(const Vector2 & pos, const std::string & str);
+    void update(const Vector2 & pos, bool active, const std::string & str);
     Vector2 move(const Vector2 & pos, int direction, const std::string & str);
     std::vector<Vector2> show(const std::vector<Vector2> & pos, const std::string & str);
 
