@@ -2,6 +2,7 @@
 #include "Bastet/Screen.hpp"
 #include "Logger.hpp"
 #include "Map.hpp"
+#include "Wind.hpp"
 
 #include <iomanip>
 

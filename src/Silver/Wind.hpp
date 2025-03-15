@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Config.hpp"
 #include "Math.hpp"
 
 #include <memory>
@@ -9,9 +10,6 @@ class Screen;
 } // namespace Bastet
 
 namespace Silver {
-
-constexpr auto NUM_DIRECTIONS = 8;
-constexpr auto NUM_ARROW_STYLES = 2;
 
 class Wind
 {

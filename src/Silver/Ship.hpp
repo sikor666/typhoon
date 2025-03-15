@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Wind.hpp"
+#include "Config.hpp"
+#include "Math.hpp"
 
 #include <memory>
 #include <vector>
@@ -12,6 +13,7 @@ class Screen;
 namespace Silver {
 
 class Map;
+class Wind;
 
 enum ShipType
 {
