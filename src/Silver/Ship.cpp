@@ -48,6 +48,7 @@ Ship::~Ship()
 
 void Ship::activate()
 {
+    _distance = 0.0;
     _active = true;
 
     _map->update(_position, _active, _arrow[_direction]);
@@ -105,8 +106,7 @@ void Ship::showCourse()
     const auto windDirection = _wind->getDirection();
     const auto windSpeed = _wind->getSpeed();
     const auto & display = _screen->getDisplay(1);
-
-    const double x = _speed + windSpeed;
+    const double speed = _speed + windSpeed;
 
     _distance = 0.0;
 
@@ -134,7 +134,7 @@ void Ship::showCourse()
             default: throw std::runtime_error{"Course to wind is wrong"};
         }
 
-        const auto r = x / m;
+        const auto r = speed / m;
 
         std::stringstream stream;
         stream << i << ": (" << _speed << "+" << windSpeed << ")/" << std::fixed << std::setprecision(1) << m << "=" << r;
