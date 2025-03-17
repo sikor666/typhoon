@@ -75,21 +75,6 @@ void Game::run()
             if (not _ships.empty())
                 _ships.front()->navigate();
         }
-        else if (std::ranges::contains(keys, 'r'))
-        {
-            if (not _ships.empty())
-                _ships.front()->showCourse();
-        }
-        else if (std::ranges::contains(keys, 'x'))
-        {
-            // if (caravel)
-            //     caravel.reset();
-        }
-        else if (std::ranges::contains(keys, 'v'))
-        {
-            // if (not caravel)
-            //     caravel = std::make_unique<Ship>(Caravel, Vector2{3, 3}, _screen, _map, _wind);
-        }
         else if (std::ranges::contains(keys, 'n'))
         {
             for (const auto & player : _players)
@@ -100,10 +85,16 @@ void Game::run()
         else if (std::ranges::contains(keys, 'z'))
         {
             _wind->setDirection((_wind->getDirection() + 1) % 8);
+
+            if (not _ships.empty())
+                _ships.front()->showCourse();
         }
         else if (std::ranges::contains(keys, 'c'))
         {
             _wind->setSpeed((_wind->getSpeed() + 1) % 13);
+
+            if (not _ships.empty())
+                _ships.front()->showCourse();
         }
 
         _screen->refresh();

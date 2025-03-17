@@ -55,6 +55,8 @@ void Ship::activate()
     _map->update(_position, _active, _arrow[_direction]);
 
     dbgI << "Activate [" << _active << "] [" << _type << "]";
+
+    showCourse();
 }
 
 void Ship::deactivate()
@@ -64,6 +66,8 @@ void Ship::deactivate()
     _map->update(_position, _active, _arrow[_direction]);
 
     dbgI << "Deactivate [" << _active << "] [" << _type << "]";
+
+    hideCourse();
 }
 
 void Ship::turnLeft()
@@ -73,6 +77,8 @@ void Ship::turnLeft()
     _map->update(_position, _active, _arrow[_direction]);
 
     dbgI << "Left [" << _arrow[_direction] << "]";
+
+    showCourse();
 }
 
 void Ship::turnRight()
@@ -82,6 +88,8 @@ void Ship::turnRight()
     _map->update(_position, _active, _arrow[_direction]);
 
     dbgI << "Right [" << _arrow[_direction] << "]";
+
+    showCourse();
 }
 
 void Ship::move()
@@ -119,7 +127,7 @@ void Ship::showCourse()
         auto w = _course[i][windDirection];
         auto m = 0.0;
 
-        _map->show(_range[i], "  ");
+        _map->show(_range[i], false, "  ");
         _range[i].clear();
 
         switch (w)
@@ -151,7 +159,16 @@ void Ship::showCourse()
             _range[i].emplace_back(p += _displacement[i]);
         }
 
-        _range[i] = _map->show(_range[i], " 🞄");
+        _range[i] = _map->show(_range[i], i == _direction, " 🞄");
+    }
+}
+
+void Ship::hideCourse()
+{
+    for (auto & range : _range)
+    {
+        _map->show(range, false, "  ");
+        range.clear();
     }
 }
 

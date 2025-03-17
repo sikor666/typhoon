@@ -92,7 +92,7 @@ Vector2 Map::move(const Vector2 & pos, int direction, const std::string & str)
     return res;
 }
 
-std::vector<Vector2> Map::show(const std::vector<Vector2> & pos, const std::string & str)
+std::vector<Vector2> Map::show(const std::vector<Vector2> & pos, bool course, const std::string & str)
 {
     std::vector<Vector2> res;
 
@@ -110,7 +110,7 @@ std::vector<Vector2> Map::show(const std::vector<Vector2> & pos, const std::stri
             continue;
         }
 
-        _screen->getDisplay(0)->print(p, Bastet::Color::CyanBlue, str);
+        _screen->getDisplay(0)->print(p, course ? Bastet::Color::WhiteBlue : Bastet::Color::CyanBlue, str);
 
         res.emplace_back(p);
     }

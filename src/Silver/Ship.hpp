@@ -59,7 +59,9 @@ public:
 
     void move();
     void navigate();
+
     void showCourse();
+    void hideCourse();
 
 private:
     const ShipType _type;
