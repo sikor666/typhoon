@@ -16,9 +16,10 @@ Ship::Ship(ShipType type, const Vector2 & position, const std::shared_ptr<Bastet
     , _screen{screen}
     , _map{map}
     , _wind{wind}
-    , _arrow{"🡡 ", "🡥 ", "🡢 ", "🡦 ", "🡣 ", "🡧 ", "🡠 ", "🡤 "}
     , _displacement{Vector2{+0, -1}, Vector2{+1, -1}, Vector2{+1, -0}, Vector2{+1, +1},
                     Vector2{+0, +1}, Vector2{-1, +1}, Vector2{-1, +0}, Vector2{-1, -1}}
+    , _arrow{"🡡 ", "🡥 ", "🡢 ", "🡦 ", "🡣 ", "🡧 ", "🡠 ", "🡤 "}
+    , _range{}
     , _course{0, 1, 2, 3, 4, 3, 2, 1, //
               1, 0, 1, 2, 3, 4, 3, 2, //
               2, 1, 0, 1, 2, 3, 4, 3, //
@@ -112,14 +113,14 @@ void Ship::showCourse()
 
     display->print(_shipRosePos, Bastet::Color::RedWhite, std::to_string(_speed));
 
-    _map->show(_path, "  ");
-    _path.clear();
-
     for (int i = 0; i < NUM_DIRECTIONS; i++)
     {
         auto p = _position;
         auto w = _course[i][windDirection];
         auto m = 0.0;
+
+        _map->show(_range[i], "  ");
+        _range[i].clear();
 
         switch (w)
         {
@@ -147,11 +148,11 @@ void Ship::showCourse()
 
         for (size_t n = 0; n < v; n++)
         {
-            _path.emplace_back(p += _displacement[i]);
+            _range[i].emplace_back(p += _displacement[i]);
         }
-    }
 
-    _path = _map->show(_path, " 🞄");
+        _range[i] = _map->show(_range[i], " 🞄");
+    }
 }
 
 } // namespace Silver
