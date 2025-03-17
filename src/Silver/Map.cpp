@@ -110,7 +110,7 @@ std::vector<Vector2> Map::show(const std::vector<Vector2> & pos, const std::stri
             continue;
         }
 
-        _screen->getDisplay(0)->print(p, Bastet::Color::WhiteBlue, str);
+        _screen->getDisplay(0)->print(p, Bastet::Color::CyanBlue, str);
 
         res.emplace_back(p);
     }

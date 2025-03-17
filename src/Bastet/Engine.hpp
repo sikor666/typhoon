@@ -16,7 +16,7 @@ enum Color
     RedWhite,
     MagentaWhite,
 
-    RedBlack = 16,
+    CyanBlue = 16,
     GreenBlack,
     BlackYellow,
 };

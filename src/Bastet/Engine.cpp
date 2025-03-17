@@ -54,7 +54,7 @@ Engine::Engine()
     init_pair(Color::MagentaWhite, COLOR_MAGENTA, COLOR_WHITE);
 
     /* 16 - ? is for other things */
-    init_pair(Color::RedBlack, COLOR_RED, COLOR_BLACK);       // points
+    init_pair(Color::CyanBlue, COLOR_CYAN, COLOR_BLUE);       // ship range
     init_pair(Color::GreenBlack, COLOR_GREEN, COLOR_BLACK);   // number of lines
     init_pair(Color::BlackYellow, COLOR_BLACK, COLOR_YELLOW); // active ship
 
