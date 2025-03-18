@@ -56,6 +56,7 @@ void Ship::activate()
 
     dbgI << "Activate [" << _active << "] [" << _type << "]";
 
+    hideCourse();
     showCourse();
 }
 
@@ -78,6 +79,7 @@ void Ship::turnLeft()
 
     dbgI << "Left [" << _arrow[_direction] << "]";
 
+    hideCourse();
     showCourse();
 }
 
@@ -89,6 +91,7 @@ void Ship::turnRight()
 
     dbgI << "Right [" << _arrow[_direction] << "]";
 
+    hideCourse();
     showCourse();
 }
 
@@ -126,9 +129,6 @@ void Ship::showCourse()
         auto p = _position;
         auto w = _course[i][windDirection];
         auto m = 0.0;
-
-        _map->show(_range[i], false, "  ");
-        _range[i].clear();
 
         switch (w)
         {

@@ -87,14 +87,20 @@ void Game::run()
             _wind->setDirection((_wind->getDirection() + 1) % 8);
 
             if (not _ships.empty())
+            {
+                _ships.front()->hideCourse();
                 _ships.front()->showCourse();
+            }
         }
         else if (std::ranges::contains(keys, 'c'))
         {
             _wind->setSpeed((_wind->getSpeed() + 1) % 13);
 
             if (not _ships.empty())
+            {
+                _ships.front()->hideCourse();
                 _ships.front()->showCourse();
+            }
         }
 
         _screen->refresh();
