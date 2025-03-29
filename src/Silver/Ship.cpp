@@ -123,6 +123,7 @@ void Ship::showCourse()
     _distance = 0.0;
 
     display->print(_shipRosePos, Bastet::Color::RedWhite, std::to_string(_speed));
+    display->print(Vector2{1, 13}, Bastet::Color::BlackYellow, "4.3 🬴🬰🬰🬰🬰🬰🬰🬰🬰🬰🬰🬸");
 
     for (int i = 0; i < NUM_DIRECTIONS; i++)
     {
